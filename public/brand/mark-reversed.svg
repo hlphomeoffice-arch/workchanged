@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title desc">
+  <title id="title">Work Changed reversed shift mark</title>
+  <desc id="desc">A white W-shaped route whose final stroke rises in cobalt toward a lime action point.</desc>
+  <path d="M17 27 L35 94 L59 45 L82 94" fill="none" stroke="#F4F6FA" stroke-width="14" stroke-linecap="square" stroke-linejoin="bevel"/>
+  <path d="M82 94 L104 25" fill="none" stroke="#7890FF" stroke-width="14" stroke-linecap="square" stroke-linejoin="bevel"/>
+  <rect x="97" y="16" width="16" height="16" rx="3" fill="#C7F464"/>
+</svg>

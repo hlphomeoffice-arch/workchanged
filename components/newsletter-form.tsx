@@ -1,8 +1,14 @@
-import Link from "next/link";
+"use client";
 
-const NEWS_LETTER_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSevqneZIj5ckUWGceVtkSw5oSJCRyigRHGsaTpFTsxNiZbz8w/viewform";
-const NEWS_LETTER_EMBED_URL = `${NEWS_LETTER_FORM_URL}?embedded=true`;
+import Link from "next/link";
+import { FormEvent, useId, useState } from "react";
+import { usePathname } from "next/navigation";
+
+type SubmissionState = "idle" | "submitting" | "success" | "error";
+
+interface NewsletterResponse {
+  ok?: boolean;
+}
 
 export function NewsletterForm({
   dark = false,
@@ -13,42 +19,135 @@ export function NewsletterForm({
   compact?: boolean;
   topic?: string;
 }) {
+  const pathname = usePathname();
+  const emailId = useId();
+  const consentId = useId();
+  const privacyId = useId();
+  const statusId = useId();
+  const [submissionState, setSubmissionState] =
+    useState<SubmissionState>("idle");
+
+  async function submitNewsLetter(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+
+    if (!form.reportValidity()) return;
+
+    const fields = new FormData(form);
+    const email = String(fields.get("email") || "").trim();
+    const website = String(fields.get("website") || "");
+    const consent = fields.get("consent") === "on";
+
+    setSubmissionState("submitting");
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          consent,
+          website,
+          topic: topic || "WorkChanged News Letter",
+          sourcePath: pathname,
+        }),
+      });
+      const result = (await response.json().catch(() => null)) as
+        | NewsletterResponse
+        | null;
+
+      if (!response.ok || result?.ok !== true) {
+        throw new Error("News Letter sign-up was not confirmed.");
+      }
+
+      form.reset();
+      setSubmissionState("success");
+      window.dispatchEvent(
+        new CustomEvent("workchanged:newsletter-signup", {
+          detail: {
+            topic: topic || "WorkChanged News Letter",
+            source_path: pathname,
+          },
+        }),
+      );
+    } catch {
+      setSubmissionState("error");
+    }
+  }
+
+  const isSubmitting = submissionState === "submitting";
+
   return (
-    <div
+    <form
       className={`newsletter-form newsletter-form--notice ${
         dark ? "newsletter-form--dark" : ""
       } ${compact ? "newsletter-form--compact" : ""}`}
+      onSubmit={submitNewsLetter}
+      aria-describedby={`${privacyId} ${statusId}`}
+      aria-busy={isSubmitting}
     >
       <div className="newsletter-form__intro">
         <strong>Join the WorkChanged News Letter</strong>
         <p>
-          Enter your email below
-          {topic ? ` after reading about ${topic}` : ""}. Google confirms the
-          response and stores the address in the private WorkChanged Website
-          News Letter List in Google Drive.
+          Enter your email
+          {topic ? ` after reading about ${topic}` : ""} for the calm weekly
+          briefing.
         </p>
       </div>
-      <div className="newsletter-form__embed">
-        <iframe
-          src={NEWS_LETTER_EMBED_URL}
-          title="WorkChanged News Letter email sign-up"
-          loading="lazy"
-        >
-          Loading the WorkChanged News Letter sign-up form.
-        </iframe>
+
+      <div className="newsletter-form__fields">
+        <div className="newsletter-field">
+          <label htmlFor={emailId}>Email address</label>
+          <input
+            id={emailId}
+            name="email"
+            type="email"
+            inputMode="email"
+            autoComplete="email"
+            maxLength={254}
+            required
+            disabled={isSubmitting}
+          />
+        </div>
+
+        <div className="newsletter-form__honeypot" aria-hidden="true">
+          <label htmlFor={`${emailId}-website`}>Website</label>
+          <input
+            id={`${emailId}-website`}
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+
+        <label className="newsletter-consent" htmlFor={consentId}>
+          <input
+            id={consentId}
+            name="consent"
+            type="checkbox"
+            required
+            disabled={isSubmitting}
+          />
+          <span>
+            I agree to receive the WorkChanged News Letter and understand that
+            I can unsubscribe at any time.
+          </span>
+        </label>
       </div>
+
       <div className="newsletter-form__actions">
-        <a
+        <button
           className={`button ${dark ? "button--lime" : "button--dark"}`}
-          href={NEWS_LETTER_FORM_URL}
-          target="_blank"
-          rel="noreferrer noopener"
-          data-track="newsletter_signup_open"
+          type="submit"
+          disabled={isSubmitting}
+          data-track="newsletter_signup_submit"
           data-track-meta={topic || "workchanged-news-letter"}
         >
-          Open the News Letter sign-up form
-          <span aria-hidden="true"> ↗</span>
-        </a>
+          {isSubmitting ? "Joining…" : "Join the News Letter"}
+        </button>
         <Link
           className="text-link"
           href="/rss.xml"
@@ -58,11 +157,29 @@ export function NewsletterForm({
           Prefer RSS? Follow the feed
         </Link>
       </div>
-      <p className="form-privacy">
-        We use your address only for the WorkChanged News Letter. Google hosts
-        the form and private mailing-list file. Campaign delivery is separate
-        from this sign-up.
+
+      <div
+        id={statusId}
+        className={`newsletter-form__status newsletter-form__status--${submissionState}`}
+        role={submissionState === "error" ? "alert" : "status"}
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {submissionState === "submitting" &&
+          "Securely adding your address…"}
+        {submissionState === "success" &&
+          "You are on the list. Your address has been saved for the WorkChanged News Letter."}
+        {submissionState === "error" &&
+          "We could not add you just now. Please try again, or follow the RSS feed."}
+      </div>
+
+      <p id={privacyId} className="form-privacy">
+        We use your address only for the WorkChanged News Letter. It is sent
+        through a secure WorkChanged connection and stored in the private
+        WorkChanged mailing-list file in Google Drive. Google provides storage,
+        and analytics never receives your address. Read the{" "}
+        <Link href="/standards#privacy">privacy details</Link>.
       </p>
-    </div>
+    </form>
   );
 }

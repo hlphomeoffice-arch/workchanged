@@ -10,6 +10,188 @@ interface WorkerAssetEnv {
   ASSETS?: {
     fetch(request: Request): Promise<Response> | Response;
   };
+  NEWSLETTER_FETCH?: typeof fetch;
+}
+
+const NEWSLETTER_BODY_LIMIT = 4_096;
+const NEWSLETTER_TIMEOUT_MS = 8_000;
+const NEWSLETTER_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSevqneZIj5ckUWGceVtkSw5oSJCRyigRHGsaTpFTsxNiZbz8w/formResponse";
+const NEWSLETTER_FORM_CONSENT =
+  "I agree to receive the WorkChanged News Letter and understand that I can unsubscribe at any time.";
+const NEWSLETTER_CONFIRMATION =
+  "You’re on the WorkChanged News Letter list.";
+const NEWSLETTER_EMAIL_PATTERN =
+  /^[^\s@]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)+$/i;
+
+function newsletterResponse(
+  body: { ok: boolean; error?: string },
+  status: number,
+): Response {
+  return Response.json(body, {
+    status,
+    headers: {
+      "Cache-Control": "no-store",
+    },
+  });
+}
+
+async function readRequestBody(
+  request: Request,
+  byteLimit: number,
+): Promise<string | null> {
+  if (!request.body) return "";
+
+  const reader = request.body.getReader();
+  const decoder = new TextDecoder();
+  let bytesRead = 0;
+  let text = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    bytesRead += value.byteLength;
+    if (bytesRead > byteLimit) {
+      await reader.cancel();
+      return null;
+    }
+    text += decoder.decode(value, { stream: true });
+  }
+
+  return text + decoder.decode();
+}
+
+async function handleNewsletterRequest(
+  request: Request,
+  env: WorkerAssetEnv,
+): Promise<Response> {
+  if (request.method !== "POST") {
+    return newsletterResponse(
+      { ok: false, error: "Method not allowed." },
+      405,
+    );
+  }
+
+  const requestUrl = new URL(request.url);
+  if (request.headers.get("origin") !== requestUrl.origin) {
+    return newsletterResponse(
+      { ok: false, error: "This request was not accepted." },
+      403,
+    );
+  }
+
+  const contentType = request.headers.get("content-type")?.toLowerCase() ?? "";
+  if (!contentType.startsWith("application/json")) {
+    return newsletterResponse(
+      { ok: false, error: "Expected a JSON request." },
+      415,
+    );
+  }
+
+  const declaredLength = Number(request.headers.get("content-length") || "0");
+  if (
+    !Number.isFinite(declaredLength) ||
+    declaredLength < 0 ||
+    declaredLength > NEWSLETTER_BODY_LIMIT
+  ) {
+    return newsletterResponse(
+      { ok: false, error: "The request was too large." },
+      413,
+    );
+  }
+
+  const rawBody = await readRequestBody(request, NEWSLETTER_BODY_LIMIT);
+  if (rawBody === null) {
+    return newsletterResponse(
+      { ok: false, error: "The request was too large." },
+      413,
+    );
+  }
+
+  let body: Record<string, unknown>;
+  try {
+    body = JSON.parse(rawBody) as Record<string, unknown>;
+  } catch {
+    return newsletterResponse(
+      { ok: false, error: "The request was not valid JSON." },
+      400,
+    );
+  }
+
+  if (typeof body.website === "string" && body.website.trim()) {
+    return newsletterResponse({ ok: true }, 200);
+  }
+
+  const email =
+    typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+  const localPart = email.split("@", 1)[0] ?? "";
+  if (
+    email.length === 0 ||
+    email.length > 254 ||
+    localPart.length > 64 ||
+    !NEWSLETTER_EMAIL_PATTERN.test(email)
+  ) {
+    return newsletterResponse(
+      { ok: false, error: "Enter a valid email address." },
+      400,
+    );
+  }
+
+  if (body.consent !== true) {
+    return newsletterResponse(
+      { ok: false, error: "Consent is required." },
+      400,
+    );
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), NEWSLETTER_TIMEOUT_MS);
+
+  try {
+    const upstreamBody = new URLSearchParams({
+      emailAddress: email,
+      "entry.31323867": NEWSLETTER_FORM_CONSENT,
+      fvv: "1",
+      pageHistory: "0",
+    });
+    const upstreamFetch = env.NEWSLETTER_FETCH ?? fetch;
+    const upstreamResponse = await upstreamFetch(NEWSLETTER_FORM_URL, {
+      method: "POST",
+      headers: {
+        Accept: "text/html",
+        "Accept-Language": "en-GB,en;q=0.9",
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+      },
+      body: upstreamBody,
+      redirect: "follow",
+      signal: controller.signal,
+    });
+
+    if (!upstreamResponse.ok) {
+      return newsletterResponse(
+        { ok: false, error: "News Letter sign-up could not be confirmed." },
+        502,
+      );
+    }
+
+    const upstreamHtml = await upstreamResponse.text();
+    if (!upstreamHtml.includes(NEWSLETTER_CONFIRMATION)) {
+      return newsletterResponse(
+        { ok: false, error: "News Letter sign-up could not be confirmed." },
+        502,
+      );
+    }
+
+    return newsletterResponse({ ok: true }, 200);
+  } catch {
+    return newsletterResponse(
+      { ok: false, error: "News Letter sign-up could not be confirmed." },
+      502,
+    );
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 function securityHeaders(request: Request, response: Response): Response {
@@ -54,7 +236,7 @@ function securityHeaders(request: Request, response: Response): Response {
         "font-src 'self'",
         "form-action 'self'",
         "frame-ancestors 'none'",
-        "frame-src https://docs.google.com",
+        "frame-src 'none'",
         "img-src 'self' data:",
         "manifest-src 'self'",
         "media-src 'self'",
@@ -79,6 +261,13 @@ const worker = {
     env: WorkerAssetEnv,
     ctx: ExecutionContext,
   ): Promise<Response> {
+    if (new URL(request.url).pathname === "/api/newsletter") {
+      return securityHeaders(
+        request,
+        await handleNewsletterRequest(request, env),
+      );
+    }
+
     const response = await handler.fetch(request, env, ctx);
     return securityHeaders(request, response);
   },

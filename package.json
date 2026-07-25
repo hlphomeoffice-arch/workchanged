@@ -31,7 +31,7 @@
     "typescript": "5.9.3",
     "vinext": "0.0.50",
     "vite": "8.1.5",
-    "wrangler": "4.113.0"
+    "wrangler": "4.114.0"
   },
   "type": "module",
   "packageManager": "pnpm@11.9.0"

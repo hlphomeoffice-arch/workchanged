@@ -9,6 +9,19 @@ const projectRoot = path.resolve(
   "..",
 );
 let workerPromise;
+const testExecutionContext = {
+  waitUntil() {},
+  passThroughOnException() {},
+};
+
+function testEnvironment(overrides = {}) {
+  return {
+    ASSETS: {
+      fetch: async () => new Response("Not found", { status: 404 }),
+    },
+    ...overrides,
+  };
+}
 
 async function getWorker() {
   workerPromise ||= import(
@@ -30,15 +43,37 @@ async function render(
     new Request(`${origin}${requestPath}`, {
       headers: { accept },
     }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
+    testEnvironment(),
+    testExecutionContext,
+  );
+}
+
+async function submitNewsletter(
+  payload,
+  {
+    origin = "https://workchanged.com",
+    upstreamFetch = async () =>
+      new Response(
+        "<main>You’re on the WorkChanged News Letter list.</main>",
+        { status: 200 },
+      ),
+  } = {},
+) {
+  const worker = await getWorker();
+  const headers = {
+    accept: "application/json",
+    "content-type": "application/json",
+  };
+  if (origin !== null) headers.origin = origin;
+
+  return worker.fetch(
+    new Request("https://workchanged.com/api/newsletter", {
+      method: "POST",
+      headers,
+      body: JSON.stringify(payload),
+    }),
+    testEnvironment({ NEWSLETTER_FETCH: upstreamFetch }),
+    testExecutionContext,
   );
 }
 
@@ -64,10 +99,7 @@ test("server-renders the audience-led homepage and preserved security shell", as
     response.headers.get("content-security-policy") ?? "";
   assert.match(contentSecurityPolicy, /default-src 'self'/);
   assert.match(contentSecurityPolicy, /frame-ancestors 'none'/);
-  assert.match(
-    contentSecurityPolicy,
-    /frame-src https:\/\/docs\.google\.com/,
-  );
+  assert.match(contentSecurityPolicy, /frame-src 'none'/);
   assert.match(contentSecurityPolicy, /form-action 'self'/);
   assert.doesNotMatch(contentSecurityPolicy, /connect-src[^;]*google/i);
   assert.match(contentSecurityPolicy, /object-src 'none'/);
@@ -112,33 +144,150 @@ test("publishes an active, accessible WorkChanged News Letter sign-up", async ()
   const response = await render("/newsletter");
   assert.equal(response.status, 200);
   const html = await response.text();
-  const formUrl =
-    "https://docs.google.com/forms/d/e/1FAIpQLSevqneZIj5ckUWGceVtkSw5oSJCRyigRHGsaTpFTsxNiZbz8w/viewform";
 
   assert.match(html, /<title>WorkChanged News Letter \| WorkChanged<\/title>/);
   assert.match(html, /The News Letter worth your attention this week\./);
   assert.match(
     html,
-    new RegExp(
-      `<iframe[^>]+src="${formUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\?embedded=true"`,
-    ),
+    /<form[^>]+class="newsletter-form newsletter-form--notice newsletter-form--dark/,
   );
-  assert.match(
-    html,
-    /title="WorkChanged News Letter email sign-up"[^>]+loading="lazy"/,
-  );
-  assert.match(
-    html,
-    new RegExp(
-      `<a[^>]+href="${formUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"[^>]+target="_blank"`,
-    ),
-  );
-  assert.match(html, /WorkChanged Website News Letter List/);
+  const emailInput = html.match(/<input[^>]*name="email"[^>]*>/i)?.[0];
+  assert.ok(emailInput);
+  assert.match(emailInput, /type="email"/i);
+  assert.match(emailInput, /autocomplete="email"/i);
+  assert.match(emailInput, /maxlength="254"/i);
+  assert.match(emailInput, /required/i);
+  const consentInput = html.match(
+    /<input[^>]*name="consent"[^>]*>/i,
+  )?.[0];
+  assert.ok(consentInput);
+  assert.match(consentInput, /type="checkbox"/i);
+  assert.match(consentInput, /required/i);
+  assert.match(html, /Join the News Letter/);
+  assert.match(html, /I agree to receive the WorkChanged News Letter/);
+  assert.match(html, /private WorkChanged mailing-list file in Google Drive/);
   assert.match(html, /Prefer RSS\? Follow the feed/);
+  assert.doesNotMatch(html, /<iframe|docs\.google\.com\/forms/i);
+  assert.doesNotMatch(html, /henk@nuclius\.ai|Switch accounts/i);
   assert.doesNotMatch(
     html,
     /email service is not connected|no email address is collected/i,
   );
+});
+
+test("stores a valid News Letter signup only after Google confirms it", async () => {
+  let upstreamRequest;
+  const response = await submitNewsletter(
+    {
+      email: "Reader.Example@example.com",
+      consent: true,
+      website: "",
+      topic: "AI and Your Job",
+      sourcePath: "/guides/ai-job-loss-predictions-evidence",
+    },
+    {
+      upstreamFetch: async (input, init) => {
+        upstreamRequest = { input: String(input), init };
+        return new Response(
+          "<main>You’re on the WorkChanged News Letter list.</main>",
+          { status: 200 },
+        );
+      },
+    },
+  );
+
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("cache-control"), "no-store");
+  assert.deepEqual(await response.json(), { ok: true });
+  assert.equal(
+    upstreamRequest.input,
+    "https://docs.google.com/forms/d/e/1FAIpQLSevqneZIj5ckUWGceVtkSw5oSJCRyigRHGsaTpFTsxNiZbz8w/formResponse",
+  );
+  assert.equal(upstreamRequest.init.method, "POST");
+  assert.match(
+    upstreamRequest.init.headers["Content-Type"],
+    /^application\/x-www-form-urlencoded/,
+  );
+  const upstreamBody = new URLSearchParams(
+    upstreamRequest.init.body.toString(),
+  );
+  assert.equal(
+    upstreamBody.get("emailAddress"),
+    "reader.example@example.com",
+  );
+  assert.equal(
+    upstreamBody.get("entry.31323867"),
+    "I agree to receive the WorkChanged News Letter and understand that I can unsubscribe at any time.",
+  );
+  assert.equal(upstreamBody.get("fvv"), "1");
+  assert.equal(upstreamBody.get("pageHistory"), "0");
+});
+
+test("rejects unsafe News Letter requests before they reach Google", async () => {
+  let upstreamCalls = 0;
+  const upstreamFetch = async () => {
+    upstreamCalls += 1;
+    return new Response(
+      "<main>You’re on the WorkChanged News Letter list.</main>",
+      { status: 200 },
+    );
+  };
+
+  const invalidEmail = await submitNewsletter(
+    { email: "not-an-email", consent: true, website: "" },
+    { upstreamFetch },
+  );
+  assert.equal(invalidEmail.status, 400);
+
+  const missingConsent = await submitNewsletter(
+    { email: "reader@example.com", consent: false, website: "" },
+    { upstreamFetch },
+  );
+  assert.equal(missingConsent.status, 400);
+
+  const crossOrigin = await submitNewsletter(
+    { email: "reader@example.com", consent: true, website: "" },
+    { origin: "https://example.net", upstreamFetch },
+  );
+  assert.equal(crossOrigin.status, 403);
+
+  const botTrap = await submitNewsletter(
+    {
+      email: "reader@example.com",
+      consent: true,
+      website: "filled-by-a-bot",
+    },
+    { upstreamFetch },
+  );
+  assert.equal(botTrap.status, 200);
+  assert.deepEqual(await botTrap.json(), { ok: true });
+  assert.equal(upstreamCalls, 0);
+});
+
+test("does not claim a signup when Google fails or omits confirmation", async () => {
+  const upstreamFailure = await submitNewsletter(
+    { email: "reader@example.com", consent: true, website: "" },
+    {
+      upstreamFetch: async () =>
+        new Response("Service unavailable", { status: 503 }),
+    },
+  );
+  assert.equal(upstreamFailure.status, 502);
+  assert.deepEqual(await upstreamFailure.json(), {
+    ok: false,
+    error: "News Letter sign-up could not be confirmed.",
+  });
+
+  const missingConfirmation = await submitNewsletter(
+    { email: "reader@example.com", consent: true, website: "" },
+    {
+      upstreamFetch: async () =>
+        new Response("<main>Please correct the form.</main>", {
+          status: 200,
+        }),
+    },
+  );
+  assert.equal(missingConfirmation.status, 502);
 });
 
 test("adds transport security on HTTPS responses", async () => {

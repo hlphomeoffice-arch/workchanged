@@ -181,6 +181,11 @@ export function AnalyticsRuntime({ reviewed }: { reviewed?: string }) {
       record("role_or_topic_follow", detail);
     }
 
+    function onNewsletterSignup(event: Event) {
+      const detail = (event as CustomEvent<EventProperties>).detail;
+      record("newsletter_conversion", detail);
+    }
+
     const timer = window.setInterval(() => {
       if (document.visibilityState !== "visible") return;
       activeSeconds += 5;
@@ -193,6 +198,10 @@ export function AnalyticsRuntime({ reviewed }: { reviewed?: string }) {
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("click", onClick);
     window.addEventListener("workchanged:follow", onFollow);
+    window.addEventListener(
+      "workchanged:newsletter-signup",
+      onNewsletterSignup,
+    );
     onScroll();
 
     return () => {
@@ -200,6 +209,10 @@ export function AnalyticsRuntime({ reviewed }: { reviewed?: string }) {
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("click", onClick);
       window.removeEventListener("workchanged:follow", onFollow);
+      window.removeEventListener(
+        "workchanged:newsletter-signup",
+        onNewsletterSignup,
+      );
     };
   }, [pathname, reviewed]);
 

@@ -39,7 +39,7 @@ export function MobileMenu({
           href="/newsletter"
           onClick={() => setOpenPath(null)}
         >
-          Weekly briefing
+          News Letter
         </Link>
       </div>
     </details>

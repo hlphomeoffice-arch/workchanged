@@ -163,7 +163,7 @@ export default function Home() {
             title="Changes worth understanding, without the news churn"
             text="Trackers and timely interpretation are selected for practical impact, not novelty."
             href="/today"
-            linkLabel="Open the weekly briefing"
+            linkLabel="Open What Changed This Week"
             light
           />
           <div className="weekly-change-grid">
@@ -355,8 +355,8 @@ export default function Home() {
       <section className="section briefing-home-section">
         <div className="shell briefing-home-section__grid">
           <div>
-            <p className="kicker kicker--light">Weekly briefing</p>
-            <h2>Follow what materially changed at work</h2>
+            <p className="kicker kicker--light">WorkChanged News Letter</p>
+            <h2>Get what materially changed at work by email</h2>
             <p>
               One focused review of the changes, evidence and next actions worth
               carrying into the week.

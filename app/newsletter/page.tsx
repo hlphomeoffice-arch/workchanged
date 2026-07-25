@@ -3,23 +3,23 @@ import Image from "next/image";
 import { NewsletterForm } from "@/components/newsletter-form";
 
 export const metadata: Metadata = {
-  title: "What Changed at Work weekly briefing",
+  title: "WorkChanged News Letter",
   description:
-    "A focused weekly briefing on AI, job security, skills, rights and changed work.",
+    "Join the WorkChanged News Letter for a focused weekly briefing on AI, job security, skills, rights and changed work.",
   alternates: { canonical: "/newsletter" },
   openGraph: {
     type: "website",
-    title: "What Changed at Work weekly briefing",
+    title: "WorkChanged News Letter",
     description:
-      "A focused weekly briefing with evidence, country context and practical next steps.",
+      "Join the WorkChanged News Letter for evidence, country context and practical next steps.",
     url: "/newsletter",
     images: ["/og-work-changed.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "What Changed at Work weekly briefing",
+    title: "WorkChanged News Letter",
     description:
-      "A focused weekly briefing with evidence, country context and practical next steps.",
+      "Join the WorkChanged News Letter for evidence, country context and practical next steps.",
     images: ["/og-work-changed.jpg"],
   },
 };
@@ -30,8 +30,8 @@ export default function NewsletterPage() {
       <section className="newsletter-page__hero">
         <div className="shell newsletter-page__grid">
           <div>
-            <p className="kicker kicker--lime">What Changed at Work</p>
-            <h1>The changes worth your attention this week.</h1>
+            <p className="kicker kicker--lime">WorkChanged News Letter</p>
+            <h1>The News Letter worth your attention this week.</h1>
             <p>
               A calm weekly briefing for experienced professionals who need
               evidence, country context and a practical next step.
@@ -47,7 +47,7 @@ export default function NewsletterPage() {
                 height={36}
                 unoptimized
               />
-              <span>Weekly briefing format</span>
+              <span>News Letter format</span>
             </div>
             <p className="kicker">Inside each issue</p>
             <ol>

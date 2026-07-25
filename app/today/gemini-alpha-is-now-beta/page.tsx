@@ -389,8 +389,8 @@ export default function GeminiBetaStory() {
       <section className="article-newsletter">
         <div className="shell article-newsletter__grid">
           <div>
-            <span className="kicker kicker--lime">What Changed at Work</span>
-            <h2>Five changes worth your attention. One focused briefing.</h2>
+            <span className="kicker kicker--lime">WorkChanged News Letter</span>
+            <h2>Five changes worth your attention. One focused News Letter.</h2>
           </div>
           <NewsletterForm dark compact topic="AI and workplace tools" />
         </div>

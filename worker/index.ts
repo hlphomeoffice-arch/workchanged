@@ -54,7 +54,7 @@ function securityHeaders(request: Request, response: Response): Response {
         "font-src 'self'",
         "form-action 'self'",
         "frame-ancestors 'none'",
-        "frame-src 'none'",
+        "frame-src https://docs.google.com",
         "img-src 'self' data:",
         "manifest-src 'self'",
         "media-src 'self'",

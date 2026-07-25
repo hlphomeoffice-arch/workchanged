@@ -4,8 +4,9 @@ Work Changed is an evidence-led editorial publication about how AI is changing
 work. It translates product releases, labour-market research and real workflow
 tests into practical guidance for specific roles, tasks, tools and skills.
 
-This repository contains the private GitHub review build. The website has not
-been deployed.
+This repository contains the complete source for the live
+[Work Changed](https://work-changed.home-office-hlp.chatgpt.site/) site and is
+linked to its Sites production project.
 
 ## Editorial products
 
@@ -73,13 +74,12 @@ hub, a tool page, a signal page and the editorial standards.
 
 - replace the newsletter preview confirmation with the chosen email platform
 - connect analytics and consent tooling
-- confirm the production domain and canonical URLs
+- complete the DNS validation for `workchanged.com`
 - complete legal review for privacy and terms
-- merge the reviewed pull request into `main`
-- deploy only after production approval
 
 ## Platform
 
 The site uses Next.js-compatible app routing through vinext and the Cloudflare
-runtime. `.openai/hosting.json` is intentionally present for a future Sites
-deployment, but no production project has been created.
+runtime. `.openai/hosting.json` links this repository to the existing Sites
+project. The custom domain is configured through Sites and DNS rather than
+GitHub Pages.

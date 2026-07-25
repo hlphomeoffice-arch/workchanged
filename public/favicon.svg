@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
   <title id="title">Work Changed favicon</title>
-  <rect width="128" height="128" rx="28" fill="#0B1020"/>
-  <path d="M20 31 L38 98 L62 49 L84 98" fill="none" stroke="#F4F6FA" stroke-width="14" stroke-linecap="square" stroke-linejoin="bevel"/>
-  <path d="M84 98 L107 27" fill="none" stroke="#7890FF" stroke-width="14" stroke-linecap="square" stroke-linejoin="bevel"/>
-  <rect x="100" y="18" width="16" height="16" rx="3" fill="#C7F464"/>
+  <rect width="128" height="128" rx="28" fill="#173F3A"/>
+  <path d="M20 31 L38 98 L62 49 L84 98" fill="none" stroke="#FFFDF8" stroke-width="14" stroke-linecap="square" stroke-linejoin="bevel"/>
+  <path d="M84 98 L107 27" fill="none" stroke="#F0B39E" stroke-width="14" stroke-linecap="square" stroke-linejoin="bevel"/>
+  <rect x="100" y="18" width="16" height="16" rx="3" fill="#E7C977"/>
 </svg>

@@ -17,11 +17,11 @@ export function RoleCard({ role, index }: { role: Role; index: number }) {
         <p>{role.signal}</p>
       </div>
       <div className="role-card__meta">
-        <span>{role.workflows} workflows</span>
+        <span>{role.tasks.length} mapped tasks</span>
         <span>Updated {role.reviewed}</span>
       </div>
       <Link className="card-link" href={`/roles/${role.slug}`}>
-        Open role briefing <span aria-hidden="true">→</span>
+        Open profession tracker <span aria-hidden="true">→</span>
       </Link>
     </article>
   );

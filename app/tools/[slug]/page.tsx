@@ -17,7 +17,24 @@ export async function generateMetadata({
   const { slug } = await params;
   const tool = getTool(slug);
   if (!tool) return {};
-  return { title: tool.name, description: tool.summary };
+  return {
+    title: tool.name,
+    description: tool.summary,
+    alternates: { canonical: `/tools/${tool.slug}` },
+    openGraph: {
+      type: "website",
+      title: tool.name,
+      description: tool.summary,
+      url: `/tools/${tool.slug}`,
+      images: ["/og-work-changed.jpg"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: tool.name,
+      description: tool.summary,
+      images: ["/og-work-changed.jpg"],
+    },
+  };
 }
 
 export default async function ToolPage({
@@ -28,17 +45,68 @@ export default async function ToolPage({
   const { slug } = await params;
   const tool = getTool(slug);
   if (!tool) notFound();
+  const canonicalUrl = `https://workchanged.com/tools/${tool.slug}`;
+  const toolJsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: tool.name,
+      description: tool.summary,
+      url: canonicalUrl,
+      dateModified: new Date(tool.reviewed).toISOString().slice(0, 10),
+      about: {
+        "@type": "SoftwareApplication",
+        name: tool.name,
+        applicationCategory: tool.category,
+      },
+      isPartOf: {
+        "@type": "WebSite",
+        name: "WorkChanged",
+        url: "https://workchanged.com",
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://workchanged.com",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Tools",
+          item: "https://workchanged.com/tools",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: tool.name,
+          item: canonicalUrl,
+        },
+      ],
+    },
+  ];
 
   return (
     <main id="main">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(toolJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <section className="tool-page-hero">
         <div className="shell">
           <nav className="breadcrumbs breadcrumbs--light" aria-label="Breadcrumb">
             <Link href="/">Home</Link>
-            <span>/</span>
+            <span aria-hidden="true">/</span>
             <Link href="/tools">Tools</Link>
-            <span>/</span>
-            <span>{tool.name}</span>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{tool.name}</span>
           </nav>
           <div className="tool-page-hero__grid">
             <div>
@@ -129,7 +197,7 @@ export default async function ToolPage({
                 {tool.sourceLabel} <span aria-hidden="true">↗</span>
               </a>
               <p>
-                Product behaviour and terms change. Work Changed records the
+                Product behaviour and terms change. WorkChanged records the
                 review date and links to the current first-party source.
               </p>
             </section>

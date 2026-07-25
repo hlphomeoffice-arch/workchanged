@@ -1,66 +1,45 @@
-"use client";
-
-import { useMemo, useState } from "react";
-import Link from "next/link";
+import type { Metadata } from "next";
+import { SearchInterface, type SearchItem } from "@/components/search-interface";
 import { allSearchItems } from "@/lib/content";
+import { articles } from "@/lib/editorial/articles";
+import { pillars } from "@/lib/editorial/pillars";
 
-export default function SearchPage() {
-  const [query, setQuery] = useState("");
-  const results = useMemo(() => {
-    const clean = query.toLowerCase().trim();
-    if (!clean) return allSearchItems.slice(0, 9);
-    return allSearchItems.filter((item) =>
-      `${item.title} ${item.description} ${item.kind}`
-        .toLowerCase()
-        .includes(clean),
-    );
-  }, [query]);
+export const metadata: Metadata = {
+  title: "Search the work-change library",
+  description:
+    "Search WorkChanged guides, profession trackers, evidence checks and practical tools.",
+  alternates: { canonical: "/search" },
+  robots: { index: false, follow: true },
+};
+
+export default async function SearchPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string | string[] }>;
+}) {
+  const params = await searchParams;
+  const initialQuery =
+    typeof params.q === "string" ? params.q.slice(0, 100) : "";
+
+  const items: SearchItem[] = [
+    ...articles.map((article) => ({
+      title: article.title,
+      description: article.dek,
+      href: `/guides/${article.slug}`,
+      kind: article.format,
+    })),
+    ...pillars.map((pillar) => ({
+      title: pillar.name,
+      description: pillar.description,
+      href: `/topics/${pillar.slug}`,
+      kind: "Editorial pillar",
+    })),
+    ...allSearchItems,
+  ];
 
   return (
     <main id="main" className="search-page">
-      <section className="search-hero">
-        <div className="shell">
-          <p className="kicker kicker--lime">Search Work Changed</p>
-          <h1>Find the role, task, tool or change.</h1>
-          <label className="search-box">
-            <span aria-hidden="true">⌕</span>
-            <input
-              autoFocus
-              type="search"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Try recruiter, meeting notes, Gemini…"
-            />
-          </label>
-        </div>
-      </section>
-      <section className="section section--paper">
-        <div className="shell">
-          <div className="search-results-head">
-            <span className="kicker">{query ? "Matching results" : "Popular starting points"}</span>
-            <strong>{results.length} results</strong>
-          </div>
-          <div className="search-results">
-            {results.map((item) => (
-              <Link href={item.href} key={`${item.kind}-${item.title}`}>
-                <span>{item.kind}</span>
-                <h2>{item.title}</h2>
-                <p>{item.description}</p>
-                <strong>Open →</strong>
-              </Link>
-            ))}
-            {results.length === 0 && (
-              <div className="empty-state">
-                <h2>No exact match yet.</h2>
-                <p>
-                  Try a broader role or task. The library will expand as the
-                  preview moves toward launch.
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
+      <SearchInterface items={items} initialQuery={initialQuery} />
     </main>
   );
 }

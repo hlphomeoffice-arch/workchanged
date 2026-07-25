@@ -1,14 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MobileMenu } from "@/components/mobile-menu";
 
 const nav = [
-  ["Today", "/today"],
-  ["Roles", "/roles"],
-  ["Tasks", "/tasks"],
-  ["Tools", "/tools"],
-  ["Skills", "/skills"],
-  ["Signals", "/signals"],
-];
+  ["AI & your job", "/topics/ai-and-your-job"],
+  ["Skills", "/topics/skills-that-are-changing"],
+  ["Career moves", "/topics/career-moves"],
+  ["Job security", "/topics/job-security-and-hiring"],
+  ["Rights", "/topics/workplace-rules-and-rights"],
+  ["Professions", "/roles"],
+] as const;
 
 export function SiteHeader() {
   return (
@@ -20,20 +21,20 @@ export function SiteHeader() {
         <div className="shell briefing-bar__inner">
           <span>
             <span className="live-dot" aria-hidden="true" />
-            The 24 July briefing is live
+            What Changed This Week
           </span>
           <Link href="/today">
-            6 changes worth knowing <span aria-hidden="true">→</span>
+            Reviewed 25 July 2026 <span aria-hidden="true">→</span>
           </Link>
         </div>
       </div>
       <header className="site-header">
         <div className="shell site-header__inner">
-          <Link className="brand-link" href="/" aria-label="Work Changed home">
+          <Link className="brand-link" href="/" aria-label="WorkChanged home">
             <Image
               className="brand-logo brand-logo--desktop"
               src="/brand/logo-primary.svg"
-              alt="Work Changed"
+              alt="WorkChanged"
               width={220}
               height={38}
               priority
@@ -42,7 +43,7 @@ export function SiteHeader() {
             <Image
               className="brand-logo brand-logo--mobile"
               src="/brand/mark.svg"
-              alt="Work Changed"
+              alt="WorkChanged"
               width={40}
               height={40}
               priority
@@ -62,27 +63,9 @@ export function SiteHeader() {
               <span className="search-link__text">Search</span>
             </Link>
             <Link className="button button--dark header-cta" href="/newsletter">
-              Get The Work Shift
+              Weekly briefing
             </Link>
-            <details className="mobile-menu">
-              <summary aria-label="Open navigation">
-                <span />
-                <span />
-                <span />
-              </summary>
-              <div className="mobile-menu__panel">
-                <nav aria-label="Mobile navigation">
-                  {nav.map(([label, href]) => (
-                    <Link key={href} href={href}>
-                      {label} <span aria-hidden="true">→</span>
-                    </Link>
-                  ))}
-                </nav>
-                <Link className="button button--primary" href="/newsletter">
-                  Get The Work Shift
-                </Link>
-              </div>
-            </details>
+            <MobileMenu items={nav} />
           </div>
         </div>
       </header>

@@ -3,9 +3,25 @@ import Image from "next/image";
 import { NewsletterForm } from "@/components/newsletter-form";
 
 export const metadata: Metadata = {
-  title: "The Work Shift newsletter",
+  title: "What Changed at Work weekly briefing",
   description:
-    "Five AI-at-work changes, one tested workflow and no launch spam — every week.",
+    "A focused weekly briefing on AI, job security, skills, rights and changed work.",
+  alternates: { canonical: "/newsletter" },
+  openGraph: {
+    type: "website",
+    title: "What Changed at Work weekly briefing",
+    description:
+      "A focused weekly briefing with evidence, country context and practical next steps.",
+    url: "/newsletter",
+    images: ["/og-work-changed.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "What Changed at Work weekly briefing",
+    description:
+      "A focused weekly briefing with evidence, country context and practical next steps.",
+    images: ["/og-work-changed.jpg"],
+  },
 };
 
 export default function NewsletterPage() {
@@ -14,11 +30,11 @@ export default function NewsletterPage() {
       <section className="newsletter-page__hero">
         <div className="shell newsletter-page__grid">
           <div>
-            <p className="kicker kicker--lime">The Work Shift</p>
-            <h1>The five AI-at-work changes worth your attention.</h1>
+            <p className="kicker kicker--lime">What Changed at Work</p>
+            <h1>The changes worth your attention this week.</h1>
             <p>
-              A calm weekly briefing for professionals who need decisions, not
-              a firehose.
+              A calm weekly briefing for experienced professionals who need
+              evidence, country context and a practical next step.
             </p>
             <NewsletterForm dark />
           </div>
@@ -31,29 +47,29 @@ export default function NewsletterPage() {
                 height={36}
                 unoptimized
               />
-              <span>Issue 001 · Preview</span>
+              <span>Weekly briefing format</span>
             </div>
             <p className="kicker">Inside each issue</p>
             <ol>
               <li>
                 <span>01</span>
-                <strong>Five changes worth knowing</strong>
+                <strong>The most important change</strong>
               </li>
               <li>
                 <span>02</span>
-                <strong>One role-specific implication</strong>
+                <strong>Who it affects by role</strong>
               </li>
               <li>
                 <span>03</span>
-                <strong>One workflow or test method</strong>
+                <strong>One evidence check</strong>
               </li>
               <li>
                 <span>04</span>
-                <strong>One skill move</strong>
+                <strong>A practical action or checklist</strong>
               </li>
               <li>
                 <span>05</span>
-                <strong>One claim that did not survive scrutiny</strong>
+                <strong>What was reviewed or updated</strong>
               </li>
             </ol>
           </div>
@@ -64,7 +80,7 @@ export default function NewsletterPage() {
           <article>
             <span>01</span>
             <h2>Role-aware</h2>
-            <p>Choose a role so the briefing can prioritise useful changes.</p>
+            <p>Use profession links to move directly into relevant changes.</p>
           </article>
           <article>
             <span>02</span>
@@ -74,7 +90,7 @@ export default function NewsletterPage() {
           <article>
             <span>03</span>
             <h2>Finite</h2>
-            <p>One email a week. Five changes. A clear stopping point.</p>
+            <p>One edition a week. Five changes. A clear stopping point.</p>
           </article>
         </div>
       </section>

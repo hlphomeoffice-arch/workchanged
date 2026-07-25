@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="not-found">
+    <main className="not-found" id="main">
       <div className="shell not-found__inner">
         <span className="eyebrow">Route changed</span>
         <h1>This page has moved out of the workflow.</h1>
@@ -15,7 +15,7 @@ export default function NotFound() {
             Read today&apos;s shift
           </Link>
           <Link className="button button--ghost" href="/search">
-            Search Work Changed
+            Search WorkChanged
           </Link>
         </div>
       </div>

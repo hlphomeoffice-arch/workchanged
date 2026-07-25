@@ -1,22 +1,45 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArticleCard } from "@/components/article-card";
 import { EvidenceBadge } from "@/components/evidence-badge";
 import { PageHero } from "@/components/page-hero";
+import { SectionHeading } from "@/components/section-heading";
+import { articles } from "@/lib/editorial/articles";
 import { signalStats, stories } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Work Signals",
+  title: "Evidence checks and work signals",
   description:
     "Evidence on AI adoption, jobs, productivity, policy and how work is actually changing.",
+  alternates: { canonical: "/signals" },
+  openGraph: {
+    type: "website",
+    title: "Evidence checks and work signals",
+    description:
+      "Evidence on AI adoption, jobs, productivity, policy and how work is actually changing.",
+    url: "/signals",
+    images: ["/og-work-changed.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Evidence checks and work signals",
+    description:
+      "Evidence on AI adoption, jobs, productivity, policy and how work is actually changing.",
+    images: ["/og-work-changed.jpg"],
+  },
 };
 
 export default function SignalsPage() {
+  const evidenceChecks = articles.filter(
+    (article) => article.format === "Evidence Check",
+  );
+
   return (
     <main id="main">
       <PageHero
-        kicker="Work Signals"
+        kicker="Evidence Checks"
         title="Evidence before prediction"
-        text="Hiring, adoption, productivity, policy and worker experience — with the measurement limits shown."
+        text="Hiring, adoption, productivity, policy and worker experience, with the measurement limits shown."
         meta="ILO · OECD · Stanford HAI · Primary datasets"
       />
       <section className="section signals-directory">
@@ -31,6 +54,22 @@ export default function SignalsPage() {
               </article>
             ))}
           </div>
+          {evidenceChecks.length > 0 && (
+            <section className="signals-guide-library">
+              <SectionHeading
+                kicker="Complete evidence checks"
+                title="Read the method, limits and practical meaning"
+                text="These guides distinguish measured change from forecasts and confident claims."
+                href="/topics/how-work-actually-works"
+                linkLabel="Open the evidence pillar"
+              />
+              <div className="article-grid">
+                {evidenceChecks.map((article) => (
+                  <ArticleCard article={article} key={article.slug} />
+                ))}
+              </div>
+            </section>
+          )}
           <div className="signal-list">
             {stories
               .filter((story) => story.type === "Work signal")

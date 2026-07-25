@@ -4,26 +4,44 @@ import { RoleCard } from "@/components/role-card";
 import { roles } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Roles",
+  title: "Profession trackers",
   description:
-    "Living briefings on how AI is changing tasks, tools and skills across professional roles.",
+    "Living briefings on how tasks, tools, skills and hiring are changing across professional roles.",
+  alternates: {
+    canonical: "/roles",
+  },
+  openGraph: {
+    type: "website",
+    title: "WorkChanged profession trackers",
+    description:
+      "Living briefings on how tasks, tools, skills and hiring are changing across professional roles.",
+    url: "/roles",
+    images: ["/og-work-changed.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WorkChanged profession trackers",
+    description:
+      "Living briefings on how tasks, tools, skills and hiring are changing across professional roles.",
+    images: ["/og-work-changed.jpg"],
+  },
 };
 
 export default function RolesPage() {
   return (
     <main id="main">
       <PageHero
-        kicker="The Role Library"
-        title="Start with the work you actually do"
-        text="Each role hub maps changing tasks, current tools, human judgment, risks and a practical 30-day move."
-        meta="6 launch role clusters · Updated continuously"
+        kicker="Profession Trackers"
+        title="Follow the changes that reach your role"
+        text="Each profession hub maps changing tasks, current tools, human judgement, risks and a practical next move."
+        meta="6 profession clusters · Reviewed 25 July 2026"
       />
       <section className="section section--cloud">
         <div className="shell">
           <div className="directory-intro">
             <div>
               <p className="kicker">Choose a role</p>
-              <h2>One title contains many different tasks.</h2>
+              <h2>One title contains many different tasks</h2>
             </div>
             <p>
               These hubs are starting points, not replacement scores. Open the

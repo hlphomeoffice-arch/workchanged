@@ -1,14 +1,34 @@
 import assert from "node:assert/strict";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import path from "node:path";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 
-async function render(path = "/", origin = "http://localhost") {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${path}`);
-  const { default: worker } = await import(workerUrl.href);
+const projectRoot = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+);
+let workerPromise;
 
+async function getWorker() {
+  workerPromise ||= import(
+    new URL(
+      `../dist/server/index.js?test-suite=${process.pid}-${Date.now()}`,
+      import.meta.url,
+    ).href
+  ).then((module) => module.default);
+  return workerPromise;
+}
+
+async function render(
+  requestPath = "/",
+  origin = "http://localhost",
+  accept = "text/html",
+) {
+  const worker = await getWorker();
   return worker.fetch(
-    new Request(`${origin}${path}`, {
-      headers: { accept: "text/html" },
+    new Request(`${origin}${requestPath}`, {
+      headers: { accept },
     }),
     {
       ASSETS: {
@@ -22,7 +42,7 @@ async function render(path = "/", origin = "http://localhost") {
   );
 }
 
-test("server-renders the Work Changed homepage and core funnel", async () => {
+test("server-renders the audience-led homepage and preserved security shell", async () => {
   const response = await render("/");
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
@@ -50,16 +70,35 @@ test("server-renders the Work Changed homepage and core funnel", async () => {
   const html = await response.text();
   assert.match(
     html,
-    /<title>Work Changed — Know what AI means for your job(?: \| Work Changed)?<\/title>/i,
+    /<title>What changed at work and what to do next \| WorkChanged<\/title>/i,
   );
-  assert.match(html, /AI is changing your job\./);
-  assert.match(html, /Know what to do next\./);
-  assert.match(html, /The Daily Shift/);
-  assert.match(html, /Choose your role/);
-  assert.match(html, /Build your Work Change Map/);
-  assert.match(html, /How we know/);
-  assert.match(html, /The Work Shift/);
-  assert.doesNotMatch(html, /Your site is taking shape|react-loading-skeleton|codex-preview/i);
+  assert.match(
+    html,
+    /What changed at work\. Who it affects\. What to do next\./,
+  );
+  assert.match(html, />50<.*complete decision pages/is);
+  for (const pillar of [
+    "AI and Your Job",
+    "Skills That Are Changing",
+    "Career Moves",
+    "Job Security and Hiring",
+    "Workplace Rules and Rights",
+    "Managing Changed Work",
+    "How Work Actually Works",
+    "Profession Trackers",
+  ]) {
+    assert.match(html, new RegExp(pillar, "i"), pillar);
+  }
+  assert.match(html, /What Changed This Week/);
+  assert.match(html, /Country-specific guidance/);
+  assert.match(html, /Evidence Checks/);
+  assert.match(html, /Practical tools and checklists/);
+  assert.match(html, /application\/ld\+json/);
+  assert.match(html, /rel="canonical" href="https:\/\/workchanged\.com\/"/);
+  assert.doesNotMatch(
+    html,
+    /Your site is taking shape|codex-preview|subscription confirmed|thanks for subscribing/i,
+  );
 });
 
 test("adds transport security on HTTPS responses", async () => {
@@ -71,7 +110,130 @@ test("adds transport security on HTTPS responses", async () => {
   );
 });
 
-test("server-renders the editorial, role, tool and standards routes", async () => {
+test("publishes eight complete pillar hubs and both country branches", async () => {
+  const routes = [
+    "/topics/ai-and-your-job",
+    "/topics/skills-that-are-changing",
+    "/topics/career-moves",
+    "/topics/job-security-and-hiring",
+    "/topics/workplace-rules-and-rights",
+    "/topics/managing-changed-work",
+    "/topics/how-work-actually-works",
+    "/topics/profession-trackers",
+    "/country/uk",
+    "/country/us",
+  ];
+
+  for (const route of routes) {
+    const response = await render(route);
+    assert.equal(response.status, 200, route);
+    const html = await response.text();
+    assert.match(html, /rel="canonical"/, route);
+    assert.match(html, /"@type":"CollectionPage"/, route);
+    assert.match(html, /"@type":"BreadcrumbList"/, route);
+    assert.doesNotMatch(html, /coming soon|placeholder article/i, route);
+  }
+});
+
+test("sitemap, RSS and every guide route expose the complete 50-page library", async () => {
+  const sitemapResponse = await render(
+    "/sitemap.xml",
+    "https://workchanged.com",
+    "application/xml",
+  );
+  assert.equal(sitemapResponse.status, 200);
+  const sitemap = await sitemapResponse.text();
+  const guideUrls = [
+    ...sitemap.matchAll(
+      /<loc>https:\/\/workchanged\.com\/guides\/([^<]+)<\/loc>/g,
+    ),
+  ];
+  assert.equal(guideUrls.length, 50);
+  assert.equal(new Set(guideUrls.map((match) => match[1])).size, 50);
+  assert.equal(
+    [...sitemap.matchAll(/<loc>https:\/\/workchanged\.com\/topics\//g)].length,
+    8,
+  );
+
+  const rssResponse = await render(
+    "/rss.xml",
+    "https://workchanged.com",
+    "application/rss+xml",
+  );
+  assert.equal(rssResponse.status, 200);
+  assert.match(
+    rssResponse.headers.get("content-type") ?? "",
+    /application\/rss\+xml/,
+  );
+  const rss = await rssResponse.text();
+  assert.equal((rss.match(/<item>/g) || []).length, 50);
+  assert.match(rss, /rel="self"/);
+
+  for (const [, slug] of guideUrls) {
+    const response = await render(`/guides/${slug}`);
+    assert.equal(response.status, 200, slug);
+    const html = await response.text();
+    assert.match(html, /Answer First/, slug);
+    assert.match(html, /Who This Affects/, slug);
+    assert.match(html, /Evidence Strength/, slug);
+    assert.match(html, /What To Do Next/, slug);
+    assert.match(html, /Next review/, slug);
+    assert.match(html, /Read the evidence behind this guide/, slug);
+    assert.match(html, /Change log/, slug);
+    assert.match(html, /"@type":"Article"/, slug);
+    const guideSectionIds = [
+      ...html.matchAll(/class="guide-section" id="([^"]+)"/g),
+    ].map((match) => match[1]);
+    assert.ok(guideSectionIds.length >= 4, slug);
+    assert.equal(new Set(guideSectionIds).size, guideSectionIds.length, slug);
+    for (const reservedId of [
+      "answer-first",
+      "who-this-affects",
+      "evidence",
+      "what-to-do-next",
+      "sources",
+      "change-log",
+    ]) {
+      assert.equal(guideSectionIds.includes(reservedId), false, slug);
+    }
+    const sourceBlock = html.match(
+      /<section class="source-list"[^>]*>([\s\S]*?)<\/section>/,
+    );
+    assert.ok(sourceBlock, slug);
+    assert.ok((sourceBlock[1].match(/<a /g) || []).length >= 3, slug);
+    assert.match(
+      html,
+      new RegExp(`/images/articles/${slug}\\.webp`),
+      slug,
+    );
+    assert.match(
+      html,
+      new RegExp(
+        `rel="canonical" href="https://workchanged\\.com/guides/${slug}"`,
+      ),
+      slug,
+    );
+
+    for (const filename of [
+      `${slug}.jpg`,
+      `${slug}.webp`,
+      `${slug}-768.jpg`,
+      `${slug}-768.webp`,
+    ]) {
+      const imagePath = path.join(
+        projectRoot,
+        "public",
+        "images",
+        "articles",
+        filename,
+      );
+      assert.equal(existsSync(imagePath), true, imagePath);
+      assert.ok(statSync(imagePath).size > 10_000, imagePath);
+    }
+  }
+});
+
+test("server-renders retained role, tool, current-change and standards routes", async () => {
   const routes = [
     [
       "/today/gemini-alpha-is-now-beta",
@@ -79,16 +241,143 @@ test("server-renders the editorial, role, tool and standards routes", async () =
     ],
     ["/roles/marketing-content", /Marketing &amp; content/],
     ["/tools/microsoft-365-copilot", /Microsoft 365 Copilot/],
-    [
-      "/signals/ai-exposure-is-not-job-loss",
-      /Exposure measures task overlap, not an employer decision/,
-    ],
     ["/standards", /Trust should be inspectable/],
+    ["/search?q=redundancy", /Search WorkChanged/],
   ];
 
-  for (const [path, expected] of routes) {
-    const response = await render(path);
-    assert.equal(response.status, 200, path);
-    assert.match(await response.text(), expected, path);
+  for (const [requestPath, expected] of routes) {
+    const response = await render(requestPath);
+    assert.equal(response.status, 200, requestPath);
+    const html = await response.text();
+    assert.match(html, expected, requestPath);
+    if (
+      requestPath.startsWith("/roles/") ||
+      requestPath.startsWith("/tools/") ||
+      requestPath.startsWith("/today/")
+    ) {
+      assert.match(html, /"@type":"BreadcrumbList"/, requestPath);
+    }
+    if (requestPath.startsWith("/tools/")) {
+      assert.match(html, /"@type":"WebPage"/, requestPath);
+    }
+  }
+});
+
+test("every sitemap page and internal reading path resolves", async () => {
+  const sitemapResponse = await render(
+    "/sitemap.xml",
+    "https://workchanged.com",
+    "application/xml",
+  );
+  const sitemap = await sitemapResponse.text();
+  const sitemapPaths = [
+    ...sitemap.matchAll(/<loc>https:\/\/workchanged\.com([^<]*)<\/loc>/g),
+  ].map((match) => match[1] || "/");
+  const internalLinks = new Map();
+  const publicAssets = new Map();
+
+  for (const requestPath of sitemapPaths) {
+    const response = await render(requestPath);
+    assert.equal(response.status, 200, requestPath);
+    const contentType = response.headers.get("content-type") ?? "";
+    if (!contentType.startsWith("text/html")) continue;
+
+    const html = await response.text();
+    for (const match of html.matchAll(/href="(\/[^"]*)"/g)) {
+      const href = match[1].replaceAll("&amp;", "&");
+      if (
+        href.startsWith("/_next/") ||
+        href.startsWith("/assets/") ||
+        href.startsWith("/images/") ||
+        href.startsWith("/brand/") ||
+        href.startsWith("/fonts/") ||
+        href === "/favicon.svg" ||
+        href.startsWith("/og-work-changed.")
+      ) {
+        continue;
+      }
+      internalLinks.set(href, requestPath);
+    }
+
+    for (const match of html.matchAll(/(?:src|srcset)="(\/[^"]*)"/gi)) {
+      for (const candidate of match[1].split(",")) {
+        const assetUrl = candidate.trim().split(/\s+/)[0];
+        if (
+          !assetUrl ||
+          assetUrl.startsWith("/_next/") ||
+          assetUrl.startsWith("/assets/")
+        ) {
+          continue;
+        }
+        publicAssets.set(assetUrl, requestPath);
+      }
+    }
+  }
+
+  for (const [href, sourcePath] of internalLinks) {
+    const url = new URL(href, "https://workchanged.com");
+    const targetPath = `${url.pathname}${url.search}`;
+    const response = await render(targetPath);
+    assert.ok(
+      response.status >= 200 && response.status < 400,
+      `${sourcePath} links to ${href}, which returned ${response.status}`,
+    );
+
+    if (url.hash && response.headers.get("content-type")?.startsWith("text/html")) {
+      const html = await response.text();
+      const fragment = decodeURIComponent(url.hash.slice(1));
+      assert.match(
+        html,
+        new RegExp(`id=["']${fragment.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["']`),
+        `${sourcePath} links to missing fragment ${href}`,
+      );
+    }
+  }
+
+  for (const [assetUrl, sourcePath] of publicAssets) {
+    const pathname = decodeURIComponent(
+      new URL(assetUrl, "https://workchanged.com").pathname,
+    );
+    const assetPath = path.join(projectRoot, "public", pathname);
+    assert.equal(
+      existsSync(assetPath),
+      true,
+      `${sourcePath} references missing public asset ${pathname}`,
+    );
+    assert.ok(statSync(assetPath).size > 0, pathname);
+  }
+});
+
+test("preserves the earlier AI exposure URL with a permanent redirect", async () => {
+  const response = await render("/signals/ai-exposure-is-not-job-loss");
+  assert.equal(response.status, 308);
+  assert.equal(
+    new URL(response.headers.get("location"), "http://localhost").pathname,
+    "/guides/ai-job-loss-predictions-evidence",
+  );
+});
+
+test("website copy contains no em dashes or placeholder publishing language", () => {
+  const roots = ["app", "components", "lib"];
+  const sourceFiles = [];
+
+  function visit(directory) {
+    for (const entry of readdirSync(directory, { withFileTypes: true })) {
+      const target = path.join(directory, entry.name);
+      if (entry.isDirectory()) visit(target);
+      else if (/\.(?:ts|tsx)$/.test(entry.name)) sourceFiles.push(target);
+    }
+  }
+
+  for (const root of roots) visit(path.join(projectRoot, root));
+
+  for (const file of sourceFiles) {
+    const source = readFileSync(file, "utf8");
+    assert.equal(source.includes("—"), false, file);
+    assert.doesNotMatch(
+      source,
+      /placeholder article|coming soon|subscription confirmed/i,
+      file,
+    );
   }
 });

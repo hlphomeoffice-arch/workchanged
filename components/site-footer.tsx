@@ -3,33 +3,34 @@ import Link from "next/link";
 
 const columns = [
   {
-    title: "Explore",
+    title: "Decisions",
     links: [
-      ["Today", "/today"],
-      ["Roles", "/roles"],
-      ["Tasks", "/tasks"],
-      ["Tools", "/tools"],
-      ["Skills", "/skills"],
-      ["Signals", "/signals"],
+      ["AI and your job", "/topics/ai-and-your-job"],
+      ["Skills that are changing", "/topics/skills-that-are-changing"],
+      ["Career moves", "/topics/career-moves"],
+      ["Job security and hiring", "/topics/job-security-and-hiring"],
+      ["Workplace rules and rights", "/topics/workplace-rules-and-rights"],
     ],
   },
   {
-    title: "Work Changed",
+    title: "Follow change",
+    links: [
+      ["Managing changed work", "/topics/managing-changed-work"],
+      ["How work actually works", "/topics/how-work-actually-works"],
+      ["Profession trackers", "/roles"],
+      ["What changed this week", "/today"],
+      ["What Changed at Work briefing", "/newsletter"],
+    ],
+  },
+  {
+    title: "WorkChanged",
     links: [
       ["About", "/about"],
-      ["Authors", "/about#people"],
-      ["The Work Shift", "/newsletter"],
-      ["Contact", "/about#contact"],
-    ],
-  },
-  {
-    title: "Standards",
-    links: [
       ["Editorial standards", "/standards"],
       ["Evidence labels", "/standards#evidence"],
-      ["Tool Lab method", "/standards#tool-lab"],
       ["Corrections", "/standards#corrections"],
-      ["How we use AI", "/standards#ai-use"],
+      ["Accessibility", "/standards#accessibility"],
+      ["Privacy", "/standards#privacy"],
     ],
   },
 ];
@@ -40,35 +41,35 @@ export function SiteFooter() {
       <div className="shell">
         <div className="footer-action">
           <div>
-            <p className="kicker kicker--lime">Your work changed. Your next move can be clear.</p>
-            <h2>Know what AI means for your job.</h2>
+            <p className="kicker kicker--lime">Independent guidance for changed work</p>
+            <h2>Follow the changes that reach your role.</h2>
           </div>
           <div className="footer-action__buttons">
             <Link className="button button--lime" href="/roles">
-              Choose your role
+              Follow your profession
             </Link>
             <Link className="button button--ghost-light" href="/newsletter">
-              Get The Work Shift
+              Weekly briefing
             </Link>
           </div>
         </div>
         <div className="footer-grid">
           <div className="footer-brand">
-            <Link href="/" aria-label="Work Changed home">
+            <Link href="/" aria-label="WorkChanged home">
               <Image
                 src="/brand/logo-reversed.svg"
-                alt="Work Changed"
+                alt="WorkChanged"
                 width={228}
                 height={40}
                 unoptimized
               />
             </Link>
             <p>
-              Practical intelligence for people whose jobs are changing with
-              AI.
+              Clear, sourced guidance on what changed at work, who it affects
+              and what to do next.
             </p>
             <p className="footer-note">
-              Independent. Evidence-aware. On the side of the person doing the
+              Independent. Evidence-led. On the side of the person doing the
               work.
             </p>
           </div>
@@ -84,11 +85,11 @@ export function SiteFooter() {
           ))}
         </div>
         <div className="footer-bottom">
-          <span>© 2026 Work Changed. Preview build.</span>
+          <span>© 2026 WorkChanged.</span>
           <div>
-            <Link href="/standards">Privacy</Link>
-            <Link href="/standards">Terms</Link>
-            <Link href="/standards">Accessibility</Link>
+            <Link href="/standards#privacy">Privacy</Link>
+            <Link href="/standards#terms">Terms</Link>
+            <Link href="/standards#accessibility">Accessibility</Link>
           </div>
         </div>
       </div>

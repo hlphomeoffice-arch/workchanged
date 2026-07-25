@@ -1,15 +1,38 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArticleCard } from "@/components/article-card";
 import { PageHero } from "@/components/page-hero";
+import { SectionHeading } from "@/components/section-heading";
+import { articles } from "@/lib/editorial/articles";
 import { skills } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Skill Moves",
   description:
     "Practical skills for professionals working with changing AI tools and workflows.",
+  alternates: { canonical: "/skills" },
+  openGraph: {
+    type: "website",
+    title: "Skills That Are Changing",
+    description:
+      "Practical learning decisions for experienced professionals working through change.",
+    url: "/skills",
+    images: ["/og-work-changed.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Skills That Are Changing",
+    description:
+      "Practical learning decisions for experienced professionals working through change.",
+    images: ["/og-work-changed.jpg"],
+  },
 };
 
 export default function SkillsPage() {
+  const skillGuides = articles
+    .filter((article) => article.pillar === "skills-that-are-changing")
+    .slice(0, 6);
+
   return (
     <main id="main">
       <PageHero
@@ -43,6 +66,24 @@ export default function SkillsPage() {
           </div>
         </div>
       </section>
+      {skillGuides.length > 0 && (
+        <section className="section section--paper">
+          <div className="shell">
+            <SectionHeading
+              kicker="Skills That Are Changing"
+              title="Choose learning with a real work outcome"
+              text="Compare rising skills, credible credentials and practical learning routes before committing time or money."
+              href="/topics/skills-that-are-changing"
+              linkLabel="Open the complete skills pillar"
+            />
+            <div className="article-grid">
+              {skillGuides.map((article) => (
+                <ArticleCard article={article} key={article.slug} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </main>
   );
 }

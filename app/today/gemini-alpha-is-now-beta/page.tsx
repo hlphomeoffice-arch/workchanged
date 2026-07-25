@@ -1,54 +1,118 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { EditorialVisual } from "@/components/editorial-visual";
 import { EvidenceBadge } from "@/components/evidence-badge";
 import { NewsletterForm } from "@/components/newsletter-form";
+import { ReadingProgress } from "@/components/reading-progress";
+import { ReviewUpdateNotice } from "@/components/review-update-notice";
 import { stories } from "@/lib/content";
 
 const story = stories[0];
 
 export const metadata: Metadata = {
-  title: "Google renamed Gemini Alpha to Beta — what changes",
+  title: "Google renamed Gemini Alpha to Beta: what changes",
   description:
     "The Gemini Alpha-to-Beta change does not alter Workspace controls, privacy constraints or pricing. Here is what admins need to know.",
+  alternates: {
+    canonical: "/today/gemini-alpha-is-now-beta",
+  },
+  openGraph: {
+    type: "article",
+    title: "Google renamed Gemini Alpha to Beta: what changes",
+    description:
+      "What Workspace administrators need to record, and what does not require action.",
+    url: "/today/gemini-alpha-is-now-beta",
+    publishedTime: "2026-07-24T08:40:00+01:00",
+    modifiedTime: "2026-07-25T12:00:00+01:00",
+    images: [
+      {
+        url: "/images/editorial/gemini-alpha-beta-rename.jpg",
+        width: 1536,
+        height: 1024,
+        alt: "Two workplace technology leads compare a renamed release stage while the underlying route and contract stay unchanged.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Google renamed Gemini Alpha to Beta: what changes",
+    description:
+      "What Workspace administrators need to record, and what does not require action.",
+    images: ["/images/editorial/gemini-alpha-beta-rename.jpg"],
+  },
 };
 
 export default function GeminiBetaStory() {
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    headline: story.title,
-    datePublished: "2026-07-24T08:40:00+01:00",
-    dateModified: "2026-07-24T08:40:00+01:00",
-    author: {
-      "@type": "Person",
-      name: "Hannah Cole",
-      url: "https://workchanged.com/about#people",
+  const articleJsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      headline: story.title,
+      datePublished: "2026-07-24T08:40:00+01:00",
+      dateModified: "2026-07-25T12:00:00+01:00",
+      image:
+        "https://workchanged.com/images/editorial/gemini-alpha-beta-rename.jpg",
+      author: {
+        "@type": "Organization",
+        name: "WorkChanged editorial desk",
+        url: "https://workchanged.com/about",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "WorkChanged",
+        url: "https://workchanged.com",
+      },
+      mainEntityOfPage:
+        "https://workchanged.com/today/gemini-alpha-is-now-beta",
     },
-    publisher: {
-      "@type": "Organization",
-      name: "Work Changed",
-      url: "https://workchanged.com",
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://workchanged.com",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "What Changed This Week",
+          item: "https://workchanged.com/today",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: story.title,
+          item: "https://workchanged.com/today/gemini-alpha-is-now-beta",
+        },
+      ],
     },
-    mainEntityOfPage:
-      "https://workchanged.com/today/gemini-alpha-is-now-beta",
-  };
+  ];
 
   return (
     <main id="main">
+      <ReadingProgress />
+      <ReviewUpdateNotice
+        articleKey="gemini-alpha-is-now-beta"
+        reviewed="2026-07-25"
+      />
+      <meta name="workchanged:reviewed" content="2026-07-25" />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleJsonLd).replace(/</g, "\\u003c"),
+        }}
       />
       <article className="article-page">
         <header className="article-header">
           <div className="shell article-header__inner">
             <nav className="breadcrumbs" aria-label="Breadcrumb">
               <Link href="/">Home</Link>
-              <span>/</span>
+              <span aria-hidden="true">/</span>
               <Link href="/today">Today</Link>
-              <span>/</span>
-              <span>Gemini Beta</span>
+              <span aria-hidden="true">/</span>
+              <span aria-current="page">Gemini Beta</span>
             </nav>
             <div className="meta-row">
               <EvidenceBadge evidence="Observed" />
@@ -59,11 +123,11 @@ export default function GeminiBetaStory() {
             <p className="article-standfirst">{story.summary}</p>
             <div className="byline-row">
               <div className="avatar" aria-hidden="true">
-                HC
+                WC
               </div>
               <div>
-                <strong>Hannah Cole</strong>
-                <span>Workplace technology editor</span>
+                <strong>WorkChanged editorial desk</strong>
+                <span>Source-led research and synthesis</span>
               </div>
               <div className="byline-row__dates">
                 <span>Published 24 Jul 2026, 08:40 BST</span>
@@ -74,13 +138,26 @@ export default function GeminiBetaStory() {
         </header>
 
         <div className="shell article-hero-visual">
-          <EditorialVisual
-            variant="document"
-            label="Google Workspace programme name change"
-          />
+          <picture>
+            <source
+              srcSet="/images/editorial/gemini-alpha-beta-rename-768.webp 768w, /images/editorial/gemini-alpha-beta-rename.webp 1536w"
+              sizes="(max-width: 680px) 100vw, (max-width: 1328px) calc(100vw - 48px), 1280px"
+              type="image/webp"
+            />
+            <img
+              src="/images/editorial/gemini-alpha-beta-rename.jpg"
+              srcSet="/images/editorial/gemini-alpha-beta-rename-768.jpg 768w, /images/editorial/gemini-alpha-beta-rename.jpg 1536w"
+              sizes="(max-width: 680px) 100vw, (max-width: 1328px) calc(100vw - 48px), 1280px"
+              alt="Two workplace technology leads compare a renamed release stage while the underlying route and contract stay unchanged."
+              width={1536}
+              height={1024}
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
           <p>
-            Conceptual editorial illustration. The reported change is verified
-            against Google&apos;s official Workspace update.
+            Original WorkChanged editorial image. The reported change is
+            verified against Google&apos;s official Workspace update.
           </p>
         </div>
 
@@ -103,7 +180,11 @@ export default function GeminiBetaStory() {
                 </div>
                 <div>
                   <dt>Reviewed</dt>
-                  <dd>24 Jul 2026</dd>
+                  <dd>25 Jul 2026</dd>
+                </div>
+                <div>
+                  <dt>Next review</dt>
+                  <dd>1 Aug 2026</dd>
                 </div>
               </dl>
               <a href="#sources">Jump to sources ↓</a>
@@ -262,9 +343,31 @@ export default function GeminiBetaStory() {
                 <Link href="/tools/gemini-workspace">
                   Gemini for Workspace tool page →
                 </Link>
-                <Link href="/standards">How Work Changed verifies daily signals →</Link>
+                <Link href="/standards">How WorkChanged verifies daily signals →</Link>
               </div>
             </div>
+
+            <section
+              className="change-log"
+              id="change-log"
+              aria-labelledby="article-change-log"
+            >
+              <span className="kicker">Reviewed and updated</span>
+              <h2 id="article-change-log">Change log</h2>
+              <ol>
+                <li>
+                  <time dateTime="2026-07-25">25 July 2026</time>
+                  <p>
+                    Rechecked the first-party announcement and added the next
+                    scheduled review date.
+                  </p>
+                </li>
+                <li>
+                  <time dateTime="2026-07-24">24 July 2026</time>
+                  <p>First publication.</p>
+                </li>
+              </ol>
+            </section>
           </div>
 
           <aside className="article-action">
@@ -286,10 +389,10 @@ export default function GeminiBetaStory() {
       <section className="article-newsletter">
         <div className="shell article-newsletter__grid">
           <div>
-            <span className="kicker kicker--lime">The Work Shift</span>
-            <h2>Five changes worth your attention. One email.</h2>
+            <span className="kicker kicker--lime">What Changed at Work</span>
+            <h2>Five changes worth your attention. One focused briefing.</h2>
           </div>
-          <NewsletterForm dark compact />
+          <NewsletterForm dark compact topic="AI and workplace tools" />
         </div>
       </section>
     </main>

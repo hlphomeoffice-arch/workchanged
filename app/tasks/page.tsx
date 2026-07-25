@@ -8,6 +8,22 @@ export const metadata: Metadata = {
   title: "Tasks",
   description:
     "Task-level guidance for using AI safely and usefully in real professional work.",
+  alternates: { canonical: "/tasks" },
+  openGraph: {
+    type: "website",
+    title: "The WorkChanged task library",
+    description:
+      "Task-level guidance for using AI safely and usefully in real professional work.",
+    url: "/tasks",
+    images: ["/og-work-changed.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The WorkChanged task library",
+    description:
+      "Task-level guidance for using AI safely and usefully in real professional work.",
+    images: ["/og-work-changed.jpg"],
+  },
 };
 
 export default function TasksPage() {

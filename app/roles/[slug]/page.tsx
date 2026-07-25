@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { EvidenceBadge } from "@/components/evidence-badge";
+import { FollowControl } from "@/components/follow-control";
 import { NewsletterForm } from "@/components/newsletter-form";
 import { StoryCard } from "@/components/story-card";
 import { getRole, getTool, roles, stories } from "@/lib/content";
@@ -19,8 +20,24 @@ export async function generateMetadata({
   const role = getRole(slug);
   if (!role) return {};
   return {
-    title: `How AI is changing ${role.title}`,
+    title: `How work is changing for ${role.title}`,
     description: role.short,
+    alternates: {
+      canonical: `/roles/${role.slug}`,
+    },
+    openGraph: {
+      type: "website",
+      title: `How work is changing for ${role.title}`,
+      description: role.short,
+      url: `/roles/${role.slug}`,
+      images: ["/og-work-changed.jpg"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `How work is changing for ${role.title}`,
+      description: role.short,
+      images: ["/og-work-changed.jpg"],
+    },
   };
 }
 
@@ -36,40 +53,78 @@ export default async function RolePage({
     .map((toolSlug) => getTool(toolSlug))
     .filter(Boolean);
 
-  const roleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: `How AI is changing ${role.title}`,
-    description: role.short,
-    url: `https://workchanged.com/roles/${role.slug}`,
-    dateModified: "2026-07-24",
-  };
+  const canonicalUrl = `https://workchanged.com/roles/${role.slug}`;
+  const roleJsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: `How work is changing for ${role.title}`,
+      description: role.short,
+      url: canonicalUrl,
+      dateModified: new Date(role.reviewed).toISOString().slice(0, 10),
+      isPartOf: {
+        "@type": "WebSite",
+        name: "WorkChanged",
+        url: "https://workchanged.com",
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://workchanged.com",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Profession trackers",
+          item: "https://workchanged.com/roles",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: role.title,
+          item: canonicalUrl,
+        },
+      ],
+    },
+  ];
 
   return (
     <main id="main">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(roleJsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(roleJsonLd).replace(/</g, "\\u003c"),
+        }}
       />
       <section className="role-hero">
         <div className="shell">
           <nav className="breadcrumbs breadcrumbs--light" aria-label="Breadcrumb">
             <Link href="/">Home</Link>
-            <span>/</span>
+            <span aria-hidden="true">/</span>
             <Link href="/roles">Roles</Link>
-            <span>/</span>
-            <span>{role.title}</span>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{role.title}</span>
           </nav>
           <div className="role-hero__grid">
             <div>
               <p className="kicker kicker--lime">Living role briefing</p>
-              <h1>How AI is changing {role.title.toLowerCase()}</h1>
+              <h1>How work is changing for {role.title.toLowerCase()}</h1>
               <p>{role.short}</p>
               <div className="role-hero__meta">
                 <span>Reviewed {role.reviewed}</span>
-                <span>{role.taskCount} mapped tasks</span>
-                <span>{role.workflows} workflows</span>
+                <span>{role.tasks.length} mapped tasks</span>
+                <span>{role.tasks.length} practical next steps</span>
               </div>
+              <FollowControl
+                followKey={`role:${role.slug}`}
+                label={`changes affecting ${role.title.toLowerCase()}`}
+              />
             </div>
             <div className="role-route" aria-hidden="true">
               <span>Current work</span>
@@ -115,7 +170,7 @@ export default async function RolePage({
 
             <section id="task-map" className="role-content-section">
               <span className="kicker">Task map</span>
-              <h2>What changes — and what stays human</h2>
+              <h2>What changes, and what stays human</h2>
               <div className="task-map">
                 {role.tasks.map((task, index) => (
                   <article className="task-map__row" key={task.name}>
@@ -224,7 +279,7 @@ export default async function RolePage({
             <span className="kicker kicker--lime">Follow {role.title}</span>
             <h2>Get the changes that actually reach this role.</h2>
           </div>
-          <NewsletterForm dark compact />
+          <NewsletterForm dark compact topic={role.title.toLowerCase()} />
         </div>
       </section>
     </main>

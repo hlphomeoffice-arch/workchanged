@@ -1,32 +1,53 @@
-# Work Changed
+# WorkChanged
 
-Work Changed is an evidence-led editorial publication about how AI is changing
-work. It translates product releases, labour-market research and real workflow
-tests into practical guidance for specific roles, tasks, tools and skills.
+WorkChanged is an independent, evidence-led guide to changes in work for
+experienced working professionals. Its editorial promise is:
 
-This repository contains the complete source for the live
-[Work Changed](https://work-changed.home-office-hlp.chatgpt.site/) site and is
-linked to its Sites production project.
+> What changed at work. Who it affects. What to do next.
 
-## Editorial products
+The site covers AI, job security, changing skills, career moves, workplace
+rights, management, work-design evidence and profession-specific change. The
+existing Next.js-compatible application, Cloudflare Worker and deployment
+configuration are preserved. This repository is linked to the live
+[WorkChanged](https://work-changed.home-office-hlp.chatgpt.site/) Sites project.
 
-- **The Daily Shift** — the changes worth attention today
-- **Role Library** — living briefings for six launch role clusters
-- **Task Library** — task-level change maps and next actions
-- **Tool Lab** — verdict-led tool pages and test methods
-- **Skill Moves** — practical capabilities workers can build now
-- **Work Signals** — evidence-led labour and adoption analysis
-- **The Work Shift** — the weekly newsletter funnel
+## Editorial library
 
-## Information architecture
+The 50-guide opportunity library is organised into eight pillars:
 
-The primary navigation is:
+1. AI and Your Job
+2. Skills That Are Changing
+3. Career Moves
+4. Job Security and Hiring
+5. Workplace Rules and Rights
+6. Managing Changed Work
+7. How Work Actually Works
+8. Profession Trackers
 
-`Today → Roles → Tasks → Tools → Skills → Signals`
+The portfolio contains 30 evergreen decision pages, 13 change trackers and 7
+timely interpretations, closely matching the audience report's 60/25/15 model.
 
-Every consequential item is designed to show an evidence label, a time horizon
-and a practical next action. Editorial and commercial standards are documented
-at `/standards`.
+Each guide includes an answer near the top, affected readers, evidence strength,
+country or jurisdiction, practical actions, direct sources, review dates, a
+change log, profession paths and specific next reading. UK and US guidance is
+separated where law, policy, pay, qualifications or labour evidence differs.
+
+The existing role, task and tool libraries remain available and now connect
+into this broader editorial system.
+
+## Reader utility
+
+- topic and profession hubs
+- contextual next-reading paths
+- desktop and mobile tables of contents
+- reading progress and article-completion measurement
+- device-local topic and role follows
+- visible update notices on return visits
+- weekly change briefing and monthly profession trackers
+- RSS feed at `/rss.xml`
+- honest newsletter states while email delivery is unconnected
+- privacy-conscious events that can feed an existing `dataLayer`, with no new
+  external analytics platform
 
 ## Run locally
 
@@ -43,43 +64,52 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ```bash
 pnpm run lint
+pnpm exec tsc --noEmit
 pnpm run build
 node --test tests/rendered-html.test.mjs
+pnpm audit --audit-level high
 ```
 
-The rendered-route tests cover the homepage funnel, a long-form article, a role
-hub, a tool page, a signal page and the editorial standards.
+The rendered tests verify the security shell, homepage positioning, eight
+pillar hubs, UK and US branches, sitemap, RSS, every one of the 50 guide routes,
+article components, image pairs, retained role and tool routes, and prohibited
+placeholder language.
+
+Responsive visual checks target approximately 375px, 768px and 1440px.
 
 ## Project map
 
-- `app/` — routes, metadata, sitemap and robots rules
-- `components/` — shared editorial, navigation and conversion components
-- `lib/content.ts` — structured launch content for roles, tools and stories
-- `public/brand/` — approved Work Changed identity and hero assets
-- `public/fonts/` — self-hosted Inter and Newsreader
-- `public/og-work-changed.png` — branded social-share image
-- `tests/` — server-rendered route checks
-- `worker/index.ts` — application entry point and enforced security headers
+- `app/`: existing routes plus guide, topic, country and RSS routes
+- `components/`: reusable editorial, retention, navigation and tool components
+- `lib/editorial/`: the 50-guide library, pillar model and helpers
+- `lib/content.ts`: preserved role, task, tool and current-change records
+- `public/images/articles/`: unique 1536 by 1024 article images plus responsive
+  768 by 512 JPG and WebP candidates
+- `public/images/editorial/`: retained current-change artwork
+- `public/brand/`: WorkChanged identity assets
+- `public/fonts/`: self-hosted Inter and Newsreader
+- `tests/`: server-rendered route and publication-quality checks
+- `worker/index.ts`: preserved application entry point and security headers
 
-## Security posture
+## Security and privacy posture
 
 - strict content, framing, referrer, permissions and transport-security headers
-- no analytics, advertising scripts, cookies or third-party embeds
-- no server-side newsletter collection in the review build
-- no database, authentication or image-proxy surface until those capabilities
-  are explicitly required
-- weekly Dependabot review for the JavaScript dependency chain
+- no advertising scripts, third-party embeds or new external analytics service
+- session-only event queue for reading and navigation events
+- device-local follow preferences and update comparisons
+- no server-side newsletter collection
+- no database or authentication surface
 
-## Launch connections still required
+## External connections still required
 
-- replace the newsletter preview confirmation with the chosen email platform
-- connect analytics and consent tooling
-- complete the DNS validation for `workchanged.com`
-- complete legal review for privacy and terms
+- email delivery provider and working newsletter backend
+- consented analytics collection endpoint and Search Console reporting
+- verified editorial contact route
+- human legal or specialist review where the publication wants to claim it
+- final domain and release monitoring through the existing Sites project
 
 ## Platform
 
-The site uses Next.js-compatible app routing through vinext and the Cloudflare
-runtime. `.openai/hosting.json` links this repository to the existing Sites
-project. The custom domain is configured through Sites and DNS rather than
-GitHub Pages.
+The site uses Next.js-compatible App Router conventions through vinext and the
+Cloudflare runtime. `.openai/hosting.json`, Wrangler configuration and the
+current hosting path remain unchanged.

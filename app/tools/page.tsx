@@ -9,6 +9,22 @@ export const metadata: Metadata = {
   title: "Tool Lab",
   description:
     "Professional AI tool notes and transparent test methods grounded in real workflows.",
+  alternates: { canonical: "/tools" },
+  openGraph: {
+    type: "website",
+    title: "WorkChanged Tool Lab",
+    description:
+      "Professional tool notes and transparent test methods grounded in real workflows.",
+    url: "/tools",
+    images: ["/og-work-changed.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WorkChanged Tool Lab",
+    description:
+      "Professional tool notes and transparent test methods grounded in real workflows.",
+    images: ["/og-work-changed.jpg"],
+  },
 };
 
 export default function ToolsPage() {
@@ -17,7 +33,7 @@ export default function ToolsPage() {
       <PageHero
         kicker="Tool Lab"
         title="Choose tools by the work, not the demo"
-        text="Current capability, plan, workflow fit, privacy, failure modes and correction burden — all in one place."
+        text="Current capability, plan, workflow fit, privacy, failure modes and correction burden, all in one place."
         meta="6 tool pages · Transparent methods · Versioned updates"
       />
       <section className="section tool-method-banner">

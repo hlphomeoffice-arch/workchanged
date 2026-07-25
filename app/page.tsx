@@ -1,474 +1,368 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { EditorialVisual } from "@/components/editorial-visual";
-import { EvidenceBadge } from "@/components/evidence-badge";
+import { ArticleCard } from "@/components/article-card";
 import { NewsletterForm } from "@/components/newsletter-form";
 import { RoleCard } from "@/components/role-card";
 import { RoleFinder } from "@/components/role-finder";
 import { SectionHeading } from "@/components/section-heading";
-import { StoryCard } from "@/components/story-card";
-import { roles, signalStats, skills, stories, tools } from "@/lib/content";
+import { articles } from "@/lib/editorial/articles";
+import { pillars } from "@/lib/editorial/pillars";
+import { roles, tools } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Work Changed — Know what AI means for your job",
+  title: "What changed at work and what to do next",
   description:
-    "Clear, tested guidance on which AI tools, tasks and skills matter for your role — without the hype.",
+    "Clear, sourced guidance on AI, job security, skills, career moves, pay, rights and managing work through change.",
+  alternates: { canonical: "/" },
 };
 
-export default function Home() {
-  const lead = stories[0];
-  const secondary = stories.slice(1, 4);
+function serialiseSchema(schema: unknown) {
+  return JSON.stringify(schema).replace(/</g, "\\u003c");
+}
 
-  const homeJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Work Changed",
-    url: "https://workchanged.com",
-    description:
-      "Practical, role-specific intelligence about how AI is changing work.",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://workchanged.com/search?q={search_term_string}",
-      "query-input": "required name=search_term_string",
+export default function Home() {
+  const mostImportant =
+    articles.find((article) => article.number === 1) || articles[0];
+  const thisWeek = [24, 6, 36, 44]
+    .map((number) => articles.find((article) => article.number === number))
+    .filter((article) => article !== undefined);
+  const evidenceChecks = articles
+    .filter((article) => article.format === "Evidence Check")
+    .slice(0, 3);
+  const practicalGuides = [1, 13, 35]
+    .map((number) => articles.find((article) => article.number === number))
+    .filter((article) => article !== undefined);
+  const roleTrackers = articles
+    .filter((article) => article.pillar === "profession-trackers")
+    .slice(0, 4);
+  const heroImageBase = mostImportant
+    ? `/images/articles/${mostImportant.slug}`
+    : "/og-work-changed";
+
+  const homeJsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "WorkChanged",
+      url: "https://workchanged.com",
+      description:
+        "Independent, evidence-led and practical guidance about changes in work.",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: "https://workchanged.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string",
+      },
     },
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "WorkChanged",
+      url: "https://workchanged.com",
+      logo: "https://workchanged.com/brand/mark.svg",
+      slogan: "What changed at work. Who it affects. What to do next.",
+    },
+  ];
 
   return (
     <main id="main">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serialiseSchema(homeJsonLd) }}
       />
 
-      <section className="home-hero">
-        <Image
-          className="home-hero__image"
-          src="/brand/editorial-hero.png"
-          alt=""
-          fill
-          priority
-          unoptimized
-          sizes="100vw"
-        />
-        <div className="home-hero__overlay" />
-        <div className="shell home-hero__inner">
-          <div className="home-hero__copy">
-            <p className="kicker kicker--lime">
-              Practical intelligence for AI and work
-            </p>
-            <h1>AI is changing your job. Know what to do next.</h1>
-            <p className="home-hero__deck">
-              Clear, tested guidance on which tasks, tools and skills matter for
-              your role — without the hype.
+      <section className="editorial-home-hero">
+        <div className="shell editorial-home-hero__grid">
+          <div className="editorial-home-hero__copy">
+            <p className="kicker">Independent guidance for changed work</p>
+            <h1>What changed at work. Who it affects. What to do next.</h1>
+            <p className="editorial-home-hero__deck">
+              Clear, sourced guidance on AI, job security, skills, career moves,
+              pay, rights and managing work through change.
             </p>
             <div className="hero-actions">
-              <Link className="button button--lime" href="#choose-role">
-                See what changes in my role
+              <Link className="button button--primary" href="#latest-change">
+                See the most important change
               </Link>
-              <Link className="button button--ghost-light" href="/today">
-                Read today&apos;s briefing
+              <Link className="button button--ghost-dark" href="#choose-role">
+                Follow my profession
               </Link>
             </div>
-            <div className="hero-trust">
-              <span>Every consequential story shows</span>
+            <dl className="editorial-home-hero__proof">
               <div>
-                <span>Evidence</span>
-                <span>Time horizon</span>
-                <span>Next action</span>
+                <dt>{articles.length}</dt>
+                <dd>complete decision pages</dd>
               </div>
-            </div>
+              <div>
+                <dt>8</dt>
+                <dd>editorial pillars</dd>
+              </div>
+              <div>
+                <dt>UK + US</dt>
+                <dd>country labels</dd>
+              </div>
+            </dl>
           </div>
-
-          <div className="change-map-preview">
-            <div className="change-map-preview__header">
-              <span className="kicker">My Work Change Map</span>
-              <span className="preview-chip">Free beta</span>
-            </div>
-            <h2>Operations manager</h2>
-            <p>Three task shifts worth your attention now.</p>
-            <div className="task-shift">
-              <span className="task-shift__index">01</span>
-              <div>
-                <strong>Status reporting</strong>
-                <span>Drafting accelerates</span>
-              </div>
-              <EvidenceBadge evidence="Observed" />
-            </div>
-            <div className="task-shift">
-              <span className="task-shift__index">02</span>
-              <div>
-                <strong>Action registers</strong>
-                <span>Verification becomes the work</span>
-              </div>
-              <EvidenceBadge evidence="Observed" />
-            </div>
-            <div className="task-shift">
-              <span className="task-shift__index">03</span>
-              <div>
-                <strong>Exception handling</strong>
-                <span>Human value increases</span>
-              </div>
-              <EvidenceBadge evidence="Emerging" />
-            </div>
-            <div className="map-next">
-              <span>Recommended next move</span>
-              <strong>Test one meeting-to-actions workflow</strong>
-            </div>
-          </div>
+          <picture className="editorial-home-hero__image">
+            {mostImportant && (
+              <source
+                srcSet={`${heroImageBase}-768.webp 768w, ${heroImageBase}.webp 1536w`}
+                sizes="(max-width: 900px) calc(100vw - 32px), 46vw"
+                type="image/webp"
+              />
+            )}
+            <img
+              src={`${heroImageBase}.jpg`}
+              srcSet={
+                mostImportant
+                  ? `${heroImageBase}-768.jpg 768w, ${heroImageBase}.jpg 1536w`
+                  : undefined
+              }
+              sizes="(max-width: 900px) calc(100vw - 32px), 46vw"
+              alt={
+                mostImportant?.imageAlt ||
+                "WorkChanged source notes and evidence cards on an editorial desk"
+              }
+              width={1536}
+              height={1024}
+              fetchPriority="high"
+            />
+          </picture>
         </div>
       </section>
 
-      <section className="source-strip" aria-label="Source standards">
+      <section className="source-strip" aria-label="Evidence standards">
         <div className="shell source-strip__inner">
-          <span>Built on primary evidence from</span>
-          <strong>ILO</strong>
-          <strong>OECD</strong>
-          <strong>Stanford HAI</strong>
-          <strong>Official release notes</strong>
-          <Link href="/standards">See our source rules →</Link>
+          <span>Evidence before opinion</span>
+          <strong>Official guidance</strong>
+          <strong>Official statistics</strong>
+          <strong>Original research</strong>
+          <strong>Visible review dates</strong>
+          <Link href="/standards">
+            Inspect our standards <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </section>
 
-      <section className="section section--paper today-section">
+      {mostImportant && (
+        <section className="section section--paper" id="latest-change">
+          <div className="shell">
+            <SectionHeading
+              kicker="Most important current change"
+              title="Start with the decision that affects the most roles"
+              text="The answer is near the top. The evidence, uncertainty and next actions stay visible."
+            />
+            <ArticleCard article={mostImportant} featured />
+          </div>
+        </section>
+      )}
+
+      <section className="section weekly-change-section">
         <div className="shell">
           <SectionHeading
-            kicker="The Daily Shift · 24 July 2026"
-            title="What changed — and what deserves your attention"
-            text="We separate operational changes from launch noise, then map them to the people and tasks affected."
+            kicker="What Changed This Week"
+            title="Changes worth understanding, without the news churn"
+            text="Trackers and timely interpretation are selected for practical impact, not novelty."
             href="/today"
-            linkLabel="See the full briefing"
+            linkLabel="Open the weekly briefing"
+            light
           />
-          <div className="today-grid">
-            <article className="lead-story">
-              <Link className="lead-story__visual" href={lead.href}>
-                <EditorialVisual
-                  variant={lead.visual}
-                  label="Google Workspace change"
-                />
-              </Link>
-              <div className="lead-story__body">
-                <div className="meta-row">
-                  <EvidenceBadge evidence={lead.evidence} />
-                  <span>{lead.time}</span>
-                  <span>{lead.roles.join(" · ")}</span>
-                </div>
-                <h2>
-                  <Link href={lead.href}>{lead.title}</Link>
-                </h2>
-                <p>{lead.summary}</p>
-                <div className="decision-row">
-                  <div>
-                    <span>Who is affected</span>
-                    <strong>Workspace admins and AI leads</strong>
-                  </div>
-                  <div>
-                    <span>What to do</span>
-                    <strong>No migration action. Keep the existing controls.</strong>
-                  </div>
-                </div>
-                <Link className="button button--primary" href={lead.href}>
-                  Read the verified change <span aria-hidden="true">→</span>
-                </Link>
-              </div>
-            </article>
-            <div className="brief-stack">
-              {secondary.map((story, index) => (
-                <article className="brief-item" key={story.slug}>
-                  <span className="brief-item__number">
-                    {String(index + 2).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <div className="meta-row">
-                      <EvidenceBadge evidence={story.evidence} />
-                      <span>{story.type}</span>
-                    </div>
-                    <h3>
-                      <Link href={story.href}>{story.title}</Link>
-                    </h3>
-                    <p>{story.summary}</p>
-                    <Link href={story.href}>
-                      What it means <span aria-hidden="true">→</span>
+          <div className="weekly-change-grid">
+            {thisWeek.map((article, index) => (
+              <article key={article.slug}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <p>{article.format}</p>
+                  <h3>
+                    <Link
+                      href={`/guides/${article.slug}`}
+                      data-track="contextual_internal_link"
+                      data-track-meta={article.slug}
+                    >
+                      {article.title}
                     </Link>
-                  </div>
-                </article>
-              ))}
-            </div>
+                  </h3>
+                  <strong>
+                    Next review: {article.nextReview}
+                    <span aria-hidden="true"> →</span>
+                  </strong>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="section choose-role" id="choose-role">
-        <div className="shell choose-role__grid">
-          <div className="choose-role__copy">
-            <p className="kicker">Start with your work</p>
-            <h2>Generic AI news ends here.</h2>
+      <section className="section section--warm">
+        <div className="shell">
+          <SectionHeading
+            kicker="Eight ways into the library"
+            title="Start with the decision in front of you"
+            text="Each pillar combines durable guidance, changing evidence and a clear route to the next useful page."
+          />
+          <div className="pillar-index-grid">
+            {pillars.map((pillar, index) => {
+              const count = articles.filter(
+                (article) => article.pillar === pillar.slug,
+              ).length;
+              return (
+                <Link
+                  className={`pillar-index-card pillar-index-card--${pillar.color}`}
+                  href={`/topics/${pillar.slug}`}
+                  key={pillar.slug}
+                >
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <h3>{pillar.name}</h3>
+                  <p>{pillar.promise}</p>
+                  <strong>
+                    {count} complete guides
+                    <span aria-hidden="true"> →</span>
+                  </strong>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="section evidence-home-section">
+        <div className="shell">
+          <SectionHeading
+            kicker="Evidence Checks"
+            title="Separate a useful signal from a confident claim"
+            text="These pages show where the evidence is strong, mixed or still emerging."
+            href="/signals"
+            linkLabel="See how we check evidence"
+          />
+          <div className="article-grid">
+            {evidenceChecks.map((article) => (
+              <ArticleCard article={article} key={article.slug} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section profession-home-section" id="choose-role">
+        <div className="shell profession-home-section__intro">
+          <div>
+            <p className="kicker kicker--light">Profession Trackers</p>
+            <h2>Follow changes that reach your actual work</h2>
             <p>
-              Choose your role. We&apos;ll show the changing tasks, useful
-              workflows, risks and skills — all in one living briefing.
+              Start with a profession, then move from a broad signal to the
+              tasks, skills and decisions it changes.
             </p>
-            <ul className="check-list">
-              <li>Task-level changes, not job-title theatre</li>
-              <li>Evidence and time horizon on every major claim</li>
-              <li>A practical move for the next 30 days</li>
-            </ul>
           </div>
           <RoleFinder />
         </div>
-      </section>
-
-      <section className="section section--cloud roles-section">
         <div className="shell">
-          <SectionHeading
-            kicker="The Role Library"
-            title="Follow the work that is actually changing"
-            text="Six launch role clusters. Each hub is updated as tools, evidence and working practice move."
-            href="/roles"
-            linkLabel="Explore every role"
-          />
-          <div className="role-grid">
+          <div className="role-grid role-grid--home">
             {roles.map((role, index) => (
               <RoleCard role={role} index={index} key={role.slug} />
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="section change-map-section">
-        <div className="shell change-map-section__grid">
-          <div className="map-art" aria-hidden="true">
-            <div className="map-art__route" />
-            <span className="map-art__node map-art__node--1">Task</span>
-            <span className="map-art__node map-art__node--2">Tool</span>
-            <span className="map-art__node map-art__node--3">Risk</span>
-            <span className="map-art__node map-art__node--4">Skill</span>
-            <span className="map-art__endpoint">Next</span>
-          </div>
-          <div>
-            <p className="kicker kicker--lime">Flagship utility</p>
-            <h2>Build your Work Change Map</h2>
-            <p className="section-deck">
-              Choose the tasks you actually perform. Get a sourced map of what
-              to test, what to protect and what to learn next.
-            </p>
-            <div className="map-principles">
+          {roleTrackers.length > 0 && (
+            <div className="profession-home-section__tracker">
               <div>
-                <strong>Free useful preview</strong>
-                <span>Value before an email address.</span>
+                <p className="kicker kicker--light">Monthly profession reads</p>
+                <h3>What changed inside large occupational groups</h3>
               </div>
               <div>
-                <strong>No fake precision</strong>
-                <span>No job-loss probability or “AI-proof” score.</span>
-              </div>
-              <div>
-                <strong>Sources attached</strong>
-                <span>Evidence and confidence beside each recommendation.</span>
+                {roleTrackers.map((article) => (
+                  <Link
+                    href={`/guides/${article.slug}`}
+                    key={article.slug}
+                    data-track="contextual_internal_link"
+                    data-track-meta={article.slug}
+                  >
+                    {article.shortTitle}
+                    <span aria-hidden="true"> →</span>
+                  </Link>
+                ))}
               </div>
             </div>
-            <Link className="button button--lime" href="/roles">
-              Start with my role <span aria-hidden="true">→</span>
-            </Link>
-          </div>
+          )}
         </div>
       </section>
 
-      <section className="section section--paper tool-lab-section">
+      <section className="section section--paper">
         <div className="shell">
           <SectionHeading
-            kicker="Tool Lab"
-            title="We look past the demo"
-            text="Version, workflow, inputs, failures, privacy and correction burden. That is what a professional tool decision needs."
+            kicker="Practical tools and checklists"
+            title="Turn reading into one defensible next move"
+            text="Use a decision framework, then inspect the tool or workflow against the work you actually do."
             href="/tools"
-            linkLabel="Enter Tool Lab"
+            linkLabel="Explore the tool library"
           />
-          <div className="tool-feature-grid">
-            <article className="tool-feature tool-feature--main">
-              <div className="tool-feature__art">
-                <EditorialVisual
-                  variant="steps"
-                  label="Meeting assistant testing method"
-                />
-              </div>
-              <div>
-                <div className="meta-row">
-                  <EvidenceBadge evidence="Method" />
-                  <span>Meeting intelligence</span>
-                </div>
-                <h3>
-                  <Link href="/tools/meeting-notes-method">
-                    A transcript is not a useful meeting record. This is how
-                    Tool Lab tests the difference.
-                  </Link>
-                </h3>
-                <p>
-                  We score incorrect owners, missed uncertainty, false
-                  commitments, consent and the time needed to repair the
-                  output.
-                </p>
-                <Link className="card-link" href="/tools/meeting-notes-method">
-                  See the full test protocol <span aria-hidden="true">→</span>
-                </Link>
-              </div>
-            </article>
-            <div className="tool-list">
-              {tools.slice(0, 4).map((tool, index) => (
-                <Link
-                  className="tool-row"
-                  href={`/tools/${tool.slug}`}
-                  key={tool.slug}
-                >
-                  <span className="tool-row__index">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="tool-row__copy">
-                    <small>{tool.category}</small>
-                    <strong>{tool.name}</strong>
-                    <span>{tool.bestFor}</span>
-                  </span>
-                  <EvidenceBadge evidence={tool.evidence} />
-                  <span className="tool-row__arrow" aria-hidden="true">
-                    →
-                  </span>
-                </Link>
+          <div className="practical-home-grid">
+            <div className="article-grid">
+              {practicalGuides.map((article) => (
+                <ArticleCard article={article} key={article.slug} />
               ))}
             </div>
+            <aside className="tool-shortlist">
+              <p className="kicker">Tools under review</p>
+              <h3>Capability is not the same as a good workflow</h3>
+              {tools.slice(0, 4).map((tool) => (
+                <Link href={`/tools/${tool.slug}`} key={tool.slug}>
+                  <span>{tool.category}</span>
+                  <strong>{tool.name}</strong>
+                  <p>{tool.watch}</p>
+                </Link>
+              ))}
+            </aside>
           </div>
         </div>
       </section>
 
-      <section className="section signals-section">
+      <section className="section country-home-section">
         <div className="shell">
           <SectionHeading
-            kicker="Work Signals"
-            title="The numbers need context"
-            text="Adoption is not value. Exposure is not displacement. A forecast is not an observed outcome."
-            href="/signals"
-            linkLabel="Read the evidence"
+            kicker="Country-specific guidance"
+            title="Use the rules and labour market that apply to you"
+            text="Legal rights, pay, qualifications and policy are labelled. One country's rules are never presented as universal."
             light
           />
-          <div className="signal-stat-grid">
-            {signalStats.map((stat) => (
-              <article className="signal-stat" key={stat.value + stat.label}>
-                <strong>{stat.value}</strong>
-                <h3>{stat.label}</h3>
-                <p>{stat.note}</p>
-                <span>{stat.source}</span>
-              </article>
-            ))}
-          </div>
-          <div className="signal-article">
-            <div>
-              <EvidenceBadge evidence="Observed" />
-              <span>Workforce evidence</span>
-            </div>
-            <h3>
-              One in four jobs has some GenAI exposure. That is not the same as
-              one in four jobs disappearing.
-            </h3>
-            <p>
-              The ILO&apos;s task-level index points to transformation as the
-              likelier outcome and shows why clerical work deserves immediate
-              attention.
-            </p>
-            <Link href="/signals/ai-exposure-is-not-job-loss">
-              Read the evidence note <span aria-hidden="true">→</span>
+          <div className="country-home-grid">
+            <Link href="/country/uk">
+              <span>UK</span>
+              <div>
+                <h3>United Kingdom</h3>
+                <p>
+                  Employment rights, ONS labour evidence and UK qualification
+                  routes.
+                </p>
+                <strong>
+                  Open UK guidance <span aria-hidden="true">→</span>
+                </strong>
+              </div>
+            </Link>
+            <Link href="/country/us">
+              <span>US</span>
+              <div>
+                <h3>United States</h3>
+                <p>
+                  Federal evidence, state variation and US education and hiring
+                  signals.
+                </p>
+                <strong>
+                  Open US guidance <span aria-hidden="true">→</span>
+                </strong>
+              </div>
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="section section--cloud skills-section">
-        <div className="shell">
-          <SectionHeading
-            kicker="Skill Moves"
-            title="Build the capability that survives the tool cycle"
-            text="Small, practical learning moves for professionals who do not have time for another vague AI course."
-            href="/skills"
-            linkLabel="See all skill moves"
-          />
-          <div className="skill-grid">
-            {skills.slice(0, 3).map((skill, index) => (
-              <article className="skill-card" key={skill.title}>
-                <span className="skill-card__index">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="kicker">{skill.level}</span>
-                <h3>{skill.title}</h3>
-                <p>{skill.text}</p>
-                <Link href="/skills">
-                  {skill.action} <span aria-hidden="true">→</span>
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section standards-teaser">
-        <div className="shell standards-teaser__grid">
+      <section className="section briefing-home-section">
+        <div className="shell briefing-home-section__grid">
           <div>
-            <p className="kicker">How we know</p>
-            <h2>Trust should be inspectable.</h2>
+            <p className="kicker kicker--light">Weekly briefing</p>
+            <h2>Follow what materially changed at work</h2>
             <p>
-              Named authors. Primary sources. Reproducible tool tests. Visible
-              uncertainty. A public correction trail.
+              One focused review of the changes, evidence and next actions worth
+              carrying into the week.
             </p>
-            <Link className="button button--outline" href="/standards">
-              Read our editorial standards
-            </Link>
           </div>
-          <div className="standard-cards">
-            <article>
-              <span>01</span>
-              <strong>Named evidence</strong>
-              <p>Source links live beside the claims they support.</p>
-            </article>
-            <article>
-              <span>02</span>
-              <strong>Hands-on methods</strong>
-              <p>Plan, version, inputs, baseline and failures are recorded.</p>
-            </article>
-            <article>
-              <span>03</span>
-              <strong>Uncertainty shown</strong>
-              <p>Observed, Tested, Emerging, Forecast or Claim.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section className="section newsletter-band">
-        <div className="shell newsletter-band__grid">
-          <div>
-            <p className="kicker">The Work Shift</p>
-            <h2>The five AI-at-work changes worth your attention.</h2>
-            <p>
-              One useful email each week: role implications, tool evidence and
-              the claims that did not survive scrutiny.
-            </p>
-            <div className="newsletter-proof">
-              <span>5 changes</span>
-              <span>1 tested workflow</span>
-              <span>0 launch spam</span>
-            </div>
-          </div>
-          <NewsletterForm />
-        </div>
-      </section>
-
-      <section className="section section--paper latest-section">
-        <div className="shell">
-          <SectionHeading
-            kicker="Keep exploring"
-            title="Useful next reads"
-            href="/today"
-            linkLabel="Browse all"
-          />
-          <div className="story-grid">
-            {stories.slice(3).map((story) => (
-              <StoryCard story={story} key={story.slug} />
-            ))}
-          </div>
+          <NewsletterForm dark />
         </div>
       </section>
     </main>

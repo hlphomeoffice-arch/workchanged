@@ -66,7 +66,7 @@ export const roles: Role[] = [
       "Drafting is getting cheaper. Distinctive judgment, evidence and distribution are becoming more valuable.",
     signal:
       "Google Docs can now match writing style and document format across more languages.",
-    reviewed: "24 Jul 2026",
+    reviewed: "25 Jul 2026",
     workflows: 8,
     taskCount: 14,
     nextSkill: "Evidence-led editing",
@@ -103,7 +103,7 @@ export const roles: Role[] = [
       "Account research and follow-up are accelerating. Trust, diagnosis and negotiation still decide the outcome.",
     signal:
       "AI can prepare a call faster, but unsupported company facts remain a costly failure mode.",
-    reviewed: "23 Jul 2026",
+    reviewed: "25 Jul 2026",
     workflows: 7,
     taskCount: 12,
     nextSkill: "Commercial verification",
@@ -140,7 +140,7 @@ export const roles: Role[] = [
       "Coordination work is becoming queryable. Exception handling and clear ownership matter more, not less.",
     signal:
       "Copilot can work across meetings, mail and documents; the quality of access rules now shapes the answer.",
-    reviewed: "24 Jul 2026",
+    reviewed: "25 Jul 2026",
     workflows: 10,
     taskCount: 16,
     nextSkill: "Workflow design",
@@ -177,7 +177,7 @@ export const roles: Role[] = [
       "Administration can shrink. Fairness, consent, explanation and human judgment become the centre of the role.",
     signal:
       "Skill inference is reaching more Microsoft 365 users, raising new consent and profile-governance questions.",
-    reviewed: "24 Jul 2026",
+    reviewed: "25 Jul 2026",
     workflows: 6,
     taskCount: 13,
     nextSkill: "Accountable decision design",
@@ -214,7 +214,7 @@ export const roles: Role[] = [
       "Narrative and anomaly detection are moving faster. Traceability and professional responsibility remain non-negotiable.",
     signal:
       "Spreadsheet AI can classify and explain at scale; generated cells still need a clear audit trail.",
-    reviewed: "22 Jul 2026",
+    reviewed: "25 Jul 2026",
     workflows: 5,
     taskCount: 11,
     nextSkill: "AI audit trails",
@@ -251,7 +251,7 @@ export const roles: Role[] = [
       "Routine triage and drafting are automating quickly. Escalation judgment and emotional accuracy become differentiators.",
     signal:
       "AI assistance is strongest in structured service work, but quality falls when policy exceptions are hidden.",
-    reviewed: "24 Jul 2026",
+    reviewed: "25 Jul 2026",
     workflows: 9,
     taskCount: 15,
     nextSkill: "Exception handling",
@@ -291,7 +291,7 @@ export const tools: Tool[] = [
     evidence: "Observed",
     reviewed: "24 Jul 2026",
     summary:
-      "Deep access to meetings, mail, files and people data makes it useful — and makes governance the first question.",
+      "Deep access to meetings, mail, files and people data makes it useful, and makes governance the first question.",
     bestFor: "Teams already working inside Microsoft 365",
     watch: "Permissions, source traceability and uneven feature rollout",
     sourceUrl:
@@ -339,7 +339,7 @@ export const tools: Tool[] = [
     watch: "Vendor-data generalisation and workflow-specific accuracy",
     sourceUrl:
       "https://www.anthropic.com/research/economic-index-june-2026-report",
-    sourceLabel: "Anthropic Economic Index — June 2026",
+    sourceLabel: "Anthropic Economic Index, June 2026",
   },
   {
     slug: "notion-ai",
@@ -363,11 +363,11 @@ export const tools: Tool[] = [
     evidence: "Method",
     reviewed: "24 Jul 2026",
     summary:
-      "Our test protocol scores action ownership, uncertainty, omissions, consent and correction burden — not transcription alone.",
+      "Our test protocol scores action ownership, uncertainty, omissions, consent and correction burden, not transcription alone.",
     bestFor: "Teams comparing Otter, Teams, Meet and similar tools",
     watch: "Consent, retention and confidently wrong action items",
     sourceUrl: "/standards#tool-lab",
-    sourceLabel: "Work Changed Tool Lab method",
+    sourceLabel: "WorkChanged Tool Lab method",
   },
 ];
 
@@ -382,7 +382,7 @@ export const stories: Story[] = [
     title:
       "Google renamed Gemini Alpha to Beta. Your controls, privacy terms and pricing did not change.",
     summary:
-      "For Workspace admins, this is a naming change — not a migration. Keep the existing opt-ins and spend your attention on the rollout details that affect users.",
+      "For Workspace admins, this is a naming change, not a migration. Keep the existing opt-ins and spend your attention on the rollout details that affect users.",
     roles: ["Operations", "IT & AI leads"],
     visual: "document",
     sourceUrl:
@@ -391,7 +391,7 @@ export const stories: Story[] = [
   },
   {
     slug: "copilot-ai-watermarks",
-    href: "/today#copilot-watermarks",
+    href: "/today#copilot-ai-watermarks",
     type: "Daily signal",
     evidence: "Observed",
     date: "24 Jul 2026",
@@ -407,7 +407,7 @@ export const stories: Story[] = [
   },
   {
     slug: "gemini-docs-language-expansion",
-    href: "/today#gemini-docs",
+    href: "/today#gemini-docs-language-expansion",
     type: "Tool note",
     evidence: "Observed",
     date: "23 Jul 2026",
@@ -422,7 +422,7 @@ export const stories: Story[] = [
   },
   {
     slug: "ai-exposure-is-not-job-loss",
-    href: "/signals/ai-exposure-is-not-job-loss",
+    href: "/guides/ai-job-loss-predictions-evidence",
     type: "Work signal",
     evidence: "Observed",
     date: "22 Jul 2026",
@@ -438,7 +438,7 @@ export const stories: Story[] = [
   },
   {
     slug: "organisations-adopt-ai-jobs-uneven",
-    href: "/signals#stanford-ai-index",
+    href: "/signals#organisations-adopt-ai-jobs-uneven",
     type: "Work signal",
     evidence: "Observed",
     date: "21 Jul 2026",

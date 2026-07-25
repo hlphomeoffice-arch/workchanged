@@ -2,10 +2,10 @@
   <title id="title">Work Changed</title>
   <desc id="desc">Work Changed primary horizontal logo.</desc>
   <g transform="translate(20 20)">
-    <path d="M17 27 L35 94 L59 45 L82 94" fill="none" stroke="#0B1020" stroke-width="14" stroke-linecap="square" stroke-linejoin="bevel"/>
-    <path d="M82 94 L104 25" fill="none" stroke="#4F6BFF" stroke-width="14" stroke-linecap="square" stroke-linejoin="bevel"/>
-    <rect x="97" y="16" width="16" height="16" rx="3" fill="#C7F464"/>
+    <path d="M17 27 L35 94 L59 45 L82 94" fill="none" stroke="#173F3A" stroke-width="14" stroke-linecap="square" stroke-linejoin="bevel"/>
+    <path d="M82 94 L104 25" fill="none" stroke="#9E4B2D" stroke-width="14" stroke-linecap="square" stroke-linejoin="bevel"/>
+    <rect x="97" y="16" width="16" height="16" rx="3" fill="#E7C977"/>
   </g>
-  <text x="165" y="103" fill="#0B1020" font-family="Inter, Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="62" font-weight="750" letter-spacing="1.2">WORK</text>
-  <text x="410" y="103" fill="#4F6BFF" font-family="Inter, Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="62" font-weight="750" letter-spacing="1.2">CHANGED</text>
+  <text x="165" y="103" fill="#173F3A" font-family="Inter, Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="62" font-weight="750" letter-spacing="1.2">WORK</text>
+  <text x="410" y="103" fill="#9E4B2D" font-family="Newsreader, Georgia, serif" font-size="68" font-style="italic" font-weight="600" letter-spacing="0.4">CHANGED</text>
 </svg>

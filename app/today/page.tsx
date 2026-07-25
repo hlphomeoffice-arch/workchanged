@@ -1,87 +1,199 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { EvidenceBadge } from "@/components/evidence-badge";
+import { ArticleCard } from "@/components/article-card";
+import { FollowControl } from "@/components/follow-control";
+import { NewsletterForm } from "@/components/newsletter-form";
 import { PageHero } from "@/components/page-hero";
-import { StoryCard } from "@/components/story-card";
+import { SectionHeading } from "@/components/section-heading";
+import { articles } from "@/lib/editorial/articles";
+import { formatEditorialDate } from "@/lib/editorial/dates";
 import { stories } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Today",
+  title: "What Changed This Week",
   description:
-    "The AI-at-work changes that matter today, verified and translated into role-specific action.",
+    "A weekly, source-linked briefing on the workplace changes that affect real decisions.",
+  alternates: {
+    canonical: "/today",
+  },
+  openGraph: {
+    type: "website",
+    title: "What Changed This Week",
+    description:
+      "Changes that alter real work, with evidence, affected roles and practical next steps.",
+    url: "/today",
+    images: ["/og-work-changed.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "What Changed This Week",
+    description:
+      "Changes that alter real work, with evidence, affected roles and practical next steps.",
+    images: ["/og-work-changed.jpg"],
+  },
 };
 
 export default function TodayPage() {
-  const lead = stories[0];
+  const changes = articles
+    .filter((article) => article.portfolio !== "Evergreen decision page")
+    .slice(0, 8);
+  const lead = changes[0] || articles[0];
+  const productSignals = stories.filter((story) =>
+    story.href.startsWith("/today#"),
+  );
 
   return (
     <main id="main">
       <PageHero
-        kicker="The Daily Shift"
-        title="What changed today"
-        text="A calm, verified briefing on the AI developments that alter real work — and the launch noise you can safely ignore."
-        meta="Friday 24 July 2026 · Updated 08:40 BST"
+        kicker="What Changed This Week"
+        title="The changes worth your attention"
+        text="A calm, verified briefing on developments that alter real work, with the noise left out."
+        meta="Week ending 25 July 2026 · Reviewed 25 July 2026"
       />
 
-      <section className="section section--paper">
-        <div className="shell">
-          <div className="daily-brief-header">
-            <div>
-              <span className="kicker">Lead change</span>
-              <h2>{lead.title}</h2>
-              <p>{lead.summary}</p>
-            </div>
-            <div className="daily-decision">
-              <EvidenceBadge evidence={lead.evidence} />
-              <div>
-                <span>Who is affected</span>
-                <strong>Workspace admins and AI leads</strong>
-              </div>
-              <div>
-                <span>Do this now</span>
-                <strong>No migration action. Keep existing controls.</strong>
-              </div>
-              <Link className="button button--primary" href={lead.href}>
-                Read the source-backed note
-              </Link>
+      {lead && (
+        <section className="section section--paper">
+          <div className="shell">
+            <SectionHeading
+              kicker="Lead change"
+              title="Start with the question most likely to change a decision"
+              text="Read the answer first, then inspect the evidence and next action."
+            />
+            <div id={`change-${lead.number}`}>
+              <ArticleCard article={lead} featured />
             </div>
           </div>
+        </section>
+      )}
 
-          <div className="briefing-index">
-            <div className="briefing-index__label">
-              <span>Today&apos;s index</span>
-              <strong>06</strong>
-            </div>
-            <div>
-              {stories.map((story, index) => (
-                <a className="briefing-line" href={`#${story.slug}`} key={story.slug}>
+      <section className="section section--warm">
+        <div className="shell weekly-briefing-layout">
+          <aside className="weekly-briefing-index">
+            <p className="kicker">This week&apos;s index</p>
+            <strong>{String(changes.length).padStart(2, "0")}</strong>
+            <nav aria-label="This week's changes">
+              {changes.map((article, index) => (
+                <a href={`#change-${article.number}`} key={article.slug}>
                   <span>{String(index + 1).padStart(2, "0")}</span>
-                  <strong>{story.title}</strong>
-                  <EvidenceBadge evidence={story.evidence} />
+                  {article.shortTitle}
                 </a>
               ))}
-            </div>
-          </div>
-
-          <div className="today-list">
-            {stories.map((story) => (
-              <div id={story.slug} key={story.slug}>
-                <StoryCard story={story} />
-              </div>
+            </nav>
+          </aside>
+          <div className="weekly-briefing-list">
+            {changes.slice(1).map((article, index) => (
+              <article id={`change-${article.number}`} key={article.slug}>
+                <span>{String(index + 2).padStart(2, "0")}</span>
+                <div>
+                  <p>
+                    {article.format} · {article.jurisdiction}
+                  </p>
+                  <h2>
+                    <Link
+                      href={`/guides/${article.slug}`}
+                      data-track="contextual_internal_link"
+                      data-track-meta={article.slug}
+                    >
+                      {article.title}
+                    </Link>
+                  </h2>
+                  <p>{article.answerFirst}</p>
+                  <dl>
+                    <div>
+                      <dt>Evidence</dt>
+                      <dd>{article.evidenceStrength}</dd>
+                    </div>
+                    <div>
+                      <dt>Next review</dt>
+                      <dd>{formatEditorialDate(article.nextReview)}</dd>
+                    </div>
+                  </dl>
+                  <Link
+                    className="text-link"
+                    href={`/guides/${article.slug}`}
+                    data-track="contextual_internal_link"
+                    data-track-meta={article.slug}
+                  >
+                    Read what changed and what to do next
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section end-action">
-        <div className="shell end-action__inner">
+      <section className="section verified-product-change">
+        <div className="shell verified-product-change__grid">
           <div>
-            <p className="kicker kicker--light">Make it relevant</p>
-            <h2>News becomes useful when it reaches your role.</h2>
+            <p className="kicker kicker--light">Verified product change</p>
+            <h2>A label changed. The contract did not.</h2>
+            <p>
+              Google renamed Gemini Alpha to Beta. Workspace administrators do
+              not need a migration project, new opt-in or contract change.
+            </p>
+            <Link
+              className="button button--lime"
+              href="/today/gemini-alpha-is-now-beta"
+            >
+              Read the source-backed note
+            </Link>
           </div>
-          <Link className="button button--lime" href="/roles">
-            Choose your role
-          </Link>
+          <div>
+            <FollowControl
+              followKey="topic:weekly-changes"
+              label="weekly workplace changes"
+            />
+          </div>
+        </div>
+      </section>
+
+      {productSignals.length > 0 && (
+        <section className="section section--paper">
+          <div className="shell">
+            <SectionHeading
+              kicker="Other verified product signals"
+              title="Small changes that still need a policy decision"
+              text="These first-party product updates matter only when they reach a real workflow."
+            />
+            <div className="product-signal-list">
+              {productSignals.map((story) => (
+                <article id={story.slug} key={story.slug}>
+                  <div>
+                    <span>{story.evidence}</span>
+                    <span>{story.date}</span>
+                  </div>
+                  <h3>{story.title}</h3>
+                  <p>{story.summary}</p>
+                  {story.sourceUrl && (
+                    <a
+                      href={story.sourceUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      {story.sourceLabel || "Open the first-party source"}
+                      <span aria-hidden="true"> ↗</span>
+                    </a>
+                  )}
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className="section briefing-home-section">
+        <div className="shell briefing-home-section__grid">
+          <div>
+            <p className="kicker kicker--light">Return next week</p>
+            <h2>Follow the briefing without giving us data</h2>
+            <p>
+              The RSS feed is live. Email collection remains off until a real
+              delivery service is connected and tested.
+            </p>
+          </div>
+          <NewsletterForm dark />
         </div>
       </section>
     </main>

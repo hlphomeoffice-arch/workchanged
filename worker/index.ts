@@ -1,9 +1,15 @@
-/** Cloudflare Worker entry point for Work Changed. */
+/** Cloudflare Worker entry point for WorkChanged. */
 import handler from "vinext/server/app-router-entry";
 
 interface ExecutionContext {
   waitUntil(promise: Promise<unknown>): void;
   passThroughOnException(): void;
+}
+
+interface WorkerAssetEnv {
+  ASSETS?: {
+    fetch(request: Request): Promise<Response> | Response;
+  };
 }
 
 function securityHeaders(request: Request, response: Response): Response {
@@ -70,7 +76,7 @@ function securityHeaders(request: Request, response: Response): Response {
 const worker = {
   async fetch(
     request: Request,
-    env: unknown,
+    env: WorkerAssetEnv,
     ctx: ExecutionContext,
   ): Promise<Response> {
     const response = await handler.fetch(request, env, ctx);

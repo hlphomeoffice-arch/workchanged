@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 160" role="img" aria-labelledby="title desc">
   <title id="title">Work Changed reversed logo</title>
   <desc id="desc">Work Changed horizontal logo for dark backgrounds.</desc>
-  <rect width="880" height="160" fill="#0B1020"/>
+  <rect width="880" height="160" fill="#173F3A"/>
   <g transform="translate(20 20)">
-    <path d="M17 27 L35 94 L59 45 L82 94" fill="none" stroke="#F4F6FA" stroke-width="14" stroke-linecap="square" stroke-linejoin="bevel"/>
-    <path d="M82 94 L104 25" fill="none" stroke="#7890FF" stroke-width="14" stroke-linecap="square" stroke-linejoin="bevel"/>
-    <rect x="97" y="16" width="16" height="16" rx="3" fill="#C7F464"/>
+    <path d="M17 27 L35 94 L59 45 L82 94" fill="none" stroke="#FFFDF8" stroke-width="14" stroke-linecap="square" stroke-linejoin="bevel"/>
+    <path d="M82 94 L104 25" fill="none" stroke="#F0B39E" stroke-width="14" stroke-linecap="square" stroke-linejoin="bevel"/>
+    <rect x="97" y="16" width="16" height="16" rx="3" fill="#E7C977"/>
   </g>
-  <text x="165" y="103" fill="#F4F6FA" font-family="Inter, Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="62" font-weight="750" letter-spacing="1.2">WORK</text>
-  <text x="410" y="103" fill="#93A4FF" font-family="Inter, Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="62" font-weight="750" letter-spacing="1.2">CHANGED</text>
+  <text x="165" y="103" fill="#FFFDF8" font-family="Inter, Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="62" font-weight="750" letter-spacing="1.2">WORK</text>
+  <text x="410" y="103" fill="#F0B39E" font-family="Newsreader, Georgia, serif" font-size="68" font-style="italic" font-weight="600" letter-spacing="0.4">CHANGED</text>
 </svg>

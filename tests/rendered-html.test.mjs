@@ -64,6 +64,12 @@ test("server-renders the audience-led homepage and preserved security shell", as
     response.headers.get("content-security-policy") ?? "";
   assert.match(contentSecurityPolicy, /default-src 'self'/);
   assert.match(contentSecurityPolicy, /frame-ancestors 'none'/);
+  assert.match(
+    contentSecurityPolicy,
+    /frame-src https:\/\/docs\.google\.com/,
+  );
+  assert.match(contentSecurityPolicy, /form-action 'self'/);
+  assert.doesNotMatch(contentSecurityPolicy, /connect-src[^;]*google/i);
   assert.match(contentSecurityPolicy, /object-src 'none'/);
   assert.equal(response.headers.get("strict-transport-security"), null);
 
@@ -93,11 +99,45 @@ test("server-renders the audience-led homepage and preserved security shell", as
   assert.match(html, /Country-specific guidance/);
   assert.match(html, /Evidence Checks/);
   assert.match(html, /Practical tools and checklists/);
+  assert.match(html, /WorkChanged News Letter/);
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /rel="canonical" href="https:\/\/workchanged\.com\/"/);
   assert.doesNotMatch(
     html,
     /Your site is taking shape|codex-preview|subscription confirmed|thanks for subscribing/i,
+  );
+});
+
+test("publishes an active, accessible WorkChanged News Letter sign-up", async () => {
+  const response = await render("/newsletter");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  const formUrl =
+    "https://docs.google.com/forms/d/e/1FAIpQLSevqneZIj5ckUWGceVtkSw5oSJCRyigRHGsaTpFTsxNiZbz8w/viewform";
+
+  assert.match(html, /<title>WorkChanged News Letter \| WorkChanged<\/title>/);
+  assert.match(html, /The News Letter worth your attention this week\./);
+  assert.match(
+    html,
+    new RegExp(
+      `<iframe[^>]+src="${formUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\?embedded=true"`,
+    ),
+  );
+  assert.match(
+    html,
+    /title="WorkChanged News Letter email sign-up"[^>]+loading="lazy"/,
+  );
+  assert.match(
+    html,
+    new RegExp(
+      `<a[^>]+href="${formUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"[^>]+target="_blank"`,
+    ),
+  );
+  assert.match(html, /WorkChanged Website News Letter List/);
+  assert.match(html, /Prefer RSS\? Follow the feed/);
+  assert.doesNotMatch(
+    html,
+    /email service is not connected|no email address is collected/i,
   );
 });
 

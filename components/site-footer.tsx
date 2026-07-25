@@ -19,7 +19,7 @@ const columns = [
       ["How work actually works", "/topics/how-work-actually-works"],
       ["Profession trackers", "/roles"],
       ["What changed this week", "/today"],
-      ["What Changed at Work briefing", "/newsletter"],
+      ["WorkChanged News Letter", "/newsletter"],
     ],
   },
   {
@@ -49,7 +49,7 @@ export function SiteFooter() {
               Follow your profession
             </Link>
             <Link className="button button--ghost-light" href="/newsletter">
-              Weekly briefing
+              News Letter
             </Link>
           </div>
         </div>

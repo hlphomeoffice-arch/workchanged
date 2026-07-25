@@ -122,7 +122,7 @@ export default function StandardsPage() {
               <p>
                 A correction records the original error, the corrected
                 statement, the date and editor, and whether the headline,
-                newsletter or social copy also changed. Typographic fixes can
+                News Letter or social copy also changed. Typographic fixes can
                 remain silent; factual changes cannot.
               </p>
             </section>
@@ -131,15 +131,24 @@ export default function StandardsPage() {
               <h2>Useful measurement without a second tracking platform</h2>
               <p>
                 The current build uses no advertising tracker, third-party
-                analytics script, cookie identifier or newsletter database.
+                analytics script or cookie identifier.
                 Anonymous interaction events are structured in the browser and
                 retained only in session storage so the site is ready for a
                 future consented first-party analytics connection.
               </p>
               <p>
                 Saved topic and profession preferences remain in local storage
-                on the reader&apos;s device. No email address is collected while
-                the newsletter provider is unconnected.
+                on the reader&apos;s device. The WorkChanged News Letter sign-up
+                is hosted by Google. Google stores submitted email addresses in
+                the private Google Sheet named WorkChanged Website News Letter
+                List. WorkChanged uses those addresses only for the News Letter,
+                and analytics does not receive them.
+              </p>
+              <p>
+                Sign-up collection is active. Campaign delivery is a separate
+                service, so joining the list does not promise a particular send
+                date or frequency beyond the publication&apos;s stated weekly
+                intention.
               </p>
             </section>
             <section id="terms">

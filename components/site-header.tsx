@@ -63,7 +63,7 @@ export function SiteHeader() {
               <span className="search-link__text">Search</span>
             </Link>
             <Link className="button button--dark header-cta" href="/newsletter">
-              Weekly briefing
+              News Letter
             </Link>
             <MobileMenu items={nav} />
           </div>

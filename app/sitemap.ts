@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { roles, tools } from "@/lib/content";
 import { articles } from "@/lib/editorial/articles";
 import { pillars } from "@/lib/editorial/pillars";
+import { getTrendloomIndex } from "@/lib/editorial/trendloom";
 
 const baseUrl = "https://workchanged.com";
 
@@ -20,7 +21,8 @@ const latestReview = new Date(
   ),
 );
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const trendingArticles = await getTrendloomIndex();
   const staticRoutes = [
     "",
     "/today",
@@ -30,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/tools",
     "/skills",
     "/signals",
+    "/trending",
     "/newsletter",
     "/about",
     "/standards",
@@ -68,6 +71,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
           : ("monthly" as const),
       priority: article.number <= 10 ? 0.86 : 0.78,
       images: [`${baseUrl}/images/articles/${article.slug}.jpg`],
+    })),
+    ...trendingArticles.map((article) => ({
+      url: `${baseUrl}/trending/${article.slug}`,
+      lastModified: editorialDate(article.published_at),
+      changeFrequency: "weekly" as const,
+      priority: 0.84,
     })),
     ...roles.map((role) => ({
       url: `${baseUrl}/roles/${role.slug}`,

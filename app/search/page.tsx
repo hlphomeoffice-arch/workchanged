@@ -3,6 +3,7 @@ import { SearchInterface, type SearchItem } from "@/components/search-interface"
 import { allSearchItems } from "@/lib/content";
 import { articles } from "@/lib/editorial/articles";
 import { pillars } from "@/lib/editorial/pillars";
+import { getTrendloomIndex } from "@/lib/editorial/trendloom";
 
 export const metadata: Metadata = {
   title: "Search the work-change library",
@@ -20,8 +21,15 @@ export default async function SearchPage({
   const params = await searchParams;
   const initialQuery =
     typeof params.q === "string" ? params.q.slice(0, 100) : "";
+  const trendingArticles = await getTrendloomIndex();
 
   const items: SearchItem[] = [
+    ...trendingArticles.map((article) => ({
+      title: article.title,
+      description: article.dek,
+      href: `/trending/${article.slug}`,
+      kind: "Trending analysis",
+    })),
     ...articles.map((article) => ({
       title: article.title,
       description: article.dek,

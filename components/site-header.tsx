@@ -8,6 +8,7 @@ const nav = [
   ["Career moves", "/topics/career-moves"],
   ["Job security", "/topics/job-security-and-hiring"],
   ["Rights", "/topics/workplace-rules-and-rights"],
+  ["Trending", "/trending"],
   ["Professions", "/roles"],
 ] as const;
 

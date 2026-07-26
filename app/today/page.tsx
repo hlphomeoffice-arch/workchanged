@@ -189,8 +189,9 @@ export default function TodayPage() {
             <p className="kicker kicker--light">WorkChanged News Letter</p>
             <h2>Get the next briefing by email</h2>
             <p>
-              Join the private mailing list below. Google stores your address
-              for the WorkChanged News Letter, while RSS remains available.
+              Join the private mailing list below. Google stores your name,
+              surname and email address for the WorkChanged News Letter, while
+              RSS remains available.
             </p>
           </div>
           <NewsletterForm dark />

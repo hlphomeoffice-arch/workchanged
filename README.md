@@ -45,8 +45,8 @@ into this broader editorial system.
 - visible update notices on return visits
 - WorkChanged News Letter sign-up and monthly profession trackers
 - RSS feed at `/rss.xml`
-- active email collection through a native WorkChanged form and server-side
-  connection into the private Google Sheet
+- active name, surname and email collection through a native WorkChanged form
+  and server-side connection into the private Google Sheet
   `WorkChanged Website News Letter List`
 - privacy-conscious events that can feed an existing `dataLayer`, with no new
   external analytics platform
@@ -101,9 +101,9 @@ Responsive visual checks target approximately 375px, 768px and 1440px.
   bot screening and no embedded Google account interface
 - session-only event queue for reading and navigation events
 - device-local follow preferences and update comparisons
-- submitted email addresses are stored by Google in a private Google Sheet and
-  used only for the WorkChanged News Letter
-- analytics does not receive email addresses
+- submitted names, surnames and email addresses are stored by Google in a
+  private Google Sheet and used only for the WorkChanged News Letter
+- analytics does not receive names or email addresses
 - no database or authentication surface
 
 ## External connections still required

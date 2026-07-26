@@ -4958,6 +4958,234 @@ button {
   }
 }
 
+.trendloom-hub {
+  min-height: 70vh;
+  background: #fffdf8;
+}
+
+.trendloom-hub__header,
+.trendloom-story__header {
+  border-bottom: 1px solid rgb(23 63 58 / 14%);
+  background:
+    radial-gradient(circle at 82% 20%, rgb(231 201 119 / 22%), transparent 28%),
+    linear-gradient(135deg, #173f3a 0%, #214f48 100%);
+  color: #fffdf8;
+}
+
+.trendloom-hub__header .shell,
+.trendloom-story__header-inner {
+  padding-block: clamp(4.5rem, 9vw, 8rem);
+}
+
+.trendloom-hub__header .kicker,
+.trendloom-story__header .kicker {
+  color: #e7c977;
+}
+
+.trendloom-hub__header h1,
+.trendloom-story__header h1 {
+  max-width: 980px;
+  margin: 0.7rem 0 1rem;
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: clamp(3rem, 7vw, 6.8rem);
+  font-weight: 550;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+}
+
+.trendloom-hub__header > .shell > p:last-child,
+.trendloom-story__dek {
+  max-width: 760px;
+  margin: 0;
+  color: rgb(255 253 248 / 78%);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  line-height: 1.55;
+}
+
+.trendloom-hub__grid {
+  display: grid;
+  gap: 1.1rem;
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+
+.trendloom-card {
+  display: grid;
+  grid-template-columns: 105px 1fr;
+  gap: clamp(1.2rem, 3vw, 2.8rem);
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  border: 1px solid rgb(23 63 58 / 14%);
+  background: white;
+  box-shadow: 0 18px 50px rgb(23 63 58 / 5%);
+}
+
+.trendloom-card__signal {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  min-height: 104px;
+  border-radius: 50%;
+  background: #f3e6dd;
+  color: #9e4b2d;
+}
+
+.trendloom-card__signal span {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.trendloom-card__signal strong {
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: 2.5rem;
+}
+
+.trendloom-card h2 {
+  max-width: 860px;
+  margin: 0.3rem 0 0.7rem;
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  line-height: 1.05;
+}
+
+.trendloom-card h2 a {
+  color: #173f3a;
+  text-decoration: none;
+}
+
+.trendloom-card > div:last-child > p:not(.kicker) {
+  max-width: 780px;
+  color: #53615e;
+  line-height: 1.65;
+}
+
+.trendloom-card__meta,
+.trendloom-story__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.2rem;
+  color: #6f7a77;
+  font-size: 0.8rem;
+  font-weight: 650;
+}
+
+.trendloom-story__header .breadcrumbs,
+.trendloom-story__header .breadcrumbs a {
+  color: rgb(255 253 248 / 70%);
+}
+
+.trendloom-story__meta {
+  margin-top: 2rem;
+  color: #e7c977;
+}
+
+.trendloom-story__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 340px);
+  gap: clamp(2rem, 6vw, 6rem);
+  padding-block: clamp(3rem, 7vw, 6.5rem);
+}
+
+.trendloom-story__body {
+  max-width: 790px;
+  color: #243936;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.trendloom-story__body h2,
+.trendloom-story__body h3 {
+  margin: 2.6rem 0 0.8rem;
+  color: #173f3a;
+  font-family: var(--font-newsreader), Georgia, serif;
+  line-height: 1.08;
+}
+
+.trendloom-story__body h2 {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+}
+
+.trendloom-story__body h3 {
+  font-size: 1.65rem;
+}
+
+.trendloom-story__body a {
+  color: #9e4b2d;
+}
+
+.trendloom-story__body blockquote {
+  margin: 2rem 0;
+  padding: 1.2rem 1.5rem;
+  border-left: 4px solid #e7c977;
+  background: #f8f1e8;
+  color: #173f3a;
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: 1.4rem;
+}
+
+.trendloom-story__evidence {
+  align-self: start;
+  padding: 1.5rem;
+  border-top: 4px solid #9e4b2d;
+  background: #f4f0e7;
+}
+
+.trendloom-story__evidence h2 {
+  margin: 0.35rem 0 0.8rem;
+  color: #173f3a;
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: 1.8rem;
+}
+
+.trendloom-story__evidence > p:not(.kicker) {
+  color: #596965;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.trendloom-story__evidence ol {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.trendloom-story__evidence li {
+  padding-left: 0.25rem;
+}
+
+.trendloom-story__evidence a {
+  display: grid;
+  gap: 0.2rem;
+  color: #173f3a;
+  text-decoration: none;
+}
+
+.trendloom-story__evidence a span,
+.trendloom-story__evidence small {
+  color: #687672;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.trendloom-hub__empty {
+  padding: 2rem;
+  border: 1px solid rgb(23 63 58 / 14%);
+  background: #f4f0e7;
+}
+
+@media (max-width: 760px) {
+  .trendloom-card,
+  .trendloom-story__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .trendloom-card__signal {
+    width: 86px;
+    min-height: 86px;
+  }
+}
+
 .not-found {
   min-height: 68vh;
   display: grid;

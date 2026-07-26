@@ -20,6 +20,8 @@ export function NewsletterForm({
   topic?: string;
 }) {
   const pathname = usePathname();
+  const firstNameId = useId();
+  const surnameId = useId();
   const emailId = useId();
   const consentId = useId();
   const privacyId = useId();
@@ -34,6 +36,8 @@ export function NewsletterForm({
     if (!form.reportValidity()) return;
 
     const fields = new FormData(form);
+    const firstName = String(fields.get("firstName") || "").trim();
+    const surname = String(fields.get("surname") || "").trim();
     const email = String(fields.get("email") || "").trim();
     const website = String(fields.get("website") || "");
     const consent = fields.get("consent") === "on";
@@ -47,6 +51,8 @@ export function NewsletterForm({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          firstName,
+          surname,
           email,
           consent,
           website,
@@ -91,13 +97,41 @@ export function NewsletterForm({
       <div className="newsletter-form__intro">
         <strong>Join the WorkChanged News Letter</strong>
         <p>
-          Enter your email
+          Enter your name, surname and email address
           {topic ? ` after reading about ${topic}` : ""} for the calm weekly
           briefing.
         </p>
       </div>
 
       <div className="newsletter-form__fields">
+        <div className="newsletter-form__name-row">
+          <div className="newsletter-field">
+            <label htmlFor={firstNameId}>Name</label>
+            <input
+              id={firstNameId}
+              name="firstName"
+              type="text"
+              autoComplete="given-name"
+              maxLength={80}
+              required
+              disabled={isSubmitting}
+            />
+          </div>
+
+          <div className="newsletter-field">
+            <label htmlFor={surnameId}>Surname</label>
+            <input
+              id={surnameId}
+              name="surname"
+              type="text"
+              autoComplete="family-name"
+              maxLength={80}
+              required
+              disabled={isSubmitting}
+            />
+          </div>
+        </div>
+
         <div className="newsletter-field">
           <label htmlFor={emailId}>Email address</label>
           <input
@@ -166,18 +200,19 @@ export function NewsletterForm({
         aria-atomic="true"
       >
         {submissionState === "submitting" &&
-          "Securely adding your address…"}
+          "Securely adding your details…"}
         {submissionState === "success" &&
-          "You are on the list. Your address has been saved for the WorkChanged News Letter."}
+          "You are on the list. Your details have been saved for the WorkChanged News Letter."}
         {submissionState === "error" &&
           "We could not add you just now. Please try again, or follow the RSS feed."}
       </div>
 
       <p id={privacyId} className="form-privacy">
-        We use your address only for the WorkChanged News Letter. It is sent
-        through a secure WorkChanged connection and stored in the private
-        WorkChanged mailing-list file in Google Drive. Google provides storage,
-        and analytics never receives your address. Read the{" "}
+        We use your name, surname and email address only for the WorkChanged News
+        Letter. These details are sent through a secure WorkChanged connection
+        and stored in the private WorkChanged mailing-list file in Google Drive.
+        Google provides storage, and analytics never receives these details.
+        Read the{" "}
         <Link href="/standards#privacy">privacy details</Link>.
       </p>
     </form>

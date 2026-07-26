@@ -139,13 +139,13 @@ export default function StandardsPage() {
               <p>
                 Saved topic and profession preferences remain in local storage
                 on the reader&apos;s device. The WorkChanged News Letter form
-                sends submitted email addresses through a secure, server-side
-                WorkChanged connection to the existing Google Forms destination
-                and private Google Sheet named WorkChanged Website News Letter
-                List. No Google account interface is embedded on WorkChanged.
-                Google provides the storage service. WorkChanged uses those
-                addresses only for the News Letter, and analytics does not
-                receive them.
+                sends submitted names, surnames and email addresses through a
+                secure, server-side WorkChanged connection to the existing
+                Google Forms destination and private Google Sheet named
+                WorkChanged Website News Letter List. No Google account
+                interface is embedded on WorkChanged. Google provides the
+                storage service. WorkChanged uses those details only for the
+                News Letter, and analytics does not receive them.
               </p>
               <p>
                 Sign-up collection is active. Campaign delivery is a separate

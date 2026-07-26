@@ -21,6 +21,9 @@ const NEWSLETTER_FORM_CONSENT =
   "I agree to receive the WorkChanged News Letter and understand that I can unsubscribe at any time.";
 const NEWSLETTER_CONFIRMATION =
   "You’re on the WorkChanged News Letter list.";
+const NEWSLETTER_NAME_MAX_LENGTH = 80;
+const NEWSLETTER_CONTROL_CHARACTER_PATTERN =
+  /[\u0000-\u001f\u007f-\u009f\u2028\u2029]/u;
 const NEWSLETTER_EMAIL_PATTERN =
   /^[^\s@]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)+$/i;
 
@@ -34,6 +37,25 @@ function newsletterResponse(
       "Cache-Control": "no-store",
     },
   });
+}
+
+function normalizeNewsletterName(value: unknown): string | null {
+  if (
+    typeof value !== "string" ||
+    NEWSLETTER_CONTROL_CHARACTER_PATTERN.test(value)
+  ) {
+    return null;
+  }
+
+  const normalized = value.trim().replace(/\s+/gu, " ");
+  if (
+    normalized.length === 0 ||
+    normalized.length > NEWSLETTER_NAME_MAX_LENGTH
+  ) {
+    return null;
+  }
+
+  return normalized;
 }
 
 async function readRequestBody(
@@ -123,6 +145,22 @@ async function handleNewsletterRequest(
     return newsletterResponse({ ok: true }, 200);
   }
 
+  const firstName = normalizeNewsletterName(body.firstName);
+  if (!firstName) {
+    return newsletterResponse(
+      { ok: false, error: "Enter your name." },
+      400,
+    );
+  }
+
+  const surname = normalizeNewsletterName(body.surname);
+  if (!surname) {
+    return newsletterResponse(
+      { ok: false, error: "Enter your surname." },
+      400,
+    );
+  }
+
   const email =
     typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
   const localPart = email.split("@", 1)[0] ?? "";
@@ -150,6 +188,8 @@ async function handleNewsletterRequest(
 
   try {
     const upstreamBody = new URLSearchParams({
+      "entry.1253484146": firstName,
+      "entry.1063711954": surname,
       emailAddress: email,
       "entry.31323867": NEWSLETTER_FORM_CONSENT,
       fvv: "1",

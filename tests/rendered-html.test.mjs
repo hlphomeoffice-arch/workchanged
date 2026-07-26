@@ -151,6 +151,22 @@ test("publishes an active, accessible WorkChanged News Letter sign-up", async ()
     html,
     /<form[^>]+class="newsletter-form newsletter-form--notice newsletter-form--dark/,
   );
+  const firstNameInput = html.match(
+    /<input[^>]*name="firstName"[^>]*>/i,
+  )?.[0];
+  assert.ok(firstNameInput);
+  assert.match(firstNameInput, /type="text"/i);
+  assert.match(firstNameInput, /autocomplete="given-name"/i);
+  assert.match(firstNameInput, /maxlength="80"/i);
+  assert.match(firstNameInput, /required/i);
+  const surnameInput = html.match(
+    /<input[^>]*name="surname"[^>]*>/i,
+  )?.[0];
+  assert.ok(surnameInput);
+  assert.match(surnameInput, /type="text"/i);
+  assert.match(surnameInput, /autocomplete="family-name"/i);
+  assert.match(surnameInput, /maxlength="80"/i);
+  assert.match(surnameInput, /required/i);
   const emailInput = html.match(/<input[^>]*name="email"[^>]*>/i)?.[0];
   assert.ok(emailInput);
   assert.match(emailInput, /type="email"/i);
@@ -179,6 +195,8 @@ test("stores a valid News Letter signup only after Google confirms it", async ()
   let upstreamRequest;
   const response = await submitNewsletter(
     {
+      firstName: "  Amélie   Anne  ",
+      surname: "  O’Connor-Smith  ",
       email: "Reader.Example@example.com",
       consent: true,
       website: "",
@@ -211,6 +229,11 @@ test("stores a valid News Letter signup only after Google confirms it", async ()
   const upstreamBody = new URLSearchParams(
     upstreamRequest.init.body.toString(),
   );
+  assert.equal(upstreamBody.get("entry.1253484146"), "Amélie Anne");
+  assert.equal(
+    upstreamBody.get("entry.1063711954"),
+    "O’Connor-Smith",
+  );
   assert.equal(
     upstreamBody.get("emailAddress"),
     "reader.example@example.com",
@@ -234,19 +257,85 @@ test("rejects unsafe News Letter requests before they reach Google", async () =>
   };
 
   const invalidEmail = await submitNewsletter(
-    { email: "not-an-email", consent: true, website: "" },
+    {
+      firstName: "Alex",
+      surname: "Morgan",
+      email: "not-an-email",
+      consent: true,
+      website: "",
+    },
     { upstreamFetch },
   );
   assert.equal(invalidEmail.status, 400);
 
+  const missingFirstName = await submitNewsletter(
+    {
+      firstName: " ",
+      surname: "Morgan",
+      email: "reader@example.com",
+      consent: true,
+      website: "",
+    },
+    { upstreamFetch },
+  );
+  assert.equal(missingFirstName.status, 400);
+
+  const missingSurname = await submitNewsletter(
+    {
+      firstName: "Alex",
+      surname: "",
+      email: "reader@example.com",
+      consent: true,
+      website: "",
+    },
+    { upstreamFetch },
+  );
+  assert.equal(missingSurname.status, 400);
+
+  const overlongName = await submitNewsletter(
+    {
+      firstName: "A".repeat(81),
+      surname: "Morgan",
+      email: "reader@example.com",
+      consent: true,
+      website: "",
+    },
+    { upstreamFetch },
+  );
+  assert.equal(overlongName.status, 400);
+
+  const controlCharacterName = await submitNewsletter(
+    {
+      firstName: "Alex\nAdmin",
+      surname: "Morgan",
+      email: "reader@example.com",
+      consent: true,
+      website: "",
+    },
+    { upstreamFetch },
+  );
+  assert.equal(controlCharacterName.status, 400);
+
   const missingConsent = await submitNewsletter(
-    { email: "reader@example.com", consent: false, website: "" },
+    {
+      firstName: "Alex",
+      surname: "Morgan",
+      email: "reader@example.com",
+      consent: false,
+      website: "",
+    },
     { upstreamFetch },
   );
   assert.equal(missingConsent.status, 400);
 
   const crossOrigin = await submitNewsletter(
-    { email: "reader@example.com", consent: true, website: "" },
+    {
+      firstName: "Alex",
+      surname: "Morgan",
+      email: "reader@example.com",
+      consent: true,
+      website: "",
+    },
     { origin: "https://example.net", upstreamFetch },
   );
   assert.equal(crossOrigin.status, 403);
@@ -266,7 +355,13 @@ test("rejects unsafe News Letter requests before they reach Google", async () =>
 
 test("does not claim a signup when Google fails or omits confirmation", async () => {
   const upstreamFailure = await submitNewsletter(
-    { email: "reader@example.com", consent: true, website: "" },
+    {
+      firstName: "Alex",
+      surname: "Morgan",
+      email: "reader@example.com",
+      consent: true,
+      website: "",
+    },
     {
       upstreamFetch: async () =>
         new Response("Service unavailable", { status: 503 }),
@@ -279,7 +374,13 @@ test("does not claim a signup when Google fails or omits confirmation", async ()
   });
 
   const missingConfirmation = await submitNewsletter(
-    { email: "reader@example.com", consent: true, website: "" },
+    {
+      firstName: "Alex",
+      surname: "Morgan",
+      email: "reader@example.com",
+      consent: true,
+      website: "",
+    },
     {
       upstreamFetch: async () =>
         new Response("<main>Please correct the form.</main>", {

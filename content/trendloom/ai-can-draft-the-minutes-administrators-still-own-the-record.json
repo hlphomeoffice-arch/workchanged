@@ -1,0 +1,187 @@
+{
+  "version": 1,
+  "slug": "ai-can-draft-the-minutes-administrators-still-own-the-record",
+  "title": "AI can draft the minutes. Administrators still own the record",
+  "dek": "AI minute-takers are moving into real UK public-sector workflows. They can reduce transcription and drafting work, but the human role now centres on notification, judgement, accuracy, records management and accountability.",
+  "body_html": "<p>An AI tool can turn an hour-long recording into polished minutes within minutes. That does not make the resulting document a reliable record.</p><p>This distinction now matters beyond experimental pilots. In January 2026, the UK Government reported that its Minute AI scribe had supported 1,000 officials across 22 local authorities. The <a href=\"https://minute.ai.gov.uk/\">current service page</a> says access is expanding across government departments. Minute transcribes recordings and uses a large language model to produce structured draft minutes.</p><p>The early evidence suggests genuine time-saving potential. A <a href=\"https://www.local.gov.uk/publications/community-led-innovation-local-government-insights-minute-pilot\">Local Government Association report</a> covering testing with more than 400 users across 22 councils said some users halved their note-taking time. One council estimated that the time spent recapping certain meetings fell by as much as 90 per cent. These were user reports from a developing pilot, not a controlled productivity study, so they should not be treated as a guaranteed saving.</p><p>What the evidence does show is a change in the work. AI can absorb more of the transcription and first-draft burden. Administrators still own the conditions under which a meeting is recorded, the reliability of the final minutes and what happens to the information afterwards.</p><h2>Can AI take meeting minutes?</h2><p><strong>Yes, but it should usually be treated as a drafting system, not the minute-taker of record.</strong></p><p>Minute’s <a href=\"https://minute.ai.gov.uk/privacy/\">privacy notice, updated on 17 June 2026</a>, says users review and edit generated minutes before saving or sharing them. The Department for Work and Pensions takes a similarly direct position in its <a href=\"https://www.gov.uk/government/publications/dwp-procurement-security-policies-and-standards/dwp-generic-recording-and-transcription-policy\">recording and transcription policy</a>: users must review and verify transcription accuracy in all circumstances.</p><p>This is necessary because transcription and summarisation can fail in different ways. Speech recognition may mishear a name, acronym or number. The summarising model may then write a fluent sentence that gives the error more authority than it deserves. It may also omit a qualification, merge two people’s views or turn a suggestion into an agreed action. The government’s <a href=\"https://www.gov.uk/government/publications/ai-playbook-for-the-uk-government/artificial-intelligence-playbook-for-the-uk-government-html\">AI Playbook</a> warns that generative AI can produce plausible but factually incorrect content.</p><p>A fluent sentence is not evidence that the meeting happened that way.</p><h2>The administrator’s job starts before recording</h2><h3>1. Check whether this meeting should be recorded</h3><p>An approved tool is not blanket permission to use it in every meeting. Check the subject, participants, information classification and your organisation’s policy before switching it on.</p><p>Minute is approved for information up to OFFICIAL-SENSITIVE, but its privacy notice restricts recordings whose primary purpose is to discuss special category or criminal offence data unless the necessary lawful basis is documented and the department has agreed to the use. Other organisations can apply stricter rules. DWP, for example, generally excludes meetings with citizens and HR or line-management investigations unless an exception has been approved.</p><p>Administrators therefore need a simple escalation route. If a meeting involves safeguarding, health, disciplinary matters, legal advice, commercially sensitive material or vulnerable people, pause and ask the information governance or data protection team. Do not assume the tool’s technical capability settles the governance question.</p><h3>2. Identify the purpose and lawful basis</h3><p>Recording voices and processing what people say involves personal information. The <a href=\"https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/a-guide-to-lawful-basis/\">Information Commissioner’s Office guidance</a> says organisations must identify a valid lawful basis before handling it.</p><p>This does not mean every UK workplace meeting must rely on consent. Consent is one possible basis, not the only one, and it can be unsuitable where an employer or public authority holds greater power than the participant. Public bodies may rely on public task where the processing is necessary for functions grounded in law. The correct basis depends on the purpose and context, so administrators should follow an agreed organisational position rather than inventing a consent process meeting by meeting.</p><p>AI transcription can also require a data protection impact assessment, particularly where innovative technology is combined with sensitive information, large-scale processing or data about vulnerable people. The ICO’s <a href=\"https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/\">DPIA guidance</a> explains the relevant risk factors.</p><h3>3. Tell participants clearly</h3><p>Minute makes the meeting organiser responsible for telling people that the meeting is being recorded and processed by AI, either beforehand or at the start. DWP policy likewise makes organisers responsible for informing attendees before recording or transcription begins.</p><p>A useful notice should state:</p><ul><li>that audio, video or both will be recorded;</li><li>that AI will create a transcript and draft minutes;</li><li>the purpose of the recording;</li><li>who can access the files;</li><li>how long the recording and transcript will be kept;</li><li>where participants can find the privacy notice; and</li><li>how someone can raise a concern or request an alternative.</li></ul><p>A platform’s automatic recording banner is helpful, but it should not replace a clear human explanation.</p><h2>How to check AI-generated meeting minutes</h2><p>The safest review is not a general proofread. It is a structured comparison between the draft and the source recording or transcript.</p><ol><li><strong>Confirm the meeting facts.</strong> Check the date, title, attendees, apologies, late arrivals and departures. Verify names against the invitation or staff directory rather than trusting phonetic transcription.</li><li><strong>Separate discussion from decisions.</strong> Look for places where the AI has converted “we could” into “we will”, or presented one participant’s view as the group’s conclusion.</li><li><strong>Verify every action.</strong> Each action should have the correct wording, owner and deadline. If no owner or date was agreed, do not let the AI supply one.</li><li><strong>Check high-risk details.</strong> Review figures, addresses, case references, contract values, legal terms, policy names and dates against an authoritative source.</li><li><strong>Restore meaningful disagreement.</strong> Summaries often compress nuance. Record material objections, unresolved questions and conditions attached to a decision where they matter to accountability.</li><li><strong>Remove unnecessary personal information.</strong> A transcript may capture side comments, personal details or background conversation that has no place in the final minutes.</li><li><strong>Mark opinion accurately.</strong> The <a href=\"https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/accuracy/\">ICO’s accuracy guidance</a> says records should distinguish matters of fact from opinion and, where appropriate, identify whose opinion it is.</li><li><strong>Record the human approval.</strong> The final version should show who reviewed or approved it and when, using the organisation’s normal process.</li></ol><p>For important meetings, the administrator can keep a lightweight decision log while the AI records. Note only the decisions, actions, owners, deadlines and points requiring careful review. This preserves an independent reference without recreating full manual note-taking.</p><h2>The recording, transcript and final minutes are different records</h2><p>Saving the approved minutes does not automatically justify keeping every intermediate file.</p><p>Minute allows organisations to configure retention for recordings, transcripts and minutes. DWP policy assigns meeting organisers responsibility for retention and deletion, and requires stored files to have appropriate access permissions and retention labels.</p><p>The ICO’s <a href=\"https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/storage-limitation/\">storage limitation guidance</a> says personal information should not be kept for longer than necessary. Organisations should document retention periods and delete or anonymise information they no longer need.</p><p>A practical close-out process is:</p><ul><li>save the approved minutes in the correct corporate records system;</li><li>apply the relevant classification, access controls and retention category;</li><li>delete the audio and working transcript when their authorised retention period ends;</li><li>remove duplicate downloads and local copies; and</li><li>retain an audit trail showing who approved the final record.</li></ul><h2>What this means for administrative work</h2><p>The evidence does not establish that AI will eliminate minute-taking jobs. It does show that a significant task within those jobs can be accelerated.</p><p>The valuable human contribution shifts towards deciding when recording is appropriate, briefing participants, checking consequential details, preserving nuance, managing exceptions and maintaining a defensible record. These are not leftover tasks after automation. They are the controls that make automation usable.</p><p>The immediate skill to build is therefore not faster transcription. It is AI-assisted records assurance: knowing how to test a draft against evidence, recognise when context has been lost and stop a convenient tool from creating an unreliable official account.</p><p>AI can produce the first version. The administrator still decides whether it deserves to become the record.</p>",
+  "published_at": "2026-07-27T09:53:13.020Z",
+  "updated_at": "2026-07-27T09:53:13.020Z",
+  "reading_minutes": 7,
+  "opportunity_score": 84,
+  "confidence_score": 95,
+  "search_intent": "Practical informational intent. Readers want to know whether AI can take meeting minutes, what UK recording and data-protection requirements apply, how to check AI-generated minutes and which responsibilities remain with human administrators.",
+  "primary_keyword": "AI meeting minutes UK",
+  "secondary_keywords": [
+    "can AI take meeting minutes",
+    "how to check AI-generated meeting minutes",
+    "AI meeting notes GDPR UK",
+    "recording meetings at work UK",
+    "AI minute taker public sector",
+    "will AI replace minute takers",
+    "meeting transcription data protection",
+    "human review of AI minutes"
+  ],
+  "meta_title": "AI Meeting Minutes: What Administrators Still Own",
+  "meta_description": "AI can draft meeting minutes, but UK administrators still own notification, accuracy, action checking, retention and the final record. Use this practical workflow.",
+  "citations": [
+    {
+      "title": "AI Opportunities Action Plan: One Year On",
+      "url": "https://www.gov.uk/government/publications/ai-opportunities-action-plan-one-year-on/ai-opportunities-action-plan-one-year-on",
+      "publisher": "Department for Science, Innovation and Technology",
+      "published_at": "2026-01-29",
+      "supports": "Reports that Minute supported 1,000 officials across 22 local authorities and was being developed as a live service for wider local-authority use."
+    },
+    {
+      "title": "Minute service page",
+      "url": "https://minute.ai.gov.uk/",
+      "publisher": "Government Digital Service and Incubator for Artificial Intelligence",
+      "published_at": "Accessed 2026-07-26",
+      "supports": "Confirms that Minute transcribes meetings, generates draft minutes and is expanding access across government departments."
+    },
+    {
+      "title": "Minute privacy notice",
+      "url": "https://minute.ai.gov.uk/privacy/",
+      "publisher": "Department for Science, Innovation and Technology",
+      "published_at": "2026-06-17",
+      "supports": "Explains AI processing, human review, participant notification, acceptable-use restrictions, data-controller responsibilities and configurable retention."
+    },
+    {
+      "title": "Community led innovation in local government: Insights from the Minute pilot",
+      "url": "https://www.local.gov.uk/publications/community-led-innovation-local-government-insights-minute-pilot",
+      "publisher": "Local Government Association",
+      "published_at": "2025",
+      "supports": "Provides pilot evidence from 22 councils, including reported time savings, governance barriers, DPIA and equality-assessment work, technical limitations and workforce-readiness findings."
+    },
+    {
+      "title": "DWP Generic Recording and Transcription Policy",
+      "url": "https://www.gov.uk/government/publications/dwp-procurement-security-policies-and-standards/dwp-generic-recording-and-transcription-policy",
+      "publisher": "Department for Work and Pensions",
+      "published_at": "2026-06-11",
+      "supports": "Requires legitimate business reasons, participant notification, accuracy verification, retention management, access controls and restrictions for sensitive meeting types."
+    },
+    {
+      "title": "Artificial Intelligence Playbook for the UK Government",
+      "url": "https://www.gov.uk/government/publications/ai-playbook-for-the-uk-government/artificial-intelligence-playbook-for-the-uk-government-html",
+      "publisher": "Government Digital Service",
+      "published_at": "2025-02-10",
+      "supports": "Describes generative AI limitations, including plausible factual errors, and the need for testing, controls and meaningful human oversight."
+    },
+    {
+      "title": "The Data Use and Access Act 2025: what does it mean for organisations?",
+      "url": "https://ico.org.uk/about-the-ico/what-we-do/legislation-we-cover/data-use-and-access-act-2025/the-data-use-and-access-act-2025-what-does-it-mean-for-organisations/",
+      "publisher": "Information Commissioner's Office",
+      "published_at": "2026-06-19",
+      "supports": "Confirms that all data-protection provisions of the Data (Use and Access) Act 2025 were in force by 19 June 2026 and that the Act amends rather than replaces the UK GDPR and Data Protection Act 2018."
+    },
+    {
+      "title": "A guide to lawful basis",
+      "url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/a-guide-to-lawful-basis/",
+      "publisher": "Information Commissioner's Office",
+      "published_at": "2026-04-02",
+      "supports": "Explains the available lawful bases, necessity and proportionality, public-task processing and the requirement to determine and document a lawful basis before processing."
+    },
+    {
+      "title": "When do we need to do a DPIA?",
+      "url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+      "publisher": "Information Commissioner's Office",
+      "published_at": "Accessed 2026-07-26",
+      "supports": "Identifies AI and innovative technology, sensitive information, vulnerable people and large-scale processing as factors relevant to deciding whether a DPIA is required."
+    },
+    {
+      "title": "Principle (d): Accuracy",
+      "url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/accuracy/",
+      "publisher": "Information Commissioner's Office",
+      "published_at": "Accessed 2026-07-26",
+      "supports": "Requires reasonable steps to ensure personal information is accurate and to distinguish factual records from opinions."
+    },
+    {
+      "title": "Principle (e): Storage limitation",
+      "url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/storage-limitation/",
+      "publisher": "Information Commissioner's Office",
+      "published_at": "Accessed 2026-07-26",
+      "supports": "Explains the need for documented retention periods and deletion or anonymisation when personal information is no longer required."
+    }
+  ],
+  "claim_checks": [
+    {
+      "claim": "The UK Government reported that Minute had supported 1,000 officials across 22 local authorities by January 2026.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://www.gov.uk/government/publications/ai-opportunities-action-plan-one-year-on/ai-opportunities-action-plan-one-year-on"
+      ]
+    },
+    {
+      "claim": "Minute is currently expanding access across government departments and produces draft minutes from meeting recordings.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://minute.ai.gov.uk/",
+        "https://minute.ai.gov.uk/privacy/"
+      ]
+    },
+    {
+      "claim": "Some Minute pilot users reported substantial time savings.",
+      "status": "qualified",
+      "evidence_urls": [
+        "https://www.local.gov.uk/publications/community-led-innovation-local-government-insights-minute-pilot"
+      ]
+    },
+    {
+      "claim": "The reported time savings demonstrate potential but are not a guaranteed productivity effect.",
+      "status": "qualified",
+      "evidence_urls": [
+        "https://www.local.gov.uk/publications/community-led-innovation-local-government-insights-minute-pilot"
+      ]
+    },
+    {
+      "claim": "Human users are expected to review AI-generated minutes or transcriptions before they become an organisational record.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://minute.ai.gov.uk/privacy/",
+        "https://www.gov.uk/government/publications/dwp-procurement-security-policies-and-standards/dwp-generic-recording-and-transcription-policy",
+        "https://www.gov.uk/government/publications/ai-playbook-for-the-uk-government/artificial-intelligence-playbook-for-the-uk-government-html"
+      ]
+    },
+    {
+      "claim": "Meeting participants should be told when a meeting is being recorded and processed using AI.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://minute.ai.gov.uk/privacy/",
+        "https://www.gov.uk/government/publications/dwp-procurement-security-policies-and-standards/dwp-generic-recording-and-transcription-policy"
+      ]
+    },
+    {
+      "claim": "Consent is not the only possible lawful basis for recording and processing a meeting, and the correct basis depends on purpose and context.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/a-guide-to-lawful-basis/",
+        "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/lawful-basis/consent/when-is-consent-appropriate/"
+      ]
+    },
+    {
+      "claim": "Using an AI transcription tool does not automatically require a DPIA in every case, but AI combined with other high-risk factors may require one.",
+      "status": "qualified",
+      "evidence_urls": [
+        "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/"
+      ]
+    },
+    {
+      "claim": "Recordings, transcripts and approved minutes may need different retention treatment.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://minute.ai.gov.uk/privacy/",
+        "https://www.gov.uk/government/publications/dwp-procurement-security-policies-and-standards/dwp-generic-recording-and-transcription-policy",
+        "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/storage-limitation/"
+      ]
+    },
+    {
+      "claim": "Available evidence shows automation of transcription and drafting tasks, but does not establish that AI will eliminate minute-taking jobs.",
+      "status": "qualified",
+      "evidence_urls": [
+        "https://www.local.gov.uk/publications/community-led-innovation-local-government-insights-minute-pilot",
+        "https://minute.ai.gov.uk/privacy/",
+        "https://www.gov.uk/government/publications/dwp-procurement-security-policies-and-standards/dwp-generic-recording-and-transcription-policy"
+      ]
+    }
+  ],
+  "publisher": "Campaign Producers · Trendloom"
+}

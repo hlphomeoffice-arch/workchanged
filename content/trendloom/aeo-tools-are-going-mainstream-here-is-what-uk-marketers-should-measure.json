@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "slug": "aeo-tools-are-going-mainstream-here-is-what-uk-marketers-should-measure",
+  "title": "AEO tools are going mainstream. Here is what UK marketers should measure",
+  "dek": "AI search visibility platforms can now track prompts, mentions and citations at scale. The useful question is not whether to buy one, but how to separate directional signals from vanity metrics and connect the work to real business outcomes.",
+  "body_html": "<p>UK marketers have a measurement problem. Customers can now ask an AI service to compare suppliers, explain a product category or build a shortlist without visiting any of the brands under consideration. Yet most marketing dashboards still begin when somebody clicks.</p><p>This is no longer a fringe behaviour. <a href=\"https://www.ofcom.org.uk/siteassets/resources/documents/research-and-data/online-research/online-nation/2025/online-nations-report-2025.pdf\">Ofcom reported</a> 252 million UK web visits to ChatGPT in August 2025, 156% more than a year earlier. Gemini, Claude and Perplexity also recorded sharp growth, albeit from smaller bases. The tools market is following the audience: HubSpot launched an AEO product on 14 April 2026, while Adobe announced Brand Visibility on 17 June 2026.</p><h2>What is AEO in marketing?</h2><p>Answer engine optimisation, or AEO, is the work of improving how often and how accurately a brand appears in AI-generated answers. It covers direct brand mentions, recommendations, product descriptions and links to supporting sources. Some suppliers call the same activity generative engine optimisation, or GEO.</p><p>AEO is not a replacement for SEO. Google says the <a href=\"https://developers.google.com/search/docs/appearance/ai-features\">same foundational SEO practices</a> apply to AI Overviews and AI Mode, with no extra technical requirements beyond being indexed and eligible to appear with a snippet. The difference is mainly in the unit of measurement. SEO commonly measures rankings, impressions and clicks. AEO also measures whether the answer mentions the brand, how it describes it and which sources support the response.</p><p>The practical conclusion is that most organisations do not need a separate AEO content factory. They need a new measurement layer across existing SEO, content, digital PR, product marketing and analytics work.</p><h2>The AEO metrics that matter</h2><p>A single visibility score is easy to present and hard to interpret. A useful dashboard should preserve the underlying prompt and response data, then report at least six measures.</p><ul><li><strong>Prompt coverage:</strong> The percentage of tracked questions in which the brand appears. Separate discovery prompts, comparison prompts, use cases and purchase-intent questions so that an improvement in one area does not conceal a weakness in another.</li><li><strong>Citation rate:</strong> How often an owned page is linked as a source. Track citations separately from mentions, because an answer can recommend a brand while citing a review, publisher or competitor comparison page.</li><li><strong>Competitive share of voice:</strong> The brand’s appearances as a proportion of all tracked brand appearances. Keep the prompt set and competitor list stable when comparing periods.</li><li><strong>Description accuracy:</strong> Whether answers get prices, availability, features, locations and target customers right. A frequent but inaccurate mention may create more work for sales and support, rather than more demand.</li><li><strong>Referral quality:</strong> Sessions, engaged visits, enquiries, sign-ups and revenue from AI referrals. OpenAI says ChatGPT search referral links include <a href=\"https://help.openai.com/en/articles/12627856-publishers-and-developers-faq?1-star=1\">utm_source=chatgpt.com</a>, which can be used in analytics reporting.</li><li><strong>Source influence:</strong> The domains and pages repeatedly cited for commercially important prompts. This shows whether the next action belongs to the content team, technical SEO, partnerships, customer reviews or digital PR.</li></ul><p>Business outcomes still matter most. HubSpot reported that 42% of more than 3,000 CRM purchase decision-makers surveyed in January 2026 used AI search during evaluation, and that these buyers were 36% more likely to purchase. This is <a href=\"https://www.hubspot.com/company-news/aeo-data-buyers-using-ai-search-more-likely-to-purchase\">vendor research in one software category</a>. It shows an association, not evidence that AI search caused the purchases.</p><h2>How to track brand mentions in ChatGPT</h2><p>No dashboard can provide a complete count of every time a brand appears to every ChatGPT user. AI answers can vary by model, location, search availability, prompt wording and personal context. Treat monitoring data as a repeatable sample, not a census.</p><ol><li><strong>Build a fixed prompt panel.</strong> Start with 30 to 50 questions taken from customer interviews, sales calls, site search, support tickets and conventional keyword research. Include UK spelling, locations, regulations, prices in pounds and the language buyers actually use.</li><li><strong>Run the prompts consistently.</strong> An AEO platform automates repeated checks and records mentions, citations and competitors. Keep the platform, country, prompt wording and test frequency visible in reports. A score without its sampling method creates false precision.</li><li><strong>Join visibility to first-party data.</strong> Monitor ChatGPT referrals in analytics, AI-assisted enquiries in the CRM and the conversion rate of cited landing pages. For Google, check whether your property has access to the new <a href=\"https://support.google.com/webmasters/answer/16984139?hl=en\">generative AI performance report</a>, which is being rolled out to a subset of site owners and covers impressions from AI Overviews and AI Mode.</li></ol><h2>Which AI search visibility tool is best?</h2><p>The best choice depends less on the headline visibility score than on the team that must act on the findings.</p><ul><li><strong>HubSpot AEO:</strong> A logical shortlist option when HubSpot is already the operational centre of marketing. Its announced capabilities include CRM-informed prompt suggestions, citation analysis, competitor share of voice and recommendations connected to content execution. Treat HubSpot’s performance case studies as proprietary evidence, not neutral benchmarks.</li><li><strong>Adobe Brand Visibility:</strong> Aimed at organisations that want enterprise-scale prompt intelligence connected to content operations and Adobe analytics. Adobe says the product combines Semrush data with Adobe optimisation tools and provides access to nearly 300 million prompts, audience reach, citations and competitive share of voice.</li><li><strong>Ahrefs Brand Radar or Semrush AI Visibility:</strong> Sensible candidates when SEO already owns discovery reporting. <a href=\"https://help.ahrefs.com/en/articles/11064852-what-is-brand-radar-and-how-to-use-it\">Ahrefs documents</a> prebuilt and custom prompt tracking across major AI platforms, while <a href=\"https://www.semrush.com/kb/1496-getting-started-with-ai-visibility-toolkit\">Semrush provides</a> reports for mentions, citations, competitors, prompt gaps, sentiment and narrative drivers.</li><li><strong>A specialist monitor:</strong> Tools such as OtterlyAI may suit agencies or smaller teams that want focused prompt monitoring without replacing their SEO or CRM platform. Its documentation says tracked prompts are checked daily across services including ChatGPT, Google AI features, Perplexity, Gemini and Copilot. Verify UK location support, exports, model coverage and historical retention during a trial.</li></ul><p>Before signing a long contract, ask each supplier to run the same prompt panel. Compare the raw answers, not just the summary scores. Check whether the service uses live interfaces or APIs, how it handles personalisation, how often it reruns prompts and whether model changes are recorded.</p><h2>A practical 30-day AEO workflow</h2><ol><li><strong>Week one, define the decisions.</strong> Choose two customer journeys and a small competitor set. Write prompts for awareness, problem research, comparisons and purchase. Assign each prompt an owner and a business value.</li><li><strong>Week two, establish the baseline.</strong> Record mentions, citations, answer accuracy, competitors and referral traffic. Check that important pages are indexable. If ChatGPT visibility matters, confirm that OAI-SearchBot is not unintentionally blocked.</li><li><strong>Week three, fix the clearest gaps.</strong> Correct outdated product facts, publish direct answers to recurring buyer questions and strengthen pages with original evidence. Where AI services repeatedly cite third-party sources, pursue legitimate reviews, expert contributions or editorial coverage rather than manufacturing mentions.</li><li><strong>Week four, rerun and review.</strong> Look for movement across several checks, not one favourable response. Keep changes that improve visibility and user outcomes. Drop activities that move a proprietary score without improving citations, qualified visits or answer accuracy.</li></ol><h2>Manage AEO with SEO, not instead of it</h2><p>AEO deserves named ownership and its own reporting, but separating it completely from SEO would duplicate work and weaken accountability. Technical accessibility, useful pages, clear brand facts and credible third-party coverage matter across both channels.</p><p>The immediate next move is modest: build a UK-specific prompt panel, establish a baseline and connect AI referrals to the same commercial measures used elsewhere. Buy a platform only when manual checks become too slow or inconsistent. The value of an AEO tool is not that it produces another score. It is that it helps a team see where the brand is absent, inaccurate or unsupported, then decide what to change.</p>",
+  "published_at": "2026-07-27T09:52:24.156Z",
+  "updated_at": "2026-07-27T09:52:24.156Z",
+  "reading_minutes": 6,
+  "opportunity_score": 88,
+  "confidence_score": 94,
+  "search_intent": "Informational and commercial investigation. UK marketers want to understand AEO, measure brand visibility in AI answers, compare tool categories and identify practical actions that improve mentions, citations and business outcomes.",
+  "primary_keyword": "AEO tools",
+  "secondary_keywords": [
+    "What is AEO in marketing?",
+    "AEO vs SEO for UK businesses",
+    "track brand mentions in ChatGPT",
+    "AI search visibility tools",
+    "how to get cited by AI search engines",
+    "answer engine optimisation",
+    "generative engine optimisation",
+    "AI share of voice"
+  ],
+  "meta_title": "AEO tools: measuring AI search visibility in the UK",
+  "meta_description": "How UK marketers can measure brand mentions, citations and referrals in AI search, choose an AEO tool and improve visibility without abandoning SEO.",
+  "citations": [
+    {
+      "title": "Online Nation Report 2025",
+      "url": "https://www.ofcom.org.uk/siteassets/resources/documents/research-and-data/online-research/online-nation/2025/online-nations-report-2025.pdf",
+      "publisher": "Ofcom",
+      "published_at": "2025-12-10",
+      "supports": "UK web traffic and year-on-year growth figures for ChatGPT, Gemini, Claude and Perplexity."
+    },
+    {
+      "title": "Introducing Adobe Brand Visibility: A Unified Solution for the AI Search Era",
+      "url": "https://news.adobe.com/news/2026/06/introducing-adobe-brand-visibility",
+      "publisher": "Adobe",
+      "published_at": "2026-06-17",
+      "supports": "Adobe Brand Visibility launch date and vendor-stated capabilities, including prompt intelligence, citations, audience reach and competitive share of voice."
+    },
+    {
+      "title": "Introducing HubSpot AEO: The answer to showing up in AI search engines",
+      "url": "https://www.hubspot.com/company-news/hubspot-aeo",
+      "publisher": "HubSpot",
+      "published_at": "2026-04-14",
+      "supports": "HubSpot AEO launch date, definition and announced product capabilities."
+    },
+    {
+      "title": "HubSpot AEO data: Buyers using AI search are more likely to purchase",
+      "url": "https://www.hubspot.com/company-news/aeo-data-buyers-using-ai-search-more-likely-to-purchase",
+      "publisher": "HubSpot",
+      "published_at": "2026-06-12",
+      "supports": "Vendor survey methodology and the reported 42% AI-search usage and 36% purchase-likelihood association among CRM buyers."
+    },
+    {
+      "title": "AI features and your website",
+      "url": "https://developers.google.com/search/docs/appearance/ai-features",
+      "publisher": "Google Search Central",
+      "published_at": "Date not stated; accessed 2026-07-26",
+      "supports": "Google's statement that foundational SEO practices remain relevant and that no extra technical requirements apply to AI Overviews or AI Mode."
+    },
+    {
+      "title": "Generative AI performance report (Search)",
+      "url": "https://support.google.com/webmasters/answer/16984139?hl=en",
+      "publisher": "Google Search Console Help",
+      "published_at": "Date not stated; accessed 2026-07-26",
+      "supports": "The limited rollout and scope of Search Console reporting for AI Overviews and AI Mode impressions."
+    },
+    {
+      "title": "Publishers and Developers - FAQ",
+      "url": "https://help.openai.com/en/articles/12627856-publishers-and-developers-faq?1-star=1",
+      "publisher": "OpenAI",
+      "published_at": "Updated July 2026",
+      "supports": "OAI-SearchBot guidance and the use of utm_source=chatgpt.com in referral links from ChatGPT search."
+    },
+    {
+      "title": "What is Brand Radar, and how to use it?",
+      "url": "https://help.ahrefs.com/en/articles/11064852-what-is-brand-radar-and-how-to-use-it",
+      "publisher": "Ahrefs",
+      "published_at": "Updated July 2026",
+      "supports": "Ahrefs Brand Radar platform coverage, custom prompt methodology and metrics including mentions, citations and share of voice."
+    },
+    {
+      "title": "Getting Started with the AI Visibility Toolkit",
+      "url": "https://www.semrush.com/kb/1496-getting-started-with-ai-visibility-toolkit",
+      "publisher": "Semrush",
+      "published_at": "Date not stated; accessed 2026-07-26",
+      "supports": "Semrush reports for AI visibility, competitors, prompt research, sentiment, narratives and cited domains."
+    },
+    {
+      "title": "How often does OtterlyAI check AI search engines?",
+      "url": "https://help.otterly.ai/monitoring-interval",
+      "publisher": "OtterlyAI",
+      "published_at": "2026-06-24",
+      "supports": "OtterlyAI's documented daily prompt-monitoring frequency and acknowledgement that AI responses are non-deterministic."
+    }
+  ],
+  "claim_checks": [
+    {
+      "claim": "ChatGPT received 252 million UK web visits in August 2025, up 156% year on year.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://www.ofcom.org.uk/siteassets/resources/documents/research-and-data/online-research/online-nation/2025/online-nations-report-2025.pdf"
+      ]
+    },
+    {
+      "claim": "HubSpot launched its AEO product on 14 April 2026.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://www.hubspot.com/company-news/hubspot-aeo"
+      ]
+    },
+    {
+      "claim": "Adobe announced Brand Visibility on 17 June 2026, with vendor-stated access to nearly 300 million prompts and competitive visibility data.",
+      "status": "qualified",
+      "evidence_urls": [
+        "https://news.adobe.com/news/2026/06/introducing-adobe-brand-visibility"
+      ]
+    },
+    {
+      "claim": "HubSpot reported that 42% of surveyed CRM buyers used AI search and those buyers were 36% more likely to purchase.",
+      "status": "qualified",
+      "evidence_urls": [
+        "https://www.hubspot.com/company-news/aeo-data-buyers-using-ai-search-more-likely-to-purchase"
+      ]
+    },
+    {
+      "claim": "The HubSpot result is an association and does not establish that AI search caused purchases.",
+      "status": "qualified",
+      "evidence_urls": [
+        "https://www.hubspot.com/company-news/aeo-data-buyers-using-ai-search-more-likely-to-purchase"
+      ]
+    },
+    {
+      "claim": "Google says foundational SEO practices remain applicable to AI Overviews and AI Mode, with no additional technical requirements for eligibility.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://developers.google.com/search/docs/appearance/ai-features"
+      ]
+    },
+    {
+      "claim": "Google is rolling out a Search Console generative AI report to a subset of site owners, covering impressions from AI Overviews and AI Mode.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://support.google.com/webmasters/answer/16984139?hl=en"
+      ]
+    },
+    {
+      "claim": "ChatGPT search referrals can include utm_source=chatgpt.com, and publishers should avoid unintentionally blocking OAI-SearchBot if they want content considered for summaries and snippets.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://help.openai.com/en/articles/12627856-publishers-and-developers-faq?1-star=1"
+      ]
+    },
+    {
+      "claim": "AI visibility monitoring should be treated as a repeatable sample rather than a complete census of all user answers.",
+      "status": "qualified",
+      "evidence_urls": [
+        "https://help.ahrefs.com/en/articles/11064852-what-is-brand-radar-and-how-to-use-it",
+        "https://help.otterly.ai/monitoring-interval",
+        "https://help.openai.com/en/articles/9237897-chatgpt-eche-deearch"
+      ]
+    },
+    {
+      "claim": "Ahrefs, Semrush and OtterlyAI provide documented capabilities for monitoring prompts, mentions, citations or competitive AI visibility.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://help.ahrefs.com/en/articles/11064852-what-is-brand-radar-and-how-to-use-it",
+        "https://www.semrush.com/kb/1496-getting-started-with-ai-visibility-toolkit",
+        "https://help.otterly.ai/monitoring-interval"
+      ]
+    }
+  ],
+  "publisher": "Campaign Producers · Trendloom"
+}

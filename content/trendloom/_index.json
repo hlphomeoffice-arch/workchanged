@@ -3,6 +3,16 @@
     "slug": "will-ai-replace-admin-jobs-in-the-uk-the-role-is-narrowing-not-vanishing",
     "title": "Will AI replace admin jobs in the UK? The role is narrowing, not vanishing",
     "dek": "UK employers are already using AI for scheduling, notes, drafting and records. The evidence points to fewer routine tasks and tighter recruitment, but also to a continuing need for people who manage exceptions, relationships, quality and accountability.",
+    "image": {
+      "src": "/images/articles/ai-job-loss-predictions-evidence.webp",
+      "alt": "Two colleagues examine workforce charts and a large downward-arrow graphic at a library table.",
+      "width": 1536,
+      "height": 1024
+    },
+    "placements": [
+      "support-admin",
+      "hr-recruiting"
+    ],
     "published_at": "2026-07-27T09:54:12.810Z",
     "reading_minutes": 6,
     "opportunity_score": 76,
@@ -12,6 +22,17 @@
     "slug": "ai-can-draft-the-minutes-administrators-still-own-the-record",
     "title": "AI can draft the minutes. Administrators still own the record",
     "dek": "AI minute-takers are moving into real UK public-sector workflows. They can reduce transcription and drafting work, but the human role now centres on notification, judgement, accuracy, records management and accountability.",
+    "image": {
+      "src": "/images/articles/use-ai-at-work-confidential-information.webp",
+      "alt": "An office administrator sorts paper records between two secure document boxes on her desk.",
+      "width": 1536,
+      "height": 1024
+    },
+    "placements": [
+      "support-admin",
+      "operations-projects",
+      "legal-compliance"
+    ],
     "published_at": "2026-07-27T09:53:13.020Z",
     "reading_minutes": 7,
     "opportunity_score": 84,
@@ -21,6 +42,15 @@
     "slug": "aeo-tools-are-going-mainstream-here-is-what-uk-marketers-should-measure",
     "title": "AEO tools are going mainstream. Here is what UK marketers should measure",
     "dek": "AI search visibility platforms can now track prompts, mentions and citations at scale. The useful question is not whether to buy one, but how to separate directional signals from vanity metrics and connect the work to real business outcomes.",
+    "image": {
+      "src": "/images/articles/ai-changing-marketing-jobs.webp",
+      "alt": "Three colleagues review printed campaign concepts and material samples beside a large-format printer.",
+      "width": 1536,
+      "height": 1024
+    },
+    "placements": [
+      "marketing-content"
+    ],
     "published_at": "2026-07-27T09:52:24.156Z",
     "reading_minutes": 6,
     "opportunity_score": 88,
@@ -30,6 +60,16 @@
     "slug": "ai-is-redesigning-admin-jobs-before-removing-them-what-the-latest-uk-evidence-shows",
     "title": "AI Is Redesigning Admin Jobs Before Removing Them: What the Latest UK Evidence Shows",
     "dek": "Administrative work is among the first areas being changed by AI, but the strongest UK evidence points to tasks being reorganised more widely than jobs being eliminated.",
+    "image": {
+      "src": "/images/articles/which-parts-job-can-be-automated.webp",
+      "alt": "Two operations colleagues map an office workflow with cards, wooden markers and connecting cords across a workbench.",
+      "width": 1536,
+      "height": 1024
+    },
+    "placements": [
+      "support-admin",
+      "operations-projects"
+    ],
     "published_at": "2026-07-26T16:10:13.869Z",
     "reading_minutes": 7,
     "opportunity_score": 78,

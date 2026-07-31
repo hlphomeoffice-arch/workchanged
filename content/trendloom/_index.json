@@ -1,5 +1,24 @@
 [
   {
+    "slug": "ai-skills-gap-why-the-real-shortage-is-inside-everyday-work",
+    "title": "AI skills gap: why the real shortage is inside everyday work",
+    "dek": "UK organisations are adopting AI faster than they are building the skills to use it well. The evidence suggests the urgent gap is not only in specialist hiring, but in everyday judgement, training and work design.",
+    "image": {
+      "src": "/trending-media/ai-skills-gap-why-the-real-shortage-is-inside-everyday-work.webp",
+      "alt": "Colleagues in a meeting room comparing AI outputs with a printed staff training plan.",
+      "width": 1536,
+      "height": 1024
+    },
+    "placements": [
+      "hr-recruiting",
+      "operations-projects"
+    ],
+    "published_at": "2026-07-31T12:26:40.404Z",
+    "reading_minutes": 7,
+    "opportunity_score": 91,
+    "confidence_score": 90
+  },
+  {
     "slug": "the-2026-admin-skills-reset-what-assistants-need-beyond-microsoft-office",
     "title": "The 2026 admin skills reset: what assistants need beyond Microsoft Office",
     "dek": "Office software remains useful, but the stronger career signal is now the ability to use AI safely, check its work and know when human judgement must take over.",

@@ -1,0 +1,179 @@
+{
+  "version": 2,
+  "slug": "which-agentic-marketing-tools-are-ready-for-real-campaigns",
+  "title": "Which agentic marketing tools are ready for real campaigns?",
+  "dek": "Google, Meta and Salesforce now all pitch agentic marketing. The live products are real, but they are ready for different jobs, with different limits, and none removes the need for human judgement.",
+  "body_html": "<p>Agentic marketing has arrived at the exact moment most teams are least ready to absorb another layer of tooling. In May and June 2026, Google, Meta and Salesforce each launched or expanded AI agents that promise to plan, build or run parts of live campaigns. At the same time, Gartner's May 2026 CMO Spend Survey found that CMOs now allocate 15.3% of marketing budgets to AI, but only 30% say their organisations are ready to scale it. That tension matters more than the product demos do. The practical question is not whether agentic marketing exists. It is which tools can survive contact with real budgets, real approvals and real customer journeys.</p><p>The short answer is useful and a bit unglamorous: some agentic marketing tools are ready now, but only inside clearly defined workflows. Google looks strongest for Google-native performance marketing. Meta looks strongest for inbound messaging, lead qualification and conversational commerce. Salesforce looks strongest for enterprise lifecycle marketing if your customer data, permissions and campaigns already live inside Salesforce. None of them is a general-purpose, hands-off marketing department.</p><h2>What counts as 'ready' for a real campaign?</h2><p>For working marketers, readiness is not the same as a clever chat interface. A tool is ready for a real campaign if it can do four things reliably:</p><ul><li><strong>Act inside a live system</strong>, not just draft ideas.</li><li><strong>Respect approvals and guardrails</strong>, so a human can review what matters.</li><li><strong>Use business context</strong>, such as product data, performance data, audience signals or CRM history.</li><li><strong>Fit an existing workflow</strong>, so the team can actually adopt it without rebuilding the whole stack.</li></ul><p>By that standard, the current crop of agentic tools is promising, but highly channel-specific.</p><h2>Google Ask Advisor: ready for Google-heavy performance teams</h2><p>Google's Ask Advisor is the clearest example of an agent that can move from analysis towards action inside a live paid media environment. Google introduced it on 20 May 2026 as a cross-product collaborator spanning Google Ads, Google Analytics, Merchant Center and Google Marketing Platform. In Google's own example, the system can pull product details from Merchant Center and help set up a campaign in Google Ads, while also using Ads and Analytics data to explain what worked and recommend what to do next.</p><p>That is meaningful progress, especially for teams already managing search, shopping and measurement inside Google's stack. It moves beyond copy generation and into workflow compression: fewer tabs, less manual interpretation, faster diagnosis, faster campaign changes.</p><p>But there are two important limits. First, Google says Ask Advisor is currently in beta for English language accounts, with more features still rolling out. Second, Google is explicit that marketers should review suggestions before making major changes, and that proposed changes in Google Ads are implemented with user approval. In other words, the live product is not a set-and-forget operator. It is an increasingly capable campaign assistant.</p><p><strong>Best fit:</strong> teams whose spend and reporting already run through Google, especially ecommerce and performance marketers with clean Merchant Center and Analytics setups.</p><p><strong>Not a best fit:</strong> teams looking for a cross-channel content engine, a CRM-native lifecycle orchestrator, or a tool that can run outside Google's own media and measurement environment.</p><h2>Meta Business Agent: ready for messaging-led sales and service</h2><p>Meta's June 2026 launch is less about media buying and more about handling real customer conversations at scale. Meta says Business Agent can answer business-specific questions, recommend products from a catalogue, book appointments, qualify incoming leads, decide when a human should step in and even help close sales. The company also announced expansion across WhatsApp, Messenger and Instagram, plus a Business Agent Platform for larger businesses that want enterprise controls, customisation and measurement.</p><p>That makes Meta's offer more operational than many marketers may expect. If your funnel depends on WhatsApp enquiries, Instagram messages or Messenger conversations, this is already close to a live campaign workflow. An inbound lead from an ad or social post can be greeted, qualified and routed without waiting for office hours.</p><p>The nuance is rollout. Meta announced a global expansion on 3 June 2026, but the current WhatsApp for Business product page still describes Meta Business Agent as available to eligible businesses in select markets, with additional markets launching soon. So the capability is real, but availability may still depend on market, account type and product surface. That is exactly the sort of detail that gets lost in launch coverage and matters a great deal when you are choosing a tool for actual work.</p><p><strong>Best fit:</strong> businesses with high volumes of inbound messaging, service-heavy sales journeys, appointment booking, catalogue-driven recommendations or after-hours lead capture.</p><p><strong>Not a best fit:</strong> teams whose biggest problem is media planning, creative versioning across many owned channels, or deep campaign orchestration beyond Meta's messaging ecosystem.</p><h2>Salesforce Agentforce Marketing: ready if you already have the plumbing</h2><p>Salesforce's June 2026 push is the most ambitious of the three, and probably the least plug-and-play. Its announcement describes an AI marketing team that can help marketers build pipeline, create content and run campaigns. Salesforce Help materials for Marketing Cloud Next describe agents that can draft a campaign brief, generate multichannel campaign content, create a campaign from that brief and analyse performance.</p><p>For a mature Salesforce customer, that is potentially powerful. Campaign creation, audience logic, content generation and follow-up actions can happen closer to the CRM, customer data and workflow engine that already drive revenue operations. This is where the 'agentic' label starts to mean something concrete: the system is not only writing copy, it is participating in campaign assembly.</p><p>But Salesforce's own documentation also makes the dependency clear. Access is tied to specific editions, permissions and enabled AI features, and the value of the system depends heavily on the quality of the data and processes already inside Salesforce. That makes Agentforce Marketing most credible for organisations that have already done the slow work of data modelling, admin setup, governance and channel integration.</p><p><strong>Best fit:</strong> enterprise marketing teams already operating in Salesforce, especially lifecycle, CRM, B2B and cross-functional revenue teams.</p><p><strong>Not a best fit:</strong> smaller teams hoping for a quick standalone agent without the surrounding platform work.</p><h2>What the readiness gap actually is</h2><p>The biggest mistake in this category is assuming the gap is model quality alone. Gartner's survey suggests the deeper constraint is organisational readiness. Teams are spending on AI, but many still lack mature processes, governance, data foundations and talent plans to scale it responsibly.</p><p>That lines up with what the product details show. Google's tool still expects human review. Meta builds in human handoff and audience controls. Salesforce requires permissions, setup and connected systems. The pattern is clear: the leading tools are ready where the workflow is already legible. They are far less ready where the business still has fuzzy ownership, weak tracking or disconnected customer data.</p><p>So the real bottlenecks are rarely dramatic. They are the ordinary things teams live with every day: inconsistent product feeds, unclear approval owners, poor conversion tracking, fragmented campaign reporting, slow legal review, and no agreed rule for when a human should step in.</p><h2>How to choose without buying the fantasy</h2><p>If you are evaluating agentic marketing tools now, the smartest move is not to ask which platform is most advanced in the abstract. Ask which platform best matches the bottleneck that already costs your team time or revenue.</p><ul><li>If most of your paid performance work lives in Google, test Ask Advisor on one tightly scoped campaign and measure whether it reduces analysis and setup time without hurting campaign quality.</li><li>If your growth problem starts in direct messages, test Meta Business Agent on inbound qualification, appointment booking or common product questions, and track escalation quality as closely as response time.</li><li>If your organisation already runs serious campaign operations inside Salesforce, test Agentforce Marketing on brief creation, content production and campaign assembly, but only with clear admin ownership and approval rules.</li><li>If you still do not trust your tracking, product data or handoff rules, pause the big rollout. Fix those first. An agent will usually magnify workflow quality, not replace it.</li></ul><p>A good pilot is small, live and specific: one campaign, one channel, one approval owner, one success metric, four weeks. Measure time saved, revision rate, escalation rate and business impact separately. That will tell you far more than a broad demo ever will.</p><h2>The bottom line</h2><p>The first serious wave of agentic marketing tools is ready for real campaigns, but only in constrained settings. Google is ready for Google-native performance workflows. Meta is ready for messaging-led sales and service. Salesforce is ready for organisations that already have the Salesforce foundations in place. What is not ready is the fantasy that a loose prompt can replace campaign operations, judgement and governance. In 2026, the winners here will not be the teams with the most agents. They will be the teams that match one agent to one well-defined job, then keep a human accountable for the result.</p>",
+  "image": {
+    "src": "/trending-media/which-agentic-marketing-tools-are-ready-for-real-campaigns.webp",
+    "alt": "Two marketers review live campaign dashboards and approval notes at a meeting table.",
+    "width": 1536,
+    "height": 1024
+  },
+  "placements": [
+    "marketing-content",
+    "sales-success"
+  ],
+  "published_at": "2026-08-01T14:55:13.156Z",
+  "updated_at": "2026-08-01T14:55:13.156Z",
+  "reading_minutes": 8,
+  "opportunity_score": 84,
+  "confidence_score": 88,
+  "search_intent": "Readers want a practical, current comparison of new agentic AI marketing tools, what they actually do, which live campaign workflows they are ready for, and where adoption risks still sit.",
+  "primary_keyword": "agentic marketing tools",
+  "secondary_keywords": [
+    "what is agentic marketing",
+    "best agentic AI marketing tools 2026",
+    "Google Ask Advisor",
+    "Meta Business Agent",
+    "Salesforce Agentforce Marketing",
+    "AI marketing campaigns"
+  ],
+  "meta_title": "Agentic marketing tools ready for real campaigns",
+  "meta_description": "Google Ask Advisor, Meta Business Agent and Salesforce Agentforce Marketing are real products now. Here is where each is ready for live campaigns, and where the gaps still are.",
+  "citations": [
+    {
+      "title": "Meet Ask Advisor, your new AI-powered collaborator",
+      "url": "https://blog.google/products/ads-commerce/ask-advisor/",
+      "publisher": "Google",
+      "published_at": "2026-05-20",
+      "supports": "Google's Ask Advisor launch, its cross-product scope across Google marketing tools, its beta status for English language accounts, and its positioning as a workflow assistant for campaign setup and analysis."
+    },
+    {
+      "title": "Ask Advisor in Google Ads (beta)",
+      "url": "https://support.google.com/google-ads/answer/16574983?hl=en-GB",
+      "publisher": "Google Ads Help",
+      "published_at": "Accessed 2026-07-31",
+      "supports": "Explains that Ask Advisor can identify improvements, troubleshoot performance issues and implement suggested changes with user approval, while leaving responsibility for accepted suggestions with the marketer."
+    },
+    {
+      "title": "5 ways to collaborate with our agentic advisors",
+      "url": "https://blog.google/products/ads-commerce/tips-to-collaborate-with-agentic-advisors/",
+      "publisher": "Google",
+      "published_at": "2026-03-25",
+      "supports": "Google's guidance that marketers should review suggestions and apply their own expertise before making major account changes."
+    },
+    {
+      "title": "Be There for Every Customer With Meta Business Agent",
+      "url": "https://about.fb.com/news/2026/06/meta-business-agent/",
+      "publisher": "Meta",
+      "published_at": "2026-06-03",
+      "supports": "Meta's launch of Business Agent, its capabilities across WhatsApp, Messenger and Instagram, and the announcement of broader rollout and the Business Agent Platform."
+    },
+    {
+      "title": "Meta Business Agent on WhatsApp",
+      "url": "https://whatsappbusiness.com/products/business-app-ai-agent/",
+      "publisher": "WhatsApp for Business",
+      "published_at": "Accessed 2026-07-31",
+      "supports": "Current product-page details on setup, audience controls, human handoff, training on business content and the note that availability is for eligible businesses in select markets with more markets launching soon."
+    },
+    {
+      "title": "Salesforce Puts an AI Marketing Team in Every Marketer’s Hands",
+      "url": "https://www.salesforce.com/news/stories/agentic-marketing-teams-announcement/?bc=OTH",
+      "publisher": "Salesforce",
+      "published_at": "2026-06-03",
+      "supports": "Salesforce's June 2026 announcement that marketers can use agents to build pipeline, create content and run campaigns, plus its explanation of how shared data and workflows underpin the product."
+    },
+    {
+      "title": "Agentforce in Marketing Cloud Next",
+      "url": "https://help.salesforce.com/s/articleView?language=en_US&id=mktg_einstein_copilot_in_mc.htm",
+      "publisher": "Salesforce Help",
+      "published_at": "Accessed 2026-07-31",
+      "supports": "Salesforce Help documentation showing that Agentforce in Marketing Cloud Next can draft campaign briefs, generate multichannel campaigns and analyse performance within the platform."
+    },
+    {
+      "title": "Enable AI Features in Marketing Cloud Next",
+      "url": "https://help.salesforce.com/s/articleView?id=sf.mktg_admin_setup_einstein.htm&language=en_US",
+      "publisher": "Salesforce Help",
+      "published_at": "Accessed 2026-07-31",
+      "supports": "Salesforce requirements around editions, permissions and setup for enabling AI features and marketing agents in Marketing Cloud Next."
+    },
+    {
+      "title": "Gartner 2026 CMO Spend Survey Finds CMOs Allocate 15.3% of Marketing Budgets to AI, But Only 30% Are Ready to Scale AI Capabilities",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-05-11-gartner-2026-cmo-spend-survey-finds-cmos-allocate-15-point-3-percent-of-marketing-budgets-to-ai-but-only-30-percent-are-ready-to-scale-ai-capabilities",
+      "publisher": "Gartner",
+      "published_at": "2026-05-11",
+      "supports": "Independent evidence for the article's timing and readiness argument, including AI budget allocation, low scale-readiness and the survey methodology."
+    }
+  ],
+  "claim_checks": [
+    {
+      "claim": "Google launched Ask Advisor on 20 May 2026 as a cross-product AI collaborator for Google marketing tools, including Google Ads, Google Analytics, Merchant Center and Google Marketing Platform.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://blog.google/products/ads-commerce/ask-advisor/"
+      ]
+    },
+    {
+      "claim": "Ask Advisor is still in beta for English language accounts, and Google says marketers should review suggestions and approve changes before they are implemented in Google Ads.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://blog.google/products/ads-commerce/ask-advisor/",
+        "https://support.google.com/google-ads/answer/16574983?hl=en-GB",
+        "https://blog.google/products/ads-commerce/tips-to-collaborate-with-agentic-advisors/"
+      ]
+    },
+    {
+      "claim": "Meta introduced Business Agent on 3 June 2026 with capabilities that include answering questions, recommending products, booking appointments, qualifying leads, closing sales and handing off to humans when needed.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://about.fb.com/news/2026/06/meta-business-agent/",
+        "https://whatsappbusiness.com/products/business-app-ai-agent/"
+      ]
+    },
+    {
+      "claim": "Meta announced a global expansion of Business Agent, but current product materials still indicate staged availability for eligible businesses in select markets.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://about.fb.com/news/2026/06/meta-business-agent/",
+        "https://whatsappbusiness.com/products/business-app-ai-agent/"
+      ]
+    },
+    {
+      "claim": "Salesforce launched its AI marketing team on 3 June 2026 and says marketers can draft campaign briefs, generate multichannel content and create campaigns inside Marketing Cloud Next.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://www.salesforce.com/news/stories/agentic-marketing-teams-announcement/?bc=OTH",
+        "https://help.salesforce.com/s/articleView?language=en_US&id=mktg_einstein_copilot_in_mc.htm"
+      ]
+    },
+    {
+      "claim": "Salesforce's marketing agents depend on specific editions, permissions and enabled AI features, which means deployment is tied to existing Salesforce setup and data foundations.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://help.salesforce.com/s/articleView?id=sf.mktg_admin_setup_einstein.htm&language=en_US",
+        "https://help.salesforce.com/s/articleView?language=en_US&id=mktg_einstein_copilot_in_mc.htm"
+      ]
+    },
+    {
+      "claim": "Gartner's May 2026 CMO Spend Survey found that CMOs allocate 15.3% of marketing budgets to AI, but only 30% report mature or fully developed AI readiness capabilities.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://www.gartner.com/en/newsroom/press-releases/2026-05-11-gartner-2026-cmo-spend-survey-finds-cmos-allocate-15-point-3-percent-of-marketing-budgets-to-ai-but-only-30-percent-are-ready-to-scale-ai-capabilities"
+      ]
+    },
+    {
+      "claim": "The first wave of agentic marketing tools is best understood as workflow-specific systems, not fully autonomous end-to-end marketing departments, because the leading products still rely on human approval, handoff controls and organisational readiness.",
+      "status": "qualified",
+      "evidence_urls": [
+        "https://support.google.com/google-ads/answer/16574983?hl=en-GB",
+        "https://blog.google/products/ads-commerce/tips-to-collaborate-with-agentic-advisors/",
+        "https://whatsappbusiness.com/products/business-app-ai-agent/",
+        "https://help.salesforce.com/s/articleView?id=sf.mktg_admin_setup_einstein.htm&language=en_US",
+        "https://www.gartner.com/en/newsroom/press-releases/2026-05-11-gartner-2026-cmo-spend-survey-finds-cmos-allocate-15-point-3-percent-of-marketing-budgets-to-ai-but-only-30-percent-are-ready-to-scale-ai-capabilities"
+      ]
+    },
+    {
+      "claim": "As a practical buying guide, Google currently fits Google-native performance marketing best, Meta fits messaging-led sales and service best, and Salesforce fits organisations already operating inside Salesforce best.",
+      "status": "qualified",
+      "evidence_urls": [
+        "https://blog.google/products/ads-commerce/ask-advisor/",
+        "https://about.fb.com/news/2026/06/meta-business-agent/",
+        "https://whatsappbusiness.com/products/business-app-ai-agent/",
+        "https://www.salesforce.com/news/stories/agentic-marketing-teams-announcement/?bc=OTH",
+        "https://help.salesforce.com/s/articleView?language=en_US&id=mktg_einstein_copilot_in_mc.htm"
+      ]
+    }
+  ],
+  "publisher": "Campaign Producers · Trendloom"
+}

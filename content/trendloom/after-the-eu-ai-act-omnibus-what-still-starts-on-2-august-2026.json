@@ -1,0 +1,154 @@
+{
+  "version": 2,
+  "slug": "after-the-eu-ai-act-omnibus-what-still-starts-on-2-august-2026",
+  "title": "After the EU AI Act Omnibus, What Still Starts on 2 August 2026",
+  "dek": "The July 2026 Omnibus moved the high-risk timetable, but it did not move Article 50. Here is the August deadline that still matters for chatbots, content workflows and US AI companies.",
+  "body_html": "<p><strong>The practical answer:</strong> some EU AI Act dates moved in July 2026, but 2 August 2026 is still a real compliance deadline. The Omnibus pushed the high-risk timetable for Annex III systems to 2 December 2027 and for Annex I product-embedded systems to 2 August 2028. It did not move Article 50 transparency duties, and the official EU timeline still treats 2 August 2026 as the point when the majority of applicable rules start and enforcement begins for those rules. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force))</p><p>It is easy to hear 'the AI Act was delayed' and stop at the headline. That would be a mistake. If your business runs chatbots, generative content tools, emotion recognition, biometric categorisation, or public-facing AI publishing workflows that reach people in the EU, August 2026 is still live. For providers of general-purpose AI models, 2 August 2026 also marks the start of the Commission's enforcement powers, even though those provider obligations started on 2 August 2025. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act))</p><h2>What the July 2026 Omnibus actually changed</h2><p>The clearest change is to the high-risk schedule. After the Digital Omnibus on AI entered into force on 27 July 2026, the European Commission updated its materials to say the high-risk rules for Annex III use cases move to 2 December 2027, while the rules for AI embedded in regulated products covered by Annex I move to 2 August 2028. The service desk timeline now describes the Act's main roll-out as running through 2 August 2028, not finishing in one sweep in 2026. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force))</p><p>The reason the EU gives is practical rather than philosophical. The Commission says the harmonised standards for high-risk systems were not ready on the original timetable, and that delaying those parts should give companies and authorities more workable support for implementation. Two additional prohibitions introduced by the Omnibus, covering certain non-consensual sexual deepfakes and child sexual abuse material, are set to apply on 2 December 2026, not 2 August 2026. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act))</p><h2>What still starts on 2 August 2026</h2><p>First, <strong>Article 50 transparency obligations</strong> still start on 2 August 2026. The Commission's July 2026 guidance and FAQ are explicit on this point. Providers and deployers of certain AI systems must comply from that date, with only a narrow grace period for one slice of the rulebook. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/library/guidelines-transparency-obligations-providers-and-deployers-ai-systems))</p><ul><li><strong>Direct interaction disclosures.</strong> Providers of AI systems that directly interact with natural persons must ensure those people are told they are interacting with AI. The Commission's FAQ names chatbots, AI agents and avatars as typical examples. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act))</li><li><strong>Machine-readable marking of synthetic content.</strong> Providers of systems that generate or manipulate synthetic audio, image, video or text must mark outputs in a machine-readable and detectable way, subject to exclusions such as source code, certain machine-to-machine outputs and standard editing uses. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act))</li><li><strong>Deployer disclosure duties.</strong> Deployers must inform people when they use emotion recognition or biometric categorisation systems, and must clearly disclose deepfakes and certain AI-generated or manipulated text published to inform the public on matters of public interest. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act))</li><li><strong>Enforcement for applicable rules.</strong> The official timeline says national and EU-level enforcement starts for applicable rules concerning general-purpose AI models, prohibitions, transparency rules and AI literacy. ([ai-act-service-desk.ec.europa.eu](https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act))</li></ul><p>The grace period is narrow. The amending regulation and the Commission's FAQ say it covers only systems already placed on the market before 2 August 2026, and only the Article 50(2) duty to mark and enable detection of AI-generated content. It does not postpone chatbot disclosure or the deployer obligations on deepfakes and public-interest text, and content generated before 2 August 2026 does not need retroactive labelling. ([eur-lex.europa.eu](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R1744&utm_source=openai))</p><p>One point is especially easy to miss: not every piece of AI-assisted writing needs a public label. The Article 50 text duty only covers AI-generated or manipulated text published to inform the public on matters of public interest, and it falls away where there has been substantive human review or real editorial control. The Commission says superficial checks such as spelling or grammar correction do not count as review. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act))</p><h2>So, do chatbots fall in scope in 2026?</h2><p>Usually, yes. The Commission says the direct-interaction duty applies when four conditions are met: the tool is an AI system, it is designed for a genuine two-way exchange, the interaction is direct, and the other party is a natural person. People must be informed from the start of the first interaction, in a clear and distinguishable way, unless it is obvious they are dealing with AI. The 'obvious' exception should be interpreted restrictively. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act))</p><p>The practical implication is simple. A website support bot, booking assistant or AI receptionist aimed at EU users is the straightforward case to review now. By contrast, the Commission says background systems, machine-to-machine communication and tools with no direct contact with people fall outside this specific disclosure duty. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act))</p><h2>What this means for US AI companies</h2><p>The AI Act can reach companies outside Europe. The Commission says the framework applies to public and private actors inside and outside the EU when an AI system or general-purpose AI model is placed on the EU market, used in the Union, or its use has an impact on people located in the EU. For Article 50 specifically, providers located outside the EU are still subject to the Act if the output of their AI system is used in the EU. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act?utm_source=openai))</p><p>That means a US company should not ask only whether it has an EU subsidiary. The better questions are whether EU users interact with its AI, whether its synthetic outputs reach EU markets, and whether it publishes AI-assisted material on matters of public interest into the EU. If it provides a general-purpose AI model, the provider obligations have applied since 2 August 2025, the Commission says a provider established outside the EU must appoint an authorised representative in the Union before placing that model on the market, and the AI Office's enforcement powers for the most advanced models come into application on 2 August 2026. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/guidelines-obligations-general-purpose-ai-providers))</p><h2>A better compliance plan for the next two weeks</h2><p>The fastest way to waste time is to run one giant AI Act project. After the Omnibus, the August work is narrower. Split it into user interaction, synthetic content, public-interest publishing and GPAI model exposure. That keeps a delay to one part of the Act from becoming an excuse to miss the part that did not move.</p><ol><li>Map every direct AI interaction that could reach people in the EU, and decide how the AI disclosure appears at first contact. What matters here is the user experience, not your internal label for the tool. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act))</li><li>Separate provider duties from deployer duties. If you build a generative system, focus on marking and detectability. If you use one professionally, focus on labels, notices and who owns the publication decision. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act))</li><li>Review public-interest publishing workflows. A meaningful editorial pass can remove the text-labelling duty, but light proofreading cannot. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act))</li><li>Check grandfathering carefully. Systems placed on the market before 2 August 2026 get extra time only for the Article 50(2) marking duty, and only until 2 December 2026. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act))</li><li>If you are a GPAI model provider outside the EU, confirm your authorised representative, documentation and response process now, before any request from the AI Office. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/guidelines-obligations-general-purpose-ai-providers))</li></ol><p>This is not just guidance theatre. The Commission says national authorities enforce most AI-system rules, while the AI Office enforces GPAI obligations and a subset of systems. The AI Act sets penalty ceilings, including up to 15 million euro or 3 percent of worldwide annual turnover for many non-compliance cases, although Member States still set detailed penalty rules and enforcement will depend on the facts of each case. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act))</p><p>The clearest way to explain the post-Omnibus position internally is this: the EU AI Act was partly delayed, not broadly paused. If your main exposure is Annex III or product-embedded high-risk AI, you have more time. If your exposure is chatbots, synthetic content, public-interest publishing or EU-facing general-purpose AI, 2 August 2026 is still on the calendar. Use that distinction to shrink the scope of the August project, then get legal advice before a consequential launch or rollout. ([digital-strategy.ec.europa.eu](https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force))</p>",
+  "image": {
+    "src": "/trending-media/after-the-eu-ai-act-omnibus-what-still-starts-on-2-august-2026.webp",
+    "alt": "Lawyer and product manager reviewing an AI compliance timeline and chatbot workflow at a conference table.",
+    "width": 1536,
+    "height": 1024
+  },
+  "placements": [
+    "marketing-content",
+    "operations-projects",
+    "legal-compliance"
+  ],
+  "published_at": "2026-08-08T17:17:57.659Z",
+  "updated_at": "2026-08-08T17:17:57.659Z",
+  "reading_minutes": 7,
+  "opportunity_score": 82,
+  "confidence_score": 93,
+  "search_intent": "Informational and compliance-led. The reader wants a reliable answer on whether the EU AI Act was delayed, which rules still start on 2 August 2026, whether Article 50 catches chatbots, and what US AI companies still need to do.",
+  "primary_keyword": "EU AI Act 2 August 2026",
+  "secondary_keywords": [
+    "EU AI Act omnibus",
+    "Article 50 AI Act",
+    "EU AI Act chatbots",
+    "EU AI Act US companies",
+    "AI-generated content labelling",
+    "general-purpose AI obligations"
+  ],
+  "meta_title": "EU AI Act 2 August 2026: what still starts after the Omnibus",
+  "meta_description": "The July 2026 AI Omnibus delayed some EU AI Act high-risk dates, but not Article 50. Here is what still starts on 2 August 2026 for chatbots, content tools and US AI companies.",
+  "citations": [
+    {
+      "title": "AI Omnibus enters into force",
+      "url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+      "publisher": "European Commission",
+      "published_at": "2026-07-27",
+      "supports": "Confirms the Omnibus entered into force on 27 July 2026 and moved Annex III high-risk rules to 2 December 2027 and Annex I product-embedded rules to 2 August 2028, while adding new prohibitions that start later in 2026."
+    },
+    {
+      "title": "Navigating the AI Act",
+      "url": "https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act",
+      "publisher": "European Commission",
+      "published_at": "Undated, accessed 2026-07-31",
+      "supports": "Explains why high-risk deadlines were extended, confirms Article 50 obligations apply on 2 August 2026, and states the AI Act applies to actors inside and outside the EU."
+    },
+    {
+      "title": "Timeline for the Implementation of the EU AI Act",
+      "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act",
+      "publisher": "AI Act Service Desk",
+      "published_at": "Undated, accessed 2026-07-31",
+      "supports": "Shows the updated implementation timeline, including that the majority of applicable rules and enforcement start on 2 August 2026, Annex III rules start 2 December 2027, and Annex I rules start 2 August 2028."
+    },
+    {
+      "title": "Guidelines on transparency obligations for providers and deployers of AI systems",
+      "url": "https://digital-strategy.ec.europa.eu/en/library/guidelines-transparency-obligations-providers-and-deployers-ai-systems",
+      "publisher": "European Commission",
+      "published_at": "2026-07-20",
+      "supports": "States that Article 50 transparency obligations apply from 2 August 2026 and summarises the provider and deployer duties covered by the guidance."
+    },
+    {
+      "title": "Transparency obligations under Article 50 of the AI Act",
+      "url": "https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act",
+      "publisher": "European Commission",
+      "published_at": "Undated, accessed 2026-07-31",
+      "supports": "Clarifies that chatbots, AI agents and avatars are typical direct-interaction systems, explains the obviousness exception, defines the limited grace period, and describes the rules for public-interest text, deepfakes and human review."
+    },
+    {
+      "title": "Quick Facts: Transparency rules for AI systems",
+      "url": "https://digital-strategy.ec.europa.eu/en/factpages/quick-facts-transparency-rules-ai-systems",
+      "publisher": "European Commission",
+      "published_at": "Undated, accessed 2026-07-31",
+      "supports": "Summarises the four Article 50 transparency cases, the December 2026 grace period for some pre-existing systems, and the Commission's headline penalty figures for relevant breaches."
+    },
+    {
+      "title": "AI Literacy - Questions & Answers",
+      "url": "https://digital-strategy.ec.europa.eu/en/faqs/ai-literacy-questions-answers",
+      "publisher": "European Commission",
+      "published_at": "Undated, accessed 2026-07-31",
+      "supports": "States that the AI Act framework applies inside and outside the EU when systems are placed on the Union market, used in the Union or affect people in the EU, and explains the August 2026 supervision phase for AI literacy."
+    },
+    {
+      "title": "Guidelines on obligations for General-Purpose AI providers",
+      "url": "https://digital-strategy.ec.europa.eu/en/faqs/guidelines-obligations-general-purpose-ai-providers",
+      "publisher": "European Commission",
+      "published_at": "Undated, accessed 2026-07-31",
+      "supports": "Explains GPAI provider obligations from 2 August 2025, says providers outside the EU must appoint an authorised representative before placing a GPAI model on the Union market, and outlines Commission enforcement expectations."
+    },
+    {
+      "title": "Regulation (EU) 2026/1744, Digital Omnibus on AI",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R1744",
+      "publisher": "EUR-Lex",
+      "published_at": "2026-07-24",
+      "supports": "Provides the official legislative amendment, including the delayed high-risk dates and the specific transitional clause for Article 50(2) systems placed on the market before 2 August 2026."
+    },
+    {
+      "title": "The Commission's enforcement powers related to AI Act obligations for providers of the most advanced models enter into application on 2 August 2026. What will change then?",
+      "url": "https://ai-act-service-desk.ec.europa.eu/fr/node/999",
+      "publisher": "AI Act Service Desk",
+      "published_at": "Undated, accessed 2026-07-31",
+      "supports": "Confirms that the Commission's enforcement powers for the most advanced GPAI models start applying on 2 August 2026 and summarises the powers available to the AI Office."
+    }
+  ],
+  "claim_checks": [
+    {
+      "claim": "The July 2026 Omnibus delayed the AI Act's Annex III high-risk rules to 2 December 2027 and Annex I product-embedded rules to 2 August 2028, but it did not delay Article 50.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+        "https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act",
+        "https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act"
+      ]
+    },
+    {
+      "claim": "Article 50 still applies from 2 August 2026, with only a limited grace period until 2 December 2026 for the Article 50(2) marking duty on systems already placed on the market before 2 August 2026.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act",
+        "https://digital-strategy.ec.europa.eu/en/factpages/quick-facts-transparency-rules-ai-systems",
+        "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R1744"
+      ]
+    },
+    {
+      "claim": "Chatbots, AI agents and avatars typically fall within the direct-interaction transparency duty, unless it is obvious to the user that they are dealing with AI.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act",
+        "https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act"
+      ]
+    },
+    {
+      "claim": "US and other non-EU companies can fall within scope when their systems or outputs reach the EU, and GPAI model providers outside the EU must appoint an authorised representative before placing a model on the Union market.",
+      "status": "supported",
+      "evidence_urls": [
+        "https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act",
+        "https://digital-strategy.ec.europa.eu/en/faqs/ai-literacy-questions-answers",
+        "https://digital-strategy.ec.europa.eu/en/faqs/guidelines-obligations-general-purpose-ai-providers"
+      ]
+    },
+    {
+      "claim": "Enforcement for applicable August 2026 rules is real, but how penalties are applied will still depend on Member State implementation and case facts.",
+      "status": "qualified",
+      "evidence_urls": [
+        "https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act",
+        "https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act",
+        "https://digital-strategy.ec.europa.eu/en/factpages/quick-facts-transparency-rules-ai-systems"
+      ]
+    }
+  ],
+  "publisher": "Campaign Producers · Trendloom"
+}
